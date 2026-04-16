@@ -23,3 +23,13 @@ func TestNewClientMissingKey(t *testing.T) {
 		t.Fatal("expected error for empty API key")
 	}
 }
+
+func TestChatServiceAccessible(t *testing.T) {
+	client, _ := New(Config{APIKey: "test-key"})
+	if client.OpenAI.Chat == nil {
+		t.Fatal("Chat service is nil")
+	}
+	if client.OpenAI.Chat.Completions == nil {
+		t.Fatal("ChatCompletions service is nil")
+	}
+}
