@@ -1,0 +1,49 @@
+name: Sync OpenAPI Spec
+
+on:
+  schedule:
+    - cron: '0 2 * * 1'  # Every Monday 02:00 UTC
+  workflow_dispatch:       # Manual trigger
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.24'
+
+      - name: Clone megaopenrouter
+        run: |
+          git clone --depth 1 https://x-access-token:${{ secrets.GITLAB_TOKEN }}@gitlab.53site.com/ai-innovation-lab/megaopenrouter.git ../megaopenrouter
+
+      - name: Run codegen
+        run: go run scripts/generate.go
+
+      - name: Check for changes
+        id: diff
+        run: |
+          if git diff --quiet internal/gen/; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Create PR
+        if: steps.diff.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          BRANCH="chore/sync-spec-$(date +%Y%m%d)"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$BRANCH"
+          git add internal/gen/
+          git commit -m "chore: sync generated types from latest OpenAPI spec"
+          git push origin "$BRANCH"
+          gh pr create \
+            --title "chore: sync OpenAPI spec types ($(date +%Y-%m-%d))" \
+            --body "Auto-generated from latest megaopenrouter OpenAPI spec." \
+            --base main
