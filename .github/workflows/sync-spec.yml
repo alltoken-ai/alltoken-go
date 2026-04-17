@@ -1,9 +1,7 @@
 name: Sync OpenAPI Spec
 
 on:
-  schedule:
-    - cron: '0 2 * * 1'  # Every Monday 02:00 UTC
-  workflow_dispatch:       # Manual trigger
+  workflow_dispatch:  # Triggered by GitLab CI when OpenAPI spec changes
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
@@ -20,7 +18,7 @@ jobs:
 
       - name: Clone megaopenrouter
         run: |
-          git clone --depth 1 https://x-access-token:${{ secrets.GITLAB_TOKEN }}@gitlab.53site.com/ai-innovation-lab/megaopenrouter.git ../megaopenrouter
+          git clone --depth 1 https://x-access-token:${{ secrets.GITLAB_TOKEN }}@${{ secrets.GITLAB_REPO_URL }} ../megaopenrouter
 
       - name: Run codegen
         run: go run scripts/generate.go
