@@ -648,8 +648,13 @@ type VideoGenerationRequest struct {
 	ExecutionExpiresAfter *int `json:"execution_expires_after,omitempty"`
 
 	// Frames 帧数（优先级高于 duration）
-	Frames           *int                               `json:"frames,omitempty"`
-	GenerateAudio    *bool                              `json:"generate_audio,omitempty"`
+	Frames *int `json:"frames,omitempty"`
+
+	// GenerateAudio 是否生成音频
+	GenerateAudio *bool `json:"generate_audio,omitempty"`
+
+	// InputHasVideo 输入是否包含视频（图生视频）
+	InputHasVideo    *bool                              `json:"input_has_video,omitempty"`
 	Model            string                             `json:"model"`
 	Prompt           string                             `json:"prompt"`
 	Ratio            *VideoGenerationRequestRatio       `json:"ratio,omitempty"`
@@ -698,6 +703,7 @@ type VideoTaskResponse struct {
 	Frames                *int                        `json:"frames,omitempty"`
 	GenerateAudio         *bool                       `json:"generate_audio,omitempty"`
 	Id                    string                      `json:"id"`
+	InputHasVideo         *bool                       `json:"input_has_video,omitempty"`
 	InputType             *VideoTaskResponseInputType `json:"input_type,omitempty"`
 	LastFrameUrl          *string                     `json:"last_frame_url,omitempty"`
 	Model                 string                      `json:"model"`
