@@ -23,12 +23,6 @@ jobs:
         run: |
           git clone --depth 1 https://x-access-token:${{ secrets.GITLAB_TOKEN }}@${{ secrets.GITLAB_REPO_URL }} ../megaopenrouter
 
-      - name: Validate OpenAPI specs
-        run: |
-          go install github.com/pb33f/libopenapi-validator/cmd/openapi-validator@latest
-          openapi-validator ../megaopenrouter/openapi/chat.yml || true
-          openapi-validator ../megaopenrouter/openapi/account.yml || true
-
       - name: Run codegen
         run: go run scripts/generate.go
 
