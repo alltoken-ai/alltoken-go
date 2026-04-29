@@ -463,9 +463,6 @@ type ChatCompletionResponse struct {
 	SystemFingerprint *string                      `json:"system_fingerprint,omitempty"`
 	Usage             *Usage                       `json:"usage,omitempty"`
 
-	// XGatewayProvider 网关扩展 —— 实际处理请求的 provider 名
-	XGatewayProvider *string `json:"x-gateway-provider,omitempty"`
-
 	// XGatewayRequestId 网关扩展 —— 请求 ID（便于排查）
 	XGatewayRequestId *string `json:"x-gateway-request-id,omitempty"`
 }
