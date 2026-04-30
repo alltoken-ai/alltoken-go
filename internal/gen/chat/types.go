@@ -139,13 +139,16 @@ func (e ContentPartType) Valid() bool {
 
 // Defines values for ModelInfoObject.
 const (
-	Model ModelInfoObject = "model"
+	ModelInfoObjectModel ModelInfoObject = "model"
+	ModelInfoObjectVideo ModelInfoObject = "video"
 )
 
 // Valid indicates whether the value is a known member of the ModelInfoObject enum.
 func (e ModelInfoObject) Valid() bool {
 	switch e {
-	case Model:
+	case ModelInfoObjectModel:
+		return true
+	case ModelInfoObjectVideo:
 		return true
 	default:
 		return false
@@ -349,31 +352,31 @@ func (e VideoGenerationRequestToolsType) Valid() bool {
 
 // Defines values for VideoTaskResponseInputType.
 const (
-	VideoTaskResponseInputTypeDraftTask           VideoTaskResponseInputType = "draft_task"
-	VideoTaskResponseInputTypeImageFirstFrame     VideoTaskResponseInputType = "image_first_frame"
-	VideoTaskResponseInputTypeImageFirstLastFrame VideoTaskResponseInputType = "image_first_last_frame"
-	VideoTaskResponseInputTypeImageReference      VideoTaskResponseInputType = "image_reference"
-	VideoTaskResponseInputTypeMultimodal          VideoTaskResponseInputType = "multimodal"
-	VideoTaskResponseInputTypeText                VideoTaskResponseInputType = "text"
-	VideoTaskResponseInputTypeVideoReference      VideoTaskResponseInputType = "video_reference"
+	DraftTask           VideoTaskResponseInputType = "draft_task"
+	ImageFirstFrame     VideoTaskResponseInputType = "image_first_frame"
+	ImageFirstLastFrame VideoTaskResponseInputType = "image_first_last_frame"
+	ImageReference      VideoTaskResponseInputType = "image_reference"
+	Multimodal          VideoTaskResponseInputType = "multimodal"
+	Text                VideoTaskResponseInputType = "text"
+	VideoReference      VideoTaskResponseInputType = "video_reference"
 )
 
 // Valid indicates whether the value is a known member of the VideoTaskResponseInputType enum.
 func (e VideoTaskResponseInputType) Valid() bool {
 	switch e {
-	case VideoTaskResponseInputTypeDraftTask:
+	case DraftTask:
 		return true
-	case VideoTaskResponseInputTypeImageFirstFrame:
+	case ImageFirstFrame:
 		return true
-	case VideoTaskResponseInputTypeImageFirstLastFrame:
+	case ImageFirstLastFrame:
 		return true
-	case VideoTaskResponseInputTypeImageReference:
+	case ImageReference:
 		return true
-	case VideoTaskResponseInputTypeMultimodal:
+	case Multimodal:
 		return true
-	case VideoTaskResponseInputTypeText:
+	case Text:
 		return true
-	case VideoTaskResponseInputTypeVideoReference:
+	case VideoReference:
 		return true
 	default:
 		return false
@@ -540,10 +543,18 @@ type ErrorResponse struct {
 
 // ModelInfo defines model for ModelInfo.
 type ModelInfo struct {
-	Created *int64          `json:"created,omitempty"`
-	Id      string          `json:"id"`
-	Object  ModelInfoObject `json:"object"`
-	OwnedBy *string         `json:"owned_by,omitempty"`
+	Brand            *string         `json:"brand,omitempty"`
+	Created          *int64          `json:"created,omitempty"`
+	Description      *string         `json:"description,omitempty"`
+	DisplayName      *string         `json:"display_name,omitempty"`
+	Family           *string         `json:"family,omitempty"`
+	Id               string          `json:"id"`
+	InputModalities  *[]string       `json:"input_modalities,omitempty"`
+	LogoUrl          *string         `json:"logo_url,omitempty"`
+	Object           ModelInfoObject `json:"object"`
+	OutputModalities *[]string       `json:"output_modalities,omitempty"`
+	OwnedBy          *string         `json:"owned_by,omitempty"`
+	Series           *string         `json:"series,omitempty"`
 }
 
 // ModelInfoObject defines model for ModelInfo.Object.
@@ -702,17 +713,20 @@ type VideoTaskResponse struct {
 	Id                    string                      `json:"id"`
 	InputHasVideo         *bool                       `json:"input_has_video,omitempty"`
 	InputType             *VideoTaskResponseInputType `json:"input_type,omitempty"`
-	LastFrameUrl          *string                     `json:"last_frame_url,omitempty"`
-	Model                 string                      `json:"model"`
-	Ratio                 *string                     `json:"ratio,omitempty"`
-	Resolution            *string                     `json:"resolution,omitempty"`
-	SafetyIdentifier      *string                     `json:"safety_identifier,omitempty"`
-	Seed                  *int64                      `json:"seed,omitempty"`
-	ServiceTier           *string                     `json:"service_tier,omitempty"`
-	Status                VideoTaskResponseStatus     `json:"status"`
-	Tools                 *[]map[string]interface{}   `json:"tools,omitempty"`
-	UpdatedAt             *time.Time                  `json:"updated_at,omitempty"`
-	Usage                 *struct {
+
+	// IsExpired 生成视频 URL 或任务是否已过期
+	IsExpired        bool                      `json:"is_expired"`
+	LastFrameUrl     *string                   `json:"last_frame_url,omitempty"`
+	Model            string                    `json:"model"`
+	Ratio            *string                   `json:"ratio,omitempty"`
+	Resolution       *string                   `json:"resolution,omitempty"`
+	SafetyIdentifier *string                   `json:"safety_identifier,omitempty"`
+	Seed             *int64                    `json:"seed,omitempty"`
+	ServiceTier      *string                   `json:"service_tier,omitempty"`
+	Status           VideoTaskResponseStatus   `json:"status"`
+	Tools            *[]map[string]interface{} `json:"tools,omitempty"`
+	UpdatedAt        *time.Time                `json:"updated_at,omitempty"`
+	Usage            *struct {
 		CompletionTokens *int `json:"completion_tokens,omitempty"`
 		ToolUsage        *struct {
 			WebSearch *int `json:"web_search,omitempty"`
