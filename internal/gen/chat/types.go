@@ -5,6 +5,7 @@ package chat
 
 import (
 	"encoding/json"
+	"fmt"
 	"time"
 
 	"github.com/oapi-codegen/runtime"
@@ -100,19 +101,19 @@ func (e ChoiceFinishReason) Valid() bool {
 
 // Defines values for ContentPartImageUrlDetail.
 const (
-	Auto ContentPartImageUrlDetail = "auto"
-	High ContentPartImageUrlDetail = "high"
-	Low  ContentPartImageUrlDetail = "low"
+	ContentPartImageUrlDetailAuto ContentPartImageUrlDetail = "auto"
+	ContentPartImageUrlDetailHigh ContentPartImageUrlDetail = "high"
+	ContentPartImageUrlDetailLow  ContentPartImageUrlDetail = "low"
 )
 
 // Valid indicates whether the value is a known member of the ContentPartImageUrlDetail enum.
 func (e ContentPartImageUrlDetail) Valid() bool {
 	switch e {
-	case Auto:
+	case ContentPartImageUrlDetailAuto:
 		return true
-	case High:
+	case ContentPartImageUrlDetailHigh:
 		return true
-	case Low:
+	case ContentPartImageUrlDetailLow:
 		return true
 	default:
 		return false
@@ -137,8 +138,168 @@ func (e ContentPartType) Valid() bool {
 	}
 }
 
+// Defines values for ImageCreateResponseStatus.
+const (
+	ImageCreateResponseStatusQueued ImageCreateResponseStatus = "queued"
+)
+
+// Valid indicates whether the value is a known member of the ImageCreateResponseStatus enum.
+func (e ImageCreateResponseStatus) Valid() bool {
+	switch e {
+	case ImageCreateResponseStatusQueued:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ImageGenerationRequestBackground.
+const (
+	ImageGenerationRequestBackgroundAuto   ImageGenerationRequestBackground = "auto"
+	ImageGenerationRequestBackgroundOpaque ImageGenerationRequestBackground = "opaque"
+)
+
+// Valid indicates whether the value is a known member of the ImageGenerationRequestBackground enum.
+func (e ImageGenerationRequestBackground) Valid() bool {
+	switch e {
+	case ImageGenerationRequestBackgroundAuto:
+		return true
+	case ImageGenerationRequestBackgroundOpaque:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ImageGenerationRequestModeration.
+const (
+	ImageGenerationRequestModerationAuto ImageGenerationRequestModeration = "auto"
+	ImageGenerationRequestModerationLow  ImageGenerationRequestModeration = "low"
+)
+
+// Valid indicates whether the value is a known member of the ImageGenerationRequestModeration enum.
+func (e ImageGenerationRequestModeration) Valid() bool {
+	switch e {
+	case ImageGenerationRequestModerationAuto:
+		return true
+	case ImageGenerationRequestModerationLow:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ImageGenerationRequestOutputFormat.
+const (
+	Jpeg ImageGenerationRequestOutputFormat = "jpeg"
+	Png  ImageGenerationRequestOutputFormat = "png"
+	Webp ImageGenerationRequestOutputFormat = "webp"
+)
+
+// Valid indicates whether the value is a known member of the ImageGenerationRequestOutputFormat enum.
+func (e ImageGenerationRequestOutputFormat) Valid() bool {
+	switch e {
+	case Jpeg:
+		return true
+	case Png:
+		return true
+	case Webp:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ImageGenerationRequestQuality.
+const (
+	ImageGenerationRequestQualityAuto   ImageGenerationRequestQuality = "auto"
+	ImageGenerationRequestQualityHigh   ImageGenerationRequestQuality = "high"
+	ImageGenerationRequestQualityLow    ImageGenerationRequestQuality = "low"
+	ImageGenerationRequestQualityMedium ImageGenerationRequestQuality = "medium"
+)
+
+// Valid indicates whether the value is a known member of the ImageGenerationRequestQuality enum.
+func (e ImageGenerationRequestQuality) Valid() bool {
+	switch e {
+	case ImageGenerationRequestQualityAuto:
+		return true
+	case ImageGenerationRequestQualityHigh:
+		return true
+	case ImageGenerationRequestQualityLow:
+		return true
+	case ImageGenerationRequestQualityMedium:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ImageGenerationRequestSize.
+const (
+	Auto       ImageGenerationRequestSize = "auto"
+	N1024x1024 ImageGenerationRequestSize = "1024x1024"
+	N1024x1536 ImageGenerationRequestSize = "1024x1536"
+	N1536x1024 ImageGenerationRequestSize = "1536x1024"
+)
+
+// Valid indicates whether the value is a known member of the ImageGenerationRequestSize enum.
+func (e ImageGenerationRequestSize) Valid() bool {
+	switch e {
+	case Auto:
+		return true
+	case N1024x1024:
+		return true
+	case N1024x1536:
+		return true
+	case N1536x1024:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ImageGenerationResponseStatus.
+const (
+	ImageGenerationResponseStatusCompleted ImageGenerationResponseStatus = "completed"
+)
+
+// Valid indicates whether the value is a known member of the ImageGenerationResponseStatus enum.
+func (e ImageGenerationResponseStatus) Valid() bool {
+	switch e {
+	case ImageGenerationResponseStatusCompleted:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ImageTaskStatusResponseStatus.
+const (
+	ImageTaskStatusResponseStatusCancelled  ImageTaskStatusResponseStatus = "cancelled"
+	ImageTaskStatusResponseStatusFailed     ImageTaskStatusResponseStatus = "failed"
+	ImageTaskStatusResponseStatusProcessing ImageTaskStatusResponseStatus = "processing"
+	ImageTaskStatusResponseStatusQueued     ImageTaskStatusResponseStatus = "queued"
+)
+
+// Valid indicates whether the value is a known member of the ImageTaskStatusResponseStatus enum.
+func (e ImageTaskStatusResponseStatus) Valid() bool {
+	switch e {
+	case ImageTaskStatusResponseStatusCancelled:
+		return true
+	case ImageTaskStatusResponseStatusFailed:
+		return true
+	case ImageTaskStatusResponseStatusProcessing:
+		return true
+	case ImageTaskStatusResponseStatusQueued:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for ModelInfoObject.
 const (
+	ModelInfoObjectImage ModelInfoObject = "image"
 	ModelInfoObjectModel ModelInfoObject = "model"
 	ModelInfoObjectVideo ModelInfoObject = "video"
 )
@@ -146,6 +307,8 @@ const (
 // Valid indicates whether the value is a known member of the ModelInfoObject enum.
 func (e ModelInfoObject) Valid() bool {
 	switch e {
+	case ModelInfoObjectImage:
+		return true
 	case ModelInfoObjectModel:
 		return true
 	case ModelInfoObjectVideo:
@@ -385,28 +548,28 @@ func (e VideoTaskResponseInputType) Valid() bool {
 
 // Defines values for VideoTaskResponseStatus.
 const (
-	Cancelled  VideoTaskResponseStatus = "cancelled"
-	Completed  VideoTaskResponseStatus = "completed"
-	Expired    VideoTaskResponseStatus = "expired"
-	Failed     VideoTaskResponseStatus = "failed"
-	Processing VideoTaskResponseStatus = "processing"
-	Queued     VideoTaskResponseStatus = "queued"
+	VideoTaskResponseStatusCancelled  VideoTaskResponseStatus = "cancelled"
+	VideoTaskResponseStatusCompleted  VideoTaskResponseStatus = "completed"
+	VideoTaskResponseStatusExpired    VideoTaskResponseStatus = "expired"
+	VideoTaskResponseStatusFailed     VideoTaskResponseStatus = "failed"
+	VideoTaskResponseStatusProcessing VideoTaskResponseStatus = "processing"
+	VideoTaskResponseStatusQueued     VideoTaskResponseStatus = "queued"
 )
 
 // Valid indicates whether the value is a known member of the VideoTaskResponseStatus enum.
 func (e VideoTaskResponseStatus) Valid() bool {
 	switch e {
-	case Cancelled:
+	case VideoTaskResponseStatusCancelled:
 		return true
-	case Completed:
+	case VideoTaskResponseStatusCompleted:
 		return true
-	case Expired:
+	case VideoTaskResponseStatusExpired:
 		return true
-	case Failed:
+	case VideoTaskResponseStatusFailed:
 		return true
-	case Processing:
+	case VideoTaskResponseStatusProcessing:
 		return true
-	case Queued:
+	case VideoTaskResponseStatusQueued:
 		return true
 	default:
 		return false
@@ -537,8 +700,116 @@ type ErrorResponse struct {
 		Message   string  `json:"message"`
 		Param     *string `json:"param,omitempty"`
 		RequestId *string `json:"request_id,omitempty"`
-		Type      string  `json:"type"`
+
+		// TaskId Idempotency-Key 命中时返回原任务 ID。
+		TaskId *string `json:"task_id,omitempty"`
+		Type   string  `json:"type"`
 	} `json:"error"`
+}
+
+// ImageCreateResponse defines model for ImageCreateResponse.
+type ImageCreateResponse struct {
+	CreatedAt time.Time                 `json:"created_at"`
+	Id        string                    `json:"id"`
+	Model     string                    `json:"model"`
+	Status    ImageCreateResponseStatus `json:"status"`
+}
+
+// ImageCreateResponseStatus defines model for ImageCreateResponse.Status.
+type ImageCreateResponseStatus string
+
+// ImageDataItem defines model for ImageDataItem.
+type ImageDataItem struct {
+	// B64Json Base64 编码图片数据。服务端只在首次成功领取时返回。
+	B64Json       *string `json:"b64_json,omitempty"`
+	RevisedPrompt *string `json:"revised_prompt,omitempty"`
+
+	// Url 上游返回 URL 时的原始图片地址；服务端会同步下载并填充 b64_json。
+	Url *string `json:"url,omitempty"`
+}
+
+// ImageError defines model for ImageError.
+type ImageError struct {
+	Code    string  `json:"code"`
+	Message string  `json:"message"`
+	Type    *string `json:"type,omitempty"`
+}
+
+// ImageGenerationRequest defines model for ImageGenerationRequest.
+type ImageGenerationRequest struct {
+	// Background `transparent` 当前不支持。
+	Background   *ImageGenerationRequestBackground   `json:"background,omitempty"`
+	Model        string                              `json:"model"`
+	Moderation   *ImageGenerationRequestModeration   `json:"moderation,omitempty"`
+	OutputFormat *ImageGenerationRequestOutputFormat `json:"output_format,omitempty"`
+	Prompt       string                              `json:"prompt"`
+	Quality      *ImageGenerationRequestQuality      `json:"quality,omitempty"`
+	Size         *ImageGenerationRequestSize         `json:"size,omitempty"`
+
+	// User 透传上游用于滥用监控。
+	User *string `json:"user,omitempty"`
+}
+
+// ImageGenerationRequestBackground `transparent` 当前不支持。
+type ImageGenerationRequestBackground string
+
+// ImageGenerationRequestModeration defines model for ImageGenerationRequest.Moderation.
+type ImageGenerationRequestModeration string
+
+// ImageGenerationRequestOutputFormat defines model for ImageGenerationRequest.OutputFormat.
+type ImageGenerationRequestOutputFormat string
+
+// ImageGenerationRequestQuality defines model for ImageGenerationRequest.Quality.
+type ImageGenerationRequestQuality string
+
+// ImageGenerationRequestSize defines model for ImageGenerationRequest.Size.
+type ImageGenerationRequestSize string
+
+// ImageGenerationResponse defines model for ImageGenerationResponse.
+type ImageGenerationResponse struct {
+	CompletedAt *time.Time      `json:"completed_at,omitempty"`
+	Created     int64           `json:"created"`
+	Data        []ImageDataItem `json:"data"`
+
+	// ExpiresAt 本地临时结果文件领取截止时间。
+	ExpiresAt    *time.Time                    `json:"expires_at,omitempty"`
+	Id           string                        `json:"id"`
+	Model        string                        `json:"model"`
+	OutputFormat *string                       `json:"output_format,omitempty"`
+	Quality      *string                       `json:"quality,omitempty"`
+	Size         *string                       `json:"size,omitempty"`
+	Status       ImageGenerationResponseStatus `json:"status"`
+	Usage        *ImageUsage                   `json:"usage,omitempty"`
+}
+
+// ImageGenerationResponseStatus defines model for ImageGenerationResponse.Status.
+type ImageGenerationResponseStatus string
+
+// ImageTaskStatusResponse defines model for ImageTaskStatusResponse.
+type ImageTaskStatusResponse struct {
+	CreatedAt *time.Time  `json:"created_at,omitempty"`
+	Error     *ImageError `json:"error,omitempty"`
+	Id        string      `json:"id"`
+	Model     string      `json:"model"`
+
+	// NextPollAfterMs queued/processing 状态建议轮询间隔毫秒数。
+	NextPollAfterMs *int                          `json:"next_poll_after_ms,omitempty"`
+	Status          ImageTaskStatusResponseStatus `json:"status"`
+	UpdatedAt       *time.Time                    `json:"updated_at,omitempty"`
+}
+
+// ImageTaskStatusResponseStatus defines model for ImageTaskStatusResponse.Status.
+type ImageTaskStatusResponseStatus string
+
+// ImageUsage defines model for ImageUsage.
+type ImageUsage struct {
+	InputTokens        *int `json:"input_tokens,omitempty"`
+	InputTokensDetails *struct {
+		ImageTokens *int `json:"image_tokens,omitempty"`
+		TextTokens  *int `json:"text_tokens,omitempty"`
+	} `json:"input_tokens_details,omitempty"`
+	OutputTokens *int `json:"output_tokens,omitempty"`
+	TotalTokens  *int `json:"total_tokens,omitempty"`
 }
 
 // ModelInfo defines model for ModelInfo.
@@ -568,6 +839,15 @@ type ModelList struct {
 
 // ModelListObject defines model for ModelList.Object.
 type ModelListObject string
+
+// ResponsesRequest defines model for ResponsesRequest.
+type ResponsesRequest struct {
+	// Input OpenAI Responses API input，字符串或多模态数组/对象。
+	Input                interface{}            `json:"input,omitempty"`
+	Model                string                 `json:"model"`
+	Stream               *bool                  `json:"stream,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
+}
 
 // Tool defines model for Tool.
 type Tool struct {
@@ -749,6 +1029,9 @@ type VideoTaskResponseStatus string
 // BadRequest defines model for BadRequest.
 type BadRequest = ErrorResponse
 
+// Gone defines model for Gone.
+type Gone = ErrorResponse
+
 // InsufficientBalance defines model for InsufficientBalance.
 type InsufficientBalance = ErrorResponse
 
@@ -764,6 +1047,18 @@ type ServerError = ErrorResponse
 // Unauthorized defines model for Unauthorized.
 type Unauthorized = ErrorResponse
 
+// CreateImageGenerationParams defines parameters for CreateImageGeneration.
+type CreateImageGenerationParams struct {
+	// IdempotencyKey 60 秒短期去重；命中时返回 `409 duplicate_request` 和原任务 ID。
+	IdempotencyKey *string `json:"Idempotency-Key,omitempty"`
+}
+
+// CreateAsyncImageGenerationParams defines parameters for CreateAsyncImageGeneration.
+type CreateAsyncImageGenerationParams struct {
+	// IdempotencyKey 60 秒短期去重；命中时返回 `409 duplicate_request` 和原任务 ID。
+	IdempotencyKey *string `json:"Idempotency-Key,omitempty"`
+}
+
 // CreateMessageViaV1JSONBody defines parameters for CreateMessageViaV1.
 type CreateMessageViaV1JSONBody = map[string]interface{}
 
@@ -778,11 +1073,114 @@ type ListVideoGenerationsParams struct {
 // CreateChatCompletionJSONRequestBody defines body for CreateChatCompletion for application/json ContentType.
 type CreateChatCompletionJSONRequestBody = ChatCompletionRequest
 
+// CreateImageGenerationJSONRequestBody defines body for CreateImageGeneration for application/json ContentType.
+type CreateImageGenerationJSONRequestBody = ImageGenerationRequest
+
+// CreateAsyncImageGenerationJSONRequestBody defines body for CreateAsyncImageGeneration for application/json ContentType.
+type CreateAsyncImageGenerationJSONRequestBody = ImageGenerationRequest
+
 // CreateMessageViaV1JSONRequestBody defines body for CreateMessageViaV1 for application/json ContentType.
 type CreateMessageViaV1JSONRequestBody = CreateMessageViaV1JSONBody
 
+// CreateResponseJSONRequestBody defines body for CreateResponse for application/json ContentType.
+type CreateResponseJSONRequestBody = ResponsesRequest
+
 // CreateVideoGenerationJSONRequestBody defines body for CreateVideoGeneration for application/json ContentType.
 type CreateVideoGenerationJSONRequestBody = VideoGenerationRequest
+
+// Getter for additional properties for ResponsesRequest. Returns the specified
+// element and whether it was found
+func (a ResponsesRequest) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for ResponsesRequest
+func (a *ResponsesRequest) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for ResponsesRequest to handle AdditionalProperties
+func (a *ResponsesRequest) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["input"]; found {
+		err = json.Unmarshal(raw, &a.Input)
+		if err != nil {
+			return fmt.Errorf("error reading 'input': %w", err)
+		}
+		delete(object, "input")
+	}
+
+	if raw, found := object["model"]; found {
+		err = json.Unmarshal(raw, &a.Model)
+		if err != nil {
+			return fmt.Errorf("error reading 'model': %w", err)
+		}
+		delete(object, "model")
+	}
+
+	if raw, found := object["stream"]; found {
+		err = json.Unmarshal(raw, &a.Stream)
+		if err != nil {
+			return fmt.Errorf("error reading 'stream': %w", err)
+		}
+		delete(object, "stream")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for ResponsesRequest to handle AdditionalProperties
+func (a ResponsesRequest) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["input"], err = json.Marshal(a.Input)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'input': %w", err)
+	}
+
+	object["model"], err = json.Marshal(a.Model)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'model': %w", err)
+	}
+
+	if a.Stream != nil {
+		object["stream"], err = json.Marshal(a.Stream)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'stream': %w", err)
+		}
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
 
 // AsChatMessageContent0 returns the union data inside the ChatMessage_Content as a ChatMessageContent0
 func (t ChatMessage_Content) AsChatMessageContent0() (ChatMessageContent0, error) {
