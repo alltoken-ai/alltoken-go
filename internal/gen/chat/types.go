@@ -1473,6 +1473,49 @@ type PortraitResponseMetadata struct {
 	Version   string `json:"Version"`
 }
 
+// PortraitUploadEnvelope `/portrait/upload` 响应 envelope。结构与 `/portrait/` envelope 一致
+// （ResponseMetadata + 可选 Result + 业务失败时 ResponseMetadata.Error 不为空），
+// 但 Result 是固定形状（不像 `/portrait/` 那样按 Action oneOf 多分支）。
+type PortraitUploadEnvelope struct {
+	ResponseMetadata PortraitResponseMetadata `json:"ResponseMetadata"`
+	Result           *PortraitUploadResult    `json:"Result,omitempty"`
+}
+
+// PortraitUploadRequest `/portrait/upload` 的 multipart 表单字段。`file` 是二进制文件流；
+// 其它字段都是普通 text part。
+type PortraitUploadRequest struct {
+	// AssetType 素材类型；省略默认 `Image`。
+	AssetType *PortraitAssetType `json:"AssetType,omitempty"`
+
+	// GroupId 火山 asset group ID（CreateAssetGroup 返回或 CreateVisualValidateSession 自动创建）。
+	GroupId string `json:"GroupId"`
+
+	// Name 素材名称；省略时网关自动生成 `uploaded-{unix_ts}`。客户协议层最大 50 字符。
+	Name *string `json:"Name,omitempty"`
+
+	// File 图片文件，image/jpeg | image/png | image/webp，单文件 ≤ 10 MB。
+	File openapi_types.File `json:"file"`
+}
+
+// PortraitUploadResult defines model for PortraitUploadResult.
+type PortraitUploadResult struct {
+	AssetType string `json:"AssetType"`
+	GroupId   string `json:"GroupId"`
+
+	// Id 火山返回的 asset ID。
+	Id   string `json:"Id"`
+	Name string `json:"Name"`
+
+	// R2Key R2 object key，用于排障 / 后续 lifecycle 操作。
+	R2Key string `json:"R2Key"`
+
+	// Status 落库时初始状态；后续状态可通过 `/portrait/?Action=GetAsset` 查询。
+	Status string `json:"Status"`
+
+	// UploadedURL R2 公开 URL，同时是传给火山 `CreateAsset(URL=...)` 的 URL。
+	UploadedURL string `json:"UploadedURL"`
+}
+
 // ResponsesRequest defines model for ResponsesRequest.
 type ResponsesRequest struct {
 	// Input OpenAI Responses API input，字符串或多模态数组/对象。
@@ -1787,6 +1830,9 @@ type CreateMessageViaV1JSONRequestBody = CreateMessageViaV1JSONBody
 
 // CallPortraitActionJSONRequestBody defines body for CallPortraitAction for application/json ContentType.
 type CallPortraitActionJSONRequestBody = PortraitActionRequest
+
+// UploadPortraitAssetMultipartRequestBody defines body for UploadPortraitAsset for multipart/form-data ContentType.
+type UploadPortraitAssetMultipartRequestBody = PortraitUploadRequest
 
 // CreateResponseJSONRequestBody defines body for CreateResponse for application/json ContentType.
 type CreateResponseJSONRequestBody = ResponsesRequest
