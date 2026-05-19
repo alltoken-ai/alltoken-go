@@ -9,6 +9,7 @@ import (
 	"time"
 
 	"github.com/oapi-codegen/runtime"
+	openapi_types "github.com/oapi-codegen/runtime/types"
 )
 
 const (
@@ -153,6 +154,111 @@ func (e ImageCreateResponseStatus) Valid() bool {
 	}
 }
 
+// Defines values for ImageEditMultipartRequestBackground.
+const (
+	ImageEditMultipartRequestBackgroundAuto   ImageEditMultipartRequestBackground = "auto"
+	ImageEditMultipartRequestBackgroundOpaque ImageEditMultipartRequestBackground = "opaque"
+)
+
+// Valid indicates whether the value is a known member of the ImageEditMultipartRequestBackground enum.
+func (e ImageEditMultipartRequestBackground) Valid() bool {
+	switch e {
+	case ImageEditMultipartRequestBackgroundAuto:
+		return true
+	case ImageEditMultipartRequestBackgroundOpaque:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ImageEditMultipartRequestModeration.
+const (
+	ImageEditMultipartRequestModerationAuto ImageEditMultipartRequestModeration = "auto"
+	ImageEditMultipartRequestModerationLow  ImageEditMultipartRequestModeration = "low"
+)
+
+// Valid indicates whether the value is a known member of the ImageEditMultipartRequestModeration enum.
+func (e ImageEditMultipartRequestModeration) Valid() bool {
+	switch e {
+	case ImageEditMultipartRequestModerationAuto:
+		return true
+	case ImageEditMultipartRequestModerationLow:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ImageEditMultipartRequestOutputFormat.
+const (
+	ImageEditMultipartRequestOutputFormatJpeg ImageEditMultipartRequestOutputFormat = "jpeg"
+	ImageEditMultipartRequestOutputFormatPng  ImageEditMultipartRequestOutputFormat = "png"
+	ImageEditMultipartRequestOutputFormatWebp ImageEditMultipartRequestOutputFormat = "webp"
+)
+
+// Valid indicates whether the value is a known member of the ImageEditMultipartRequestOutputFormat enum.
+func (e ImageEditMultipartRequestOutputFormat) Valid() bool {
+	switch e {
+	case ImageEditMultipartRequestOutputFormatJpeg:
+		return true
+	case ImageEditMultipartRequestOutputFormatPng:
+		return true
+	case ImageEditMultipartRequestOutputFormatWebp:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ImageEditMultipartRequestQuality.
+const (
+	ImageEditMultipartRequestQualityAuto   ImageEditMultipartRequestQuality = "auto"
+	ImageEditMultipartRequestQualityHigh   ImageEditMultipartRequestQuality = "high"
+	ImageEditMultipartRequestQualityLow    ImageEditMultipartRequestQuality = "low"
+	ImageEditMultipartRequestQualityMedium ImageEditMultipartRequestQuality = "medium"
+)
+
+// Valid indicates whether the value is a known member of the ImageEditMultipartRequestQuality enum.
+func (e ImageEditMultipartRequestQuality) Valid() bool {
+	switch e {
+	case ImageEditMultipartRequestQualityAuto:
+		return true
+	case ImageEditMultipartRequestQualityHigh:
+		return true
+	case ImageEditMultipartRequestQualityLow:
+		return true
+	case ImageEditMultipartRequestQualityMedium:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ImageEditMultipartRequestSize.
+const (
+	ImageEditMultipartRequestSizeAuto       ImageEditMultipartRequestSize = "auto"
+	ImageEditMultipartRequestSizeN1024x1024 ImageEditMultipartRequestSize = "1024x1024"
+	ImageEditMultipartRequestSizeN1024x1536 ImageEditMultipartRequestSize = "1024x1536"
+	ImageEditMultipartRequestSizeN1536x1024 ImageEditMultipartRequestSize = "1536x1024"
+)
+
+// Valid indicates whether the value is a known member of the ImageEditMultipartRequestSize enum.
+func (e ImageEditMultipartRequestSize) Valid() bool {
+	switch e {
+	case ImageEditMultipartRequestSizeAuto:
+		return true
+	case ImageEditMultipartRequestSizeN1024x1024:
+		return true
+	case ImageEditMultipartRequestSizeN1024x1536:
+		return true
+	case ImageEditMultipartRequestSizeN1536x1024:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for ImageGenerationRequestBackground.
 const (
 	ImageGenerationRequestBackgroundAuto   ImageGenerationRequestBackground = "auto"
@@ -191,19 +297,19 @@ func (e ImageGenerationRequestModeration) Valid() bool {
 
 // Defines values for ImageGenerationRequestOutputFormat.
 const (
-	Jpeg ImageGenerationRequestOutputFormat = "jpeg"
-	Png  ImageGenerationRequestOutputFormat = "png"
-	Webp ImageGenerationRequestOutputFormat = "webp"
+	ImageGenerationRequestOutputFormatJpeg ImageGenerationRequestOutputFormat = "jpeg"
+	ImageGenerationRequestOutputFormatPng  ImageGenerationRequestOutputFormat = "png"
+	ImageGenerationRequestOutputFormatWebp ImageGenerationRequestOutputFormat = "webp"
 )
 
 // Valid indicates whether the value is a known member of the ImageGenerationRequestOutputFormat enum.
 func (e ImageGenerationRequestOutputFormat) Valid() bool {
 	switch e {
-	case Jpeg:
+	case ImageGenerationRequestOutputFormatJpeg:
 		return true
-	case Png:
+	case ImageGenerationRequestOutputFormatPng:
 		return true
-	case Webp:
+	case ImageGenerationRequestOutputFormatWebp:
 		return true
 	default:
 		return false
@@ -236,22 +342,22 @@ func (e ImageGenerationRequestQuality) Valid() bool {
 
 // Defines values for ImageGenerationRequestSize.
 const (
-	Auto       ImageGenerationRequestSize = "auto"
-	N1024x1024 ImageGenerationRequestSize = "1024x1024"
-	N1024x1536 ImageGenerationRequestSize = "1024x1536"
-	N1536x1024 ImageGenerationRequestSize = "1536x1024"
+	ImageGenerationRequestSizeAuto       ImageGenerationRequestSize = "auto"
+	ImageGenerationRequestSizeN1024x1024 ImageGenerationRequestSize = "1024x1024"
+	ImageGenerationRequestSizeN1024x1536 ImageGenerationRequestSize = "1024x1536"
+	ImageGenerationRequestSizeN1536x1024 ImageGenerationRequestSize = "1536x1024"
 )
 
 // Valid indicates whether the value is a known member of the ImageGenerationRequestSize enum.
 func (e ImageGenerationRequestSize) Valid() bool {
 	switch e {
-	case Auto:
+	case ImageGenerationRequestSizeAuto:
 		return true
-	case N1024x1024:
+	case ImageGenerationRequestSizeN1024x1024:
 		return true
-	case N1024x1536:
+	case ImageGenerationRequestSizeN1024x1536:
 		return true
-	case N1536x1024:
+	case ImageGenerationRequestSizeN1536x1024:
 		return true
 	default:
 		return false
@@ -297,6 +403,72 @@ func (e ImageTaskStatusResponseStatus) Valid() bool {
 	}
 }
 
+// Defines values for ImageVariationMultipartRequestSize.
+const (
+	ImageVariationMultipartRequestSizeAuto       ImageVariationMultipartRequestSize = "auto"
+	ImageVariationMultipartRequestSizeN1024x1024 ImageVariationMultipartRequestSize = "1024x1024"
+	ImageVariationMultipartRequestSizeN1024x1536 ImageVariationMultipartRequestSize = "1024x1536"
+	ImageVariationMultipartRequestSizeN1536x1024 ImageVariationMultipartRequestSize = "1536x1024"
+)
+
+// Valid indicates whether the value is a known member of the ImageVariationMultipartRequestSize enum.
+func (e ImageVariationMultipartRequestSize) Valid() bool {
+	switch e {
+	case ImageVariationMultipartRequestSizeAuto:
+		return true
+	case ImageVariationMultipartRequestSizeN1024x1024:
+		return true
+	case ImageVariationMultipartRequestSizeN1024x1536:
+		return true
+	case ImageVariationMultipartRequestSizeN1536x1024:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ListAssetsRequestSortOrder.
+const (
+	Asc  ListAssetsRequestSortOrder = "Asc"
+	Desc ListAssetsRequestSortOrder = "Desc"
+)
+
+// Valid indicates whether the value is a known member of the ListAssetsRequestSortOrder enum.
+func (e ListAssetsRequestSortOrder) Valid() bool {
+	switch e {
+	case Asc:
+		return true
+	case Desc:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ModelInfoModality.
+const (
+	ModelInfoModalityImage  ModelInfoModality = "image"
+	ModelInfoModalityText   ModelInfoModality = "text"
+	ModelInfoModalityVideo  ModelInfoModality = "video"
+	ModelInfoModalityVision ModelInfoModality = "vision"
+)
+
+// Valid indicates whether the value is a known member of the ModelInfoModality enum.
+func (e ModelInfoModality) Valid() bool {
+	switch e {
+	case ModelInfoModalityImage:
+		return true
+	case ModelInfoModalityText:
+		return true
+	case ModelInfoModalityVideo:
+		return true
+	case ModelInfoModalityVision:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for ModelInfoObject.
 const (
 	ModelInfoObjectImage ModelInfoObject = "image"
@@ -327,6 +499,66 @@ const (
 func (e ModelListObject) Valid() bool {
 	switch e {
 	case List:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for PortraitAssetStatus.
+const (
+	Active     PortraitAssetStatus = "Active"
+	Failed     PortraitAssetStatus = "Failed"
+	Processing PortraitAssetStatus = "Processing"
+)
+
+// Valid indicates whether the value is a known member of the PortraitAssetStatus enum.
+func (e PortraitAssetStatus) Valid() bool {
+	switch e {
+	case Active:
+		return true
+	case Failed:
+		return true
+	case Processing:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for PortraitAssetType.
+const (
+	PortraitAssetTypeAudio PortraitAssetType = "Audio"
+	PortraitAssetTypeImage PortraitAssetType = "Image"
+	PortraitAssetTypeVideo PortraitAssetType = "Video"
+)
+
+// Valid indicates whether the value is a known member of the PortraitAssetType enum.
+func (e PortraitAssetType) Valid() bool {
+	switch e {
+	case PortraitAssetTypeAudio:
+		return true
+	case PortraitAssetTypeImage:
+		return true
+	case PortraitAssetTypeVideo:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for PortraitGroupType.
+const (
+	AIGC         PortraitGroupType = "AIGC"
+	LivenessFace PortraitGroupType = "LivenessFace"
+)
+
+// Valid indicates whether the value is a known member of the PortraitGroupType enum.
+func (e PortraitGroupType) Valid() bool {
+	switch e {
+	case AIGC:
+		return true
+	case LivenessFace:
 		return true
 	default:
 		return false
@@ -576,6 +808,102 @@ func (e VideoTaskResponseStatus) Valid() bool {
 	}
 }
 
+// Defines values for CallPortraitActionParamsAction.
+const (
+	CreateAsset                 CallPortraitActionParamsAction = "CreateAsset"
+	CreateAssetGroup            CallPortraitActionParamsAction = "CreateAssetGroup"
+	CreateVisualValidateSession CallPortraitActionParamsAction = "CreateVisualValidateSession"
+	DeleteAsset                 CallPortraitActionParamsAction = "DeleteAsset"
+	DeleteAssetGroup            CallPortraitActionParamsAction = "DeleteAssetGroup"
+	GetAsset                    CallPortraitActionParamsAction = "GetAsset"
+	GetAssetGroup               CallPortraitActionParamsAction = "GetAssetGroup"
+	GetVisualValidateResult     CallPortraitActionParamsAction = "GetVisualValidateResult"
+	ListAssetGroups             CallPortraitActionParamsAction = "ListAssetGroups"
+	ListAssets                  CallPortraitActionParamsAction = "ListAssets"
+	UpdateAsset                 CallPortraitActionParamsAction = "UpdateAsset"
+	UpdateAssetGroup            CallPortraitActionParamsAction = "UpdateAssetGroup"
+)
+
+// Valid indicates whether the value is a known member of the CallPortraitActionParamsAction enum.
+func (e CallPortraitActionParamsAction) Valid() bool {
+	switch e {
+	case CreateAsset:
+		return true
+	case CreateAssetGroup:
+		return true
+	case CreateVisualValidateSession:
+		return true
+	case DeleteAsset:
+		return true
+	case DeleteAssetGroup:
+		return true
+	case GetAsset:
+		return true
+	case GetAssetGroup:
+		return true
+	case GetVisualValidateResult:
+		return true
+	case ListAssetGroups:
+		return true
+	case ListAssets:
+		return true
+	case UpdateAsset:
+		return true
+	case UpdateAssetGroup:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for CallPortraitActionParamsVersion.
+const (
+	N20240101 CallPortraitActionParamsVersion = "2024-01-01"
+)
+
+// Valid indicates whether the value is a known member of the CallPortraitActionParamsVersion enum.
+func (e CallPortraitActionParamsVersion) Valid() bool {
+	switch e {
+	case N20240101:
+		return true
+	default:
+		return false
+	}
+}
+
+// AssetGroupItem defines model for AssetGroupItem.
+type AssetGroupItem struct {
+	CreateTime  *time.Time `json:"CreateTime,omitempty"`
+	Description *string    `json:"Description,omitempty"`
+
+	// GroupType `LivenessFace` 真人组由 `CreateVisualValidateSession` + H5 自动产生；
+	// `AIGC` 虚拟组由客户调用 `CreateAssetGroup` 主动创建（2026-05-18 解锁）。
+	GroupType   *PortraitGroupType `json:"GroupType,omitempty"`
+	Id          *string            `json:"Id,omitempty"`
+	Name        *string            `json:"Name,omitempty"`
+	ProjectName *string            `json:"ProjectName,omitempty"`
+	Title       *string            `json:"Title,omitempty"`
+	UpdateTime  *time.Time         `json:"UpdateTime,omitempty"`
+}
+
+// AssetItem defines model for AssetItem.
+type AssetItem struct {
+	AssetType    *PortraitAssetType `json:"AssetType,omitempty"`
+	CreateTime   *time.Time         `json:"CreateTime,omitempty"`
+	FailedReason *string            `json:"FailedReason,omitempty"`
+
+	// GroupId 当前 `ListAssets` 实现中可能为空；最新单素材信息以 `GetAsset` 为准。
+	GroupId     *string              `json:"GroupId,omitempty"`
+	Id          *string              `json:"Id,omitempty"`
+	Name        *string              `json:"Name,omitempty"`
+	ProjectName *string              `json:"ProjectName,omitempty"`
+	Status      *PortraitAssetStatus `json:"Status,omitempty"`
+
+	// URL 火山签名 URL，官方示例为 12 小时有效。
+	URL        *string    `json:"URL,omitempty"`
+	UpdateTime *time.Time `json:"UpdateTime,omitempty"`
+}
+
 // ChatCompletionRequest defines model for ChatCompletionRequest.
 type ChatCompletionRequest struct {
 	// ConversationId 网关扩展 —— 关联网关托管的会话 ID（自动持久化消息）
@@ -693,6 +1021,69 @@ type ContentPartImageUrlDetail string
 // ContentPartType defines model for ContentPart.Type.
 type ContentPartType string
 
+// CreateAssetGroupRequest 创建虚拟人像素材组（仅 AIGC 路径）。
+//
+// **路径约束**：`GroupType` 必须为 `AIGC`。LivenessFace 真人组由
+// `CreateVisualValidateSession` + H5 自动产生，传 `LivenessFace` 会被网关
+// 拦截返 `InvalidParameter`。
+//
+// **Name mapping**：客户传入的 `Name` 仅暴露在客户协议层；落到火山侧时
+// 会自动加 `{customerID}-{category}-{name}` 三段前缀（category=liveface/aigc，未传 Name 时用 default 占位）做内部隔离（客户视角看不到前缀）。
+//
+// **配额**：每客户活跃组上限 50；`DeleteAssetGroup` 后立即释放。
+type CreateAssetGroupRequest struct {
+	Description *string `json:"Description,omitempty"`
+
+	// GroupType `LivenessFace` 真人组由 `CreateVisualValidateSession` + H5 自动产生；
+	// `AIGC` 虚拟组由客户调用 `CreateAssetGroup` 主动创建（2026-05-18 解锁）。
+	GroupType PortraitGroupType `json:"GroupType"`
+
+	// Name 客户原始 Name（≤50 字符；火山 64 字符上限 - {customerID}-{category}- 前缀余量）。
+	Name        *string `json:"Name,omitempty"`
+	ProjectName *string `json:"ProjectName,omitempty"`
+	Title       *string `json:"Title,omitempty"`
+}
+
+// CreateAssetGroupResult 火山返回的 group id（注意字段名是 `Id` 不是 `GroupId`）。
+type CreateAssetGroupResult struct {
+	Id string `json:"Id"`
+}
+
+// CreateAssetRequest defines model for CreateAssetRequest.
+type CreateAssetRequest struct {
+	AssetType PortraitAssetType `json:"AssetType"`
+	GroupId   string            `json:"GroupId"`
+
+	// Name 客户原始 Name（≤50 字符；网关会自动给火山侧加 {customerID}-{category}- 前缀，category=liveface/aigc）。
+	Name        *string `json:"Name,omitempty"`
+	ProjectName *string `json:"ProjectName,omitempty"`
+
+	// URL 火山可访问的公网素材 URL。
+	URL string `json:"URL"`
+}
+
+// CreateAssetResult defines model for CreateAssetResult.
+type CreateAssetResult struct {
+	Id string `json:"Id"`
+}
+
+// CreateVisualValidateSessionRequest defines model for CreateVisualValidateSessionRequest.
+type CreateVisualValidateSessionRequest struct {
+	// CallbackURL 认证完成回调地址，推荐 HTTPS。
+	CallbackURL string  `json:"CallbackURL"`
+	ProjectName *string `json:"ProjectName,omitempty"`
+}
+
+// CreateVisualValidateSessionResult defines model for CreateVisualValidateSessionResult.
+type CreateVisualValidateSessionResult struct {
+	// BytedToken 真人认证凭证，网关按 120 秒校验。
+	BytedToken  string `json:"BytedToken"`
+	CallbackURL string `json:"CallbackURL"`
+
+	// H5Link 火山 H5 认证页面链接。
+	H5Link string `json:"H5Link"`
+}
+
 // ErrorResponse defines model for ErrorResponse.
 type ErrorResponse struct {
 	Error struct {
@@ -705,6 +1096,17 @@ type ErrorResponse struct {
 		TaskId *string `json:"task_id,omitempty"`
 		Type   string  `json:"type"`
 	} `json:"error"`
+}
+
+// GetVisualValidateResultRequest defines model for GetVisualValidateResultRequest.
+type GetVisualValidateResultRequest struct {
+	BytedToken  string  `json:"BytedToken"`
+	ProjectName *string `json:"ProjectName,omitempty"`
+}
+
+// GetVisualValidateResultResult defines model for GetVisualValidateResultResult.
+type GetVisualValidateResultResult struct {
+	GroupId string `json:"GroupId"`
 }
 
 // ImageCreateResponse defines model for ImageCreateResponse.
@@ -720,13 +1122,68 @@ type ImageCreateResponseStatus string
 
 // ImageDataItem defines model for ImageDataItem.
 type ImageDataItem struct {
-	// B64Json Base64 编码图片数据。服务端只在首次成功领取时返回。
-	B64Json       *string `json:"b64_json,omitempty"`
-	RevisedPrompt *string `json:"revised_prompt,omitempty"`
+	// B64Json **【已弃用 / Deprecated，未来版本将移除】**
+	//
+	// Base64 编码图片数据，仅在 `completed` 首次 GET 返回（一次性 delivery，二次 GET 不返回）。
+	// 推荐使用 `r2_url` 替代 —— R2 公开 URL 至少保留 30 天，跨刷新可访问且省 ~33% 流量（无 base64 膨胀）。
+	// R2 上传失败时 `r2_url` 不存在，旧客户端仍可 fallback 到本字段。
+	// Deprecated: this property has been marked as deprecated upstream, but no `x-deprecated-reason` was set
+	B64Json *string `json:"b64_json,omitempty"`
+
+	// MimeType 图片 MIME 类型（`image/png` / `image/jpeg` / `image/webp`），便于客户端下载命名与浏览器解码。
+	MimeType *string `json:"mime_type,omitempty"`
+
+	// R2Url R2 公开 URL，至少保留 30 天，跨刷新可访问。首次 GET 同时返回 `b64_json` + `r2_url`；
+	// 二次 GET 不再返回 `b64_json`（一次性 delivery），但 `r2_url` 仍随 200 响应返回直到
+	// `r2_url_expires_at` 过期（之后返 `410 image_expired`）。R2 上传失败时该字段不存在，
+	// 客户端应保留首次 GET 拿到的 `b64_json` 用于显示（旧任务/无 R2 兜底 → `410 image_already_retrieved`）。
+	R2Url *string `json:"r2_url,omitempty"`
+
+	// R2UrlExpiresAt R2 URL 过期时间（RFC3339 UTC）。过期后由 R2 lifecycle 自动清理对象。
+	R2UrlExpiresAt *time.Time `json:"r2_url_expires_at,omitempty"`
+	RevisedPrompt  *string    `json:"revised_prompt,omitempty"`
 
 	// Url 上游返回 URL 时的原始图片地址；服务端会同步下载并填充 b64_json。
 	Url *string `json:"url,omitempty"`
 }
+
+// ImageEditMultipartRequest defines model for ImageEditMultipartRequest.
+type ImageEditMultipartRequest struct {
+	// Background `transparent` 当前不支持。
+	Background *ImageEditMultipartRequestBackground `json:"background,omitempty"`
+
+	// Image 源图，必填。≤ 25MB，MIME ∈ `image/png` / `image/jpeg` / `image/webp`。
+	Image openapi_types.File `json:"image"`
+
+	// Mask 可选 mask 图；提供则按 mask_edit 处理（透明区域为编辑区）。≤ 25MB，同 MIME 约束。
+	Mask         *openapi_types.File                    `json:"mask,omitempty"`
+	Model        string                                 `json:"model"`
+	Moderation   *ImageEditMultipartRequestModeration   `json:"moderation,omitempty"`
+	OutputFormat *ImageEditMultipartRequestOutputFormat `json:"output_format,omitempty"`
+
+	// Prompt 编辑提示词，必填。
+	Prompt  string                            `json:"prompt"`
+	Quality *ImageEditMultipartRequestQuality `json:"quality,omitempty"`
+	Size    *ImageEditMultipartRequestSize    `json:"size,omitempty"`
+
+	// User 透传上游用于滥用监控。
+	User *string `json:"user,omitempty"`
+}
+
+// ImageEditMultipartRequestBackground `transparent` 当前不支持。
+type ImageEditMultipartRequestBackground string
+
+// ImageEditMultipartRequestModeration defines model for ImageEditMultipartRequest.Moderation.
+type ImageEditMultipartRequestModeration string
+
+// ImageEditMultipartRequestOutputFormat defines model for ImageEditMultipartRequest.OutputFormat.
+type ImageEditMultipartRequestOutputFormat string
+
+// ImageEditMultipartRequestQuality defines model for ImageEditMultipartRequest.Quality.
+type ImageEditMultipartRequestQuality string
+
+// ImageEditMultipartRequestSize defines model for ImageEditMultipartRequest.Size.
+type ImageEditMultipartRequestSize string
 
 // ImageError defines model for ImageError.
 type ImageError struct {
@@ -812,21 +1269,105 @@ type ImageUsage struct {
 	TotalTokens  *int `json:"total_tokens,omitempty"`
 }
 
+// ImageVariationMultipartRequest defines model for ImageVariationMultipartRequest.
+type ImageVariationMultipartRequest struct {
+	// Image 源图，必填。≤ 25MB，MIME ∈ `image/png` / `image/jpeg` / `image/webp`。
+	Image openapi_types.File                  `json:"image"`
+	Model string                              `json:"model"`
+	Size  *ImageVariationMultipartRequestSize `json:"size,omitempty"`
+
+	// User 透传上游用于滥用监控。
+	User *string `json:"user,omitempty"`
+}
+
+// ImageVariationMultipartRequestSize defines model for ImageVariationMultipartRequest.Size.
+type ImageVariationMultipartRequestSize string
+
+// ListAssetGroupsRequest defines model for ListAssetGroupsRequest.
+type ListAssetGroupsRequest struct {
+	Filter struct {
+		GroupIds *[]string `json:"GroupIds,omitempty"`
+
+		// GroupType `LivenessFace` 真人组由 `CreateVisualValidateSession` + H5 自动产生；
+		// `AIGC` 虚拟组由客户调用 `CreateAssetGroup` 主动创建（2026-05-18 解锁）。
+		GroupType PortraitGroupType `json:"GroupType"`
+		Name      *string           `json:"Name,omitempty"`
+	} `json:"Filter"`
+	PageNumber  *int    `json:"PageNumber,omitempty"`
+	PageSize    *int    `json:"PageSize,omitempty"`
+	ProjectName *string `json:"ProjectName,omitempty"`
+}
+
+// ListAssetGroupsResult defines model for ListAssetGroupsResult.
+type ListAssetGroupsResult struct {
+	Items      []AssetGroupItem `json:"Items"`
+	PageNumber int              `json:"PageNumber"`
+	PageSize   int              `json:"PageSize"`
+	TotalCount int              `json:"TotalCount"`
+}
+
+// ListAssetsRequest defines model for ListAssetsRequest.
+type ListAssetsRequest struct {
+	Filter struct {
+		GroupIds *[]string `json:"GroupIds,omitempty"`
+
+		// GroupType `LivenessFace` 真人组由 `CreateVisualValidateSession` + H5 自动产生；
+		// `AIGC` 虚拟组由客户调用 `CreateAssetGroup` 主动创建（2026-05-18 解锁）。
+		GroupType PortraitGroupType      `json:"GroupType"`
+		Name      *string                `json:"Name,omitempty"`
+		Statuses  *[]PortraitAssetStatus `json:"Statuses,omitempty"`
+	} `json:"Filter"`
+	PageNumber  *int                        `json:"PageNumber,omitempty"`
+	PageSize    *int                        `json:"PageSize,omitempty"`
+	ProjectName *string                     `json:"ProjectName,omitempty"`
+	SortBy      *string                     `json:"SortBy,omitempty"`
+	SortOrder   *ListAssetsRequestSortOrder `json:"SortOrder,omitempty"`
+}
+
+// ListAssetsRequestSortOrder defines model for ListAssetsRequest.SortOrder.
+type ListAssetsRequestSortOrder string
+
+// ListAssetsResult defines model for ListAssetsResult.
+type ListAssetsResult struct {
+	Items      []AssetItem `json:"Items"`
+	PageNumber int         `json:"PageNumber"`
+	PageSize   int         `json:"PageSize"`
+	TotalCount int         `json:"TotalCount"`
+}
+
 // ModelInfo defines model for ModelInfo.
 type ModelInfo struct {
-	Brand            *string         `json:"brand,omitempty"`
-	Created          *int64          `json:"created,omitempty"`
-	Description      *string         `json:"description,omitempty"`
-	DisplayName      *string         `json:"display_name,omitempty"`
-	Family           *string         `json:"family,omitempty"`
-	Id               string          `json:"id"`
-	InputModalities  *[]string       `json:"input_modalities,omitempty"`
-	LogoUrl          *string         `json:"logo_url,omitempty"`
-	Object           ModelInfoObject `json:"object"`
-	OutputModalities *[]string       `json:"output_modalities,omitempty"`
-	OwnedBy          *string         `json:"owned_by,omitempty"`
-	Series           *string         `json:"series,omitempty"`
+	Brand           *string   `json:"brand,omitempty"`
+	Created         *int64    `json:"created,omitempty"`
+	Description     *string   `json:"description,omitempty"`
+	DisplayName     *string   `json:"display_name,omitempty"`
+	Family          *string   `json:"family,omitempty"`
+	Id              string    `json:"id"`
+	InputModalities *[]string `json:"input_modalities,omitempty"`
+	LogoUrl         *string   `json:"logo_url,omitempty"`
+
+	// Modality Top-level modality classification (R1 / 2026-05-14):
+	// - `text` — text-only chat models
+	// - `vision` — multimodal chat (image/video input, text output)
+	// - `image` — image generation models (e.g. `gpt-image-2`)
+	// - `video` — video generation models (e.g. `seedance` / `happyhorse`)
+	// `/v1/models` now returns text + image + video models together; legacy clients
+	// ignoring this field still work (additive).
+	Modality         *ModelInfoModality `json:"modality,omitempty"`
+	Object           ModelInfoObject    `json:"object"`
+	OutputModalities *[]string          `json:"output_modalities,omitempty"`
+	OwnedBy          *string            `json:"owned_by,omitempty"`
+	Series           *string            `json:"series,omitempty"`
 }
+
+// ModelInfoModality Top-level modality classification (R1 / 2026-05-14):
+// - `text` — text-only chat models
+// - `vision` — multimodal chat (image/video input, text output)
+// - `image` — image generation models (e.g. `gpt-image-2`)
+// - `video` — video generation models (e.g. `seedance` / `happyhorse`)
+// `/v1/models` now returns text + image + video models together; legacy clients
+// ignoring this field still work (additive).
+type ModelInfoModality string
 
 // ModelInfoObject defines model for ModelInfo.Object.
 type ModelInfoObject string
@@ -839,6 +1380,98 @@ type ModelList struct {
 
 // ModelListObject defines model for ModelList.Object.
 type ModelListObject string
+
+// PortraitActionRequest 请求体由 `Action` query 参数决定。
+type PortraitActionRequest struct {
+	union json.RawMessage
+}
+
+// PortraitAssetStatus defines model for PortraitAssetStatus.
+type PortraitAssetStatus string
+
+// PortraitAssetType defines model for PortraitAssetType.
+type PortraitAssetType string
+
+// PortraitEnvelope defines model for PortraitEnvelope.
+type PortraitEnvelope struct {
+	ResponseMetadata PortraitResponseMetadata `json:"ResponseMetadata"`
+	Result           *PortraitEnvelope_Result `json:"Result,omitempty"`
+}
+
+// PortraitEnvelopeResult8 Update/Delete 类 Action 成功时为空对象。
+type PortraitEnvelopeResult8 = map[string]interface{}
+
+// PortraitEnvelope_Result defines model for PortraitEnvelope.Result.
+type PortraitEnvelope_Result struct {
+	union json.RawMessage
+}
+
+// PortraitErrorCode `ResponseMetadata.Error.Code` 枚举值。网关业务错误用预定义码（PascalCase），
+// 火山原错误码原样透传。
+//
+// **网关业务错误码**：
+// - `Unauthorized` — API Key 无效或缺失
+// - `Forbidden` — 跨客户访问对方 GroupId / AssetId（**不暴露存在性**）
+// - `MissingParameter` / `MissingParameter.<field>` — 必填参数缺失
+// - `InvalidParameter` — 参数格式错（含 CreateAssetGroup 传 LivenessFace、Name 超 50 字符）
+// - `QuotaExceeded` — 活跃组 50/customer 或活跃素材 50/customer 超额
+// - `RateLimitExceeded` — 客户出方向限流
+// - `TokenExpired` — BytedToken 已过期（>120s，由网关本地 session 检查）
+// - `InvalidToken` — BytedToken 不存在 / 已使用 / 不属于本客户
+// - `ValidatePending` — H5 真人认证未完成 / 已过期 / 失败（上游 200 + GroupId=""）
+// - `NotFound` — 同租户素材已过期（区分跨租户 Forbidden）
+// - `UpstreamUnavailable` — 火山 5xx 或熔断
+//
+// **火山原错误码（透传）**：
+// - `SubscriptionRequired` — 火山套餐订阅未生效
+// - `AIGCNotAvailable` — 当前权益不含 AIGC（2026-05-18 前的状态；现已开通）
+// - `InvalidAccessKey` — 火山 AK 在火山查不到（网关运维事故）
+// - 其他火山业务码原样
+type PortraitErrorCode = string
+
+// PortraitGroupType `LivenessFace` 真人组由 `CreateVisualValidateSession` + H5 自动产生；
+// `AIGC` 虚拟组由客户调用 `CreateAssetGroup` 主动创建（2026-05-18 解锁）。
+type PortraitGroupType string
+
+// PortraitIDRequest Get/Delete 类 Action 的通用请求体。
+type PortraitIDRequest struct {
+	Id          string  `json:"Id"`
+	ProjectName *string `json:"ProjectName,omitempty"`
+}
+
+// PortraitResponseMetadata defines model for PortraitResponseMetadata.
+type PortraitResponseMetadata struct {
+	Action string `json:"Action"`
+	Error  *struct {
+		// Code `ResponseMetadata.Error.Code` 枚举值。网关业务错误用预定义码（PascalCase），
+		// 火山原错误码原样透传。
+		//
+		// **网关业务错误码**：
+		// - `Unauthorized` — API Key 无效或缺失
+		// - `Forbidden` — 跨客户访问对方 GroupId / AssetId（**不暴露存在性**）
+		// - `MissingParameter` / `MissingParameter.<field>` — 必填参数缺失
+		// - `InvalidParameter` — 参数格式错（含 CreateAssetGroup 传 LivenessFace、Name 超 50 字符）
+		// - `QuotaExceeded` — 活跃组 50/customer 或活跃素材 50/customer 超额
+		// - `RateLimitExceeded` — 客户出方向限流
+		// - `TokenExpired` — BytedToken 已过期（>120s，由网关本地 session 检查）
+		// - `InvalidToken` — BytedToken 不存在 / 已使用 / 不属于本客户
+		// - `ValidatePending` — H5 真人认证未完成 / 已过期 / 失败（上游 200 + GroupId=""）
+		// - `NotFound` — 同租户素材已过期（区分跨租户 Forbidden）
+		// - `UpstreamUnavailable` — 火山 5xx 或熔断
+		//
+		// **火山原错误码（透传）**：
+		// - `SubscriptionRequired` — 火山套餐订阅未生效
+		// - `AIGCNotAvailable` — 当前权益不含 AIGC（2026-05-18 前的状态；现已开通）
+		// - `InvalidAccessKey` — 火山 AK 在火山查不到（网关运维事故）
+		// - 其他火山业务码原样
+		Code    PortraitErrorCode `json:"Code"`
+		Message string            `json:"Message"`
+	} `json:"Error,omitempty"`
+	Region    string `json:"Region"`
+	RequestId string `json:"RequestId"`
+	Service   string `json:"Service"`
+	Version   string `json:"Version"`
+}
 
 // ResponsesRequest defines model for ResponsesRequest.
 type ResponsesRequest struct {
@@ -877,6 +1510,25 @@ type ToolCall struct {
 
 // ToolCallType defines model for ToolCall.Type.
 type ToolCallType string
+
+// UpdateAssetGroupRequest defines model for UpdateAssetGroupRequest.
+type UpdateAssetGroupRequest struct {
+	Description *string `json:"Description,omitempty"`
+	Id          string  `json:"Id"`
+
+	// Name 客户原始 Name（≤50 字符；网关会自动给火山侧加 {customerID}-{category}- 前缀，category=liveface/aigc）。
+	Name        *string `json:"Name,omitempty"`
+	ProjectName *string `json:"ProjectName,omitempty"`
+}
+
+// UpdateAssetRequest defines model for UpdateAssetRequest.
+type UpdateAssetRequest struct {
+	Id string `json:"Id"`
+
+	// Name 客户原始 Name（≤50 字符；网关会自动给火山侧加 {customerID}-{category}- 前缀，category=liveface/aigc）。
+	Name        *string `json:"Name,omitempty"`
+	ProjectName *string `json:"ProjectName,omitempty"`
+}
 
 // Usage defines model for Usage.
 type Usage struct {
@@ -931,11 +1583,29 @@ type VideoGenerationRequest struct {
 	Content     *[]VideoContentItem `json:"content,omitempty"`
 	Draft       *bool               `json:"draft,omitempty"`
 
-	// Duration 秒数；-1 表示智能时长
+	// Duration 视频时长（秒）。**取值范围按模型差异化**：
+	// - `seedance-1.0-pro` / `seedance-1.0-pro-fast`：`[2, 12]` 任意整数
+	// - `seedance-1.5-pro`：`[4, 12]` 任意整数 或 `-1`
+	// - `seedance-2.0` / `seedance-2.0-fast`：`[4, 15]` 任意整数 或 `-1`
+	//
+	// **`-1`（智能时长）**：由模型在有效范围内自主选择，**仅 1.5-pro / 2.0 系列支持**。
+	//
+	// **`0` 或不传**：使用上游默认值（5）。
+	//
+	// 超出范围会被网关 fail-fast 拦截为 `400 invalid_request`，错误消息按 `Accept-Language` 渲染。
 	Duration              *int `json:"duration,omitempty"`
 	ExecutionExpiresAfter *int `json:"execution_expires_after,omitempty"`
 
-	// Frames 帧数（优先级高于 duration）
+	// Frames 视频帧数（小数秒方案，与 duration 二选一，frames 优先级高于 duration）。
+	//
+	// **仅 `seedance-1.0-pro` / `seedance-1.0-pro-fast` 支持**。其他模型（1.5-pro / 2.0 系列）
+	// 传 frames 会被网关**静默忽略**（silently drop），不会报错，符合 Postel 原则。
+	//
+	// **取值约束**：`[29, 289]` 且必须满足 `25 + 4n` 格式（n 为正整数），如 29、33、37、...、289。
+	//
+	// **计算公式**：帧数 = 时长 × 24（fps）。例如生成 2.4 秒 → 帧数 ≈ 57.6，取最接近的合法值 57（实际生成 57/24=2.375 秒）。
+	//
+	// 超出范围或格式错误会被网关 fail-fast 拦截为 `400 invalid_request`。
 	Frames *int `json:"frames,omitempty"`
 
 	// GenerateAudio 是否生成音频
@@ -1047,6 +1717,12 @@ type ServerError = ErrorResponse
 // Unauthorized defines model for Unauthorized.
 type Unauthorized = ErrorResponse
 
+// CreateImageEditParams defines parameters for CreateImageEdit.
+type CreateImageEditParams struct {
+	// IdempotencyKey 60 秒短期去重；命中时返回 `409 duplicate_request` 和原任务 ID。
+	IdempotencyKey *string `json:"Idempotency-Key,omitempty"`
+}
+
 // CreateImageGenerationParams defines parameters for CreateImageGeneration.
 type CreateImageGenerationParams struct {
 	// IdempotencyKey 60 秒短期去重；命中时返回 `409 duplicate_request` 和原任务 ID。
@@ -1059,8 +1735,29 @@ type CreateAsyncImageGenerationParams struct {
 	IdempotencyKey *string `json:"Idempotency-Key,omitempty"`
 }
 
+// CreateImageVariationParams defines parameters for CreateImageVariation.
+type CreateImageVariationParams struct {
+	// IdempotencyKey 60 秒短期去重；命中时返回 `409 duplicate_request` 和原任务 ID。
+	IdempotencyKey *string `json:"Idempotency-Key,omitempty"`
+}
+
 // CreateMessageViaV1JSONBody defines parameters for CreateMessageViaV1.
 type CreateMessageViaV1JSONBody = map[string]interface{}
+
+// CallPortraitActionParams defines parameters for CallPortraitAction.
+type CallPortraitActionParams struct {
+	// Action 火山 Action 名。
+	Action CallPortraitActionParamsAction `form:"Action" json:"Action"`
+
+	// Version 火山 Assets API 版本；当前仅支持 `2024-01-01`。
+	Version *CallPortraitActionParamsVersion `form:"Version,omitempty" json:"Version,omitempty"`
+}
+
+// CallPortraitActionParamsAction defines parameters for CallPortraitAction.
+type CallPortraitActionParamsAction string
+
+// CallPortraitActionParamsVersion defines parameters for CallPortraitAction.
+type CallPortraitActionParamsVersion string
 
 // ListVideoGenerationsParams defines parameters for ListVideoGenerations.
 type ListVideoGenerationsParams struct {
@@ -1073,14 +1770,23 @@ type ListVideoGenerationsParams struct {
 // CreateChatCompletionJSONRequestBody defines body for CreateChatCompletion for application/json ContentType.
 type CreateChatCompletionJSONRequestBody = ChatCompletionRequest
 
+// CreateImageEditMultipartRequestBody defines body for CreateImageEdit for multipart/form-data ContentType.
+type CreateImageEditMultipartRequestBody = ImageEditMultipartRequest
+
 // CreateImageGenerationJSONRequestBody defines body for CreateImageGeneration for application/json ContentType.
 type CreateImageGenerationJSONRequestBody = ImageGenerationRequest
 
 // CreateAsyncImageGenerationJSONRequestBody defines body for CreateAsyncImageGeneration for application/json ContentType.
 type CreateAsyncImageGenerationJSONRequestBody = ImageGenerationRequest
 
+// CreateImageVariationMultipartRequestBody defines body for CreateImageVariation for multipart/form-data ContentType.
+type CreateImageVariationMultipartRequestBody = ImageVariationMultipartRequest
+
 // CreateMessageViaV1JSONRequestBody defines body for CreateMessageViaV1 for application/json ContentType.
 type CreateMessageViaV1JSONRequestBody = CreateMessageViaV1JSONBody
+
+// CallPortraitActionJSONRequestBody defines body for CallPortraitAction for application/json ContentType.
+type CallPortraitActionJSONRequestBody = PortraitActionRequest
 
 // CreateResponseJSONRequestBody defines body for CreateResponse for application/json ContentType.
 type CreateResponseJSONRequestBody = ResponsesRequest
@@ -1240,6 +1946,494 @@ func (t ChatMessage_Content) MarshalJSON() ([]byte, error) {
 }
 
 func (t *ChatMessage_Content) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsCreateVisualValidateSessionRequest returns the union data inside the PortraitActionRequest as a CreateVisualValidateSessionRequest
+func (t PortraitActionRequest) AsCreateVisualValidateSessionRequest() (CreateVisualValidateSessionRequest, error) {
+	var body CreateVisualValidateSessionRequest
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromCreateVisualValidateSessionRequest overwrites any union data inside the PortraitActionRequest as the provided CreateVisualValidateSessionRequest
+func (t *PortraitActionRequest) FromCreateVisualValidateSessionRequest(v CreateVisualValidateSessionRequest) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeCreateVisualValidateSessionRequest performs a merge with any union data inside the PortraitActionRequest, using the provided CreateVisualValidateSessionRequest
+func (t *PortraitActionRequest) MergeCreateVisualValidateSessionRequest(v CreateVisualValidateSessionRequest) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsGetVisualValidateResultRequest returns the union data inside the PortraitActionRequest as a GetVisualValidateResultRequest
+func (t PortraitActionRequest) AsGetVisualValidateResultRequest() (GetVisualValidateResultRequest, error) {
+	var body GetVisualValidateResultRequest
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromGetVisualValidateResultRequest overwrites any union data inside the PortraitActionRequest as the provided GetVisualValidateResultRequest
+func (t *PortraitActionRequest) FromGetVisualValidateResultRequest(v GetVisualValidateResultRequest) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeGetVisualValidateResultRequest performs a merge with any union data inside the PortraitActionRequest, using the provided GetVisualValidateResultRequest
+func (t *PortraitActionRequest) MergeGetVisualValidateResultRequest(v GetVisualValidateResultRequest) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsPortraitIDRequest returns the union data inside the PortraitActionRequest as a PortraitIDRequest
+func (t PortraitActionRequest) AsPortraitIDRequest() (PortraitIDRequest, error) {
+	var body PortraitIDRequest
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPortraitIDRequest overwrites any union data inside the PortraitActionRequest as the provided PortraitIDRequest
+func (t *PortraitActionRequest) FromPortraitIDRequest(v PortraitIDRequest) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePortraitIDRequest performs a merge with any union data inside the PortraitActionRequest, using the provided PortraitIDRequest
+func (t *PortraitActionRequest) MergePortraitIDRequest(v PortraitIDRequest) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsListAssetGroupsRequest returns the union data inside the PortraitActionRequest as a ListAssetGroupsRequest
+func (t PortraitActionRequest) AsListAssetGroupsRequest() (ListAssetGroupsRequest, error) {
+	var body ListAssetGroupsRequest
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromListAssetGroupsRequest overwrites any union data inside the PortraitActionRequest as the provided ListAssetGroupsRequest
+func (t *PortraitActionRequest) FromListAssetGroupsRequest(v ListAssetGroupsRequest) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeListAssetGroupsRequest performs a merge with any union data inside the PortraitActionRequest, using the provided ListAssetGroupsRequest
+func (t *PortraitActionRequest) MergeListAssetGroupsRequest(v ListAssetGroupsRequest) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsCreateAssetGroupRequest returns the union data inside the PortraitActionRequest as a CreateAssetGroupRequest
+func (t PortraitActionRequest) AsCreateAssetGroupRequest() (CreateAssetGroupRequest, error) {
+	var body CreateAssetGroupRequest
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromCreateAssetGroupRequest overwrites any union data inside the PortraitActionRequest as the provided CreateAssetGroupRequest
+func (t *PortraitActionRequest) FromCreateAssetGroupRequest(v CreateAssetGroupRequest) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeCreateAssetGroupRequest performs a merge with any union data inside the PortraitActionRequest, using the provided CreateAssetGroupRequest
+func (t *PortraitActionRequest) MergeCreateAssetGroupRequest(v CreateAssetGroupRequest) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsUpdateAssetGroupRequest returns the union data inside the PortraitActionRequest as a UpdateAssetGroupRequest
+func (t PortraitActionRequest) AsUpdateAssetGroupRequest() (UpdateAssetGroupRequest, error) {
+	var body UpdateAssetGroupRequest
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromUpdateAssetGroupRequest overwrites any union data inside the PortraitActionRequest as the provided UpdateAssetGroupRequest
+func (t *PortraitActionRequest) FromUpdateAssetGroupRequest(v UpdateAssetGroupRequest) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeUpdateAssetGroupRequest performs a merge with any union data inside the PortraitActionRequest, using the provided UpdateAssetGroupRequest
+func (t *PortraitActionRequest) MergeUpdateAssetGroupRequest(v UpdateAssetGroupRequest) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsCreateAssetRequest returns the union data inside the PortraitActionRequest as a CreateAssetRequest
+func (t PortraitActionRequest) AsCreateAssetRequest() (CreateAssetRequest, error) {
+	var body CreateAssetRequest
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromCreateAssetRequest overwrites any union data inside the PortraitActionRequest as the provided CreateAssetRequest
+func (t *PortraitActionRequest) FromCreateAssetRequest(v CreateAssetRequest) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeCreateAssetRequest performs a merge with any union data inside the PortraitActionRequest, using the provided CreateAssetRequest
+func (t *PortraitActionRequest) MergeCreateAssetRequest(v CreateAssetRequest) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsListAssetsRequest returns the union data inside the PortraitActionRequest as a ListAssetsRequest
+func (t PortraitActionRequest) AsListAssetsRequest() (ListAssetsRequest, error) {
+	var body ListAssetsRequest
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromListAssetsRequest overwrites any union data inside the PortraitActionRequest as the provided ListAssetsRequest
+func (t *PortraitActionRequest) FromListAssetsRequest(v ListAssetsRequest) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeListAssetsRequest performs a merge with any union data inside the PortraitActionRequest, using the provided ListAssetsRequest
+func (t *PortraitActionRequest) MergeListAssetsRequest(v ListAssetsRequest) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsUpdateAssetRequest returns the union data inside the PortraitActionRequest as a UpdateAssetRequest
+func (t PortraitActionRequest) AsUpdateAssetRequest() (UpdateAssetRequest, error) {
+	var body UpdateAssetRequest
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromUpdateAssetRequest overwrites any union data inside the PortraitActionRequest as the provided UpdateAssetRequest
+func (t *PortraitActionRequest) FromUpdateAssetRequest(v UpdateAssetRequest) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeUpdateAssetRequest performs a merge with any union data inside the PortraitActionRequest, using the provided UpdateAssetRequest
+func (t *PortraitActionRequest) MergeUpdateAssetRequest(v UpdateAssetRequest) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t PortraitActionRequest) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *PortraitActionRequest) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsCreateVisualValidateSessionResult returns the union data inside the PortraitEnvelope_Result as a CreateVisualValidateSessionResult
+func (t PortraitEnvelope_Result) AsCreateVisualValidateSessionResult() (CreateVisualValidateSessionResult, error) {
+	var body CreateVisualValidateSessionResult
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromCreateVisualValidateSessionResult overwrites any union data inside the PortraitEnvelope_Result as the provided CreateVisualValidateSessionResult
+func (t *PortraitEnvelope_Result) FromCreateVisualValidateSessionResult(v CreateVisualValidateSessionResult) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeCreateVisualValidateSessionResult performs a merge with any union data inside the PortraitEnvelope_Result, using the provided CreateVisualValidateSessionResult
+func (t *PortraitEnvelope_Result) MergeCreateVisualValidateSessionResult(v CreateVisualValidateSessionResult) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsGetVisualValidateResultResult returns the union data inside the PortraitEnvelope_Result as a GetVisualValidateResultResult
+func (t PortraitEnvelope_Result) AsGetVisualValidateResultResult() (GetVisualValidateResultResult, error) {
+	var body GetVisualValidateResultResult
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromGetVisualValidateResultResult overwrites any union data inside the PortraitEnvelope_Result as the provided GetVisualValidateResultResult
+func (t *PortraitEnvelope_Result) FromGetVisualValidateResultResult(v GetVisualValidateResultResult) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeGetVisualValidateResultResult performs a merge with any union data inside the PortraitEnvelope_Result, using the provided GetVisualValidateResultResult
+func (t *PortraitEnvelope_Result) MergeGetVisualValidateResultResult(v GetVisualValidateResultResult) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsCreateAssetGroupResult returns the union data inside the PortraitEnvelope_Result as a CreateAssetGroupResult
+func (t PortraitEnvelope_Result) AsCreateAssetGroupResult() (CreateAssetGroupResult, error) {
+	var body CreateAssetGroupResult
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromCreateAssetGroupResult overwrites any union data inside the PortraitEnvelope_Result as the provided CreateAssetGroupResult
+func (t *PortraitEnvelope_Result) FromCreateAssetGroupResult(v CreateAssetGroupResult) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeCreateAssetGroupResult performs a merge with any union data inside the PortraitEnvelope_Result, using the provided CreateAssetGroupResult
+func (t *PortraitEnvelope_Result) MergeCreateAssetGroupResult(v CreateAssetGroupResult) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAssetGroupItem returns the union data inside the PortraitEnvelope_Result as a AssetGroupItem
+func (t PortraitEnvelope_Result) AsAssetGroupItem() (AssetGroupItem, error) {
+	var body AssetGroupItem
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAssetGroupItem overwrites any union data inside the PortraitEnvelope_Result as the provided AssetGroupItem
+func (t *PortraitEnvelope_Result) FromAssetGroupItem(v AssetGroupItem) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAssetGroupItem performs a merge with any union data inside the PortraitEnvelope_Result, using the provided AssetGroupItem
+func (t *PortraitEnvelope_Result) MergeAssetGroupItem(v AssetGroupItem) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsListAssetGroupsResult returns the union data inside the PortraitEnvelope_Result as a ListAssetGroupsResult
+func (t PortraitEnvelope_Result) AsListAssetGroupsResult() (ListAssetGroupsResult, error) {
+	var body ListAssetGroupsResult
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromListAssetGroupsResult overwrites any union data inside the PortraitEnvelope_Result as the provided ListAssetGroupsResult
+func (t *PortraitEnvelope_Result) FromListAssetGroupsResult(v ListAssetGroupsResult) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeListAssetGroupsResult performs a merge with any union data inside the PortraitEnvelope_Result, using the provided ListAssetGroupsResult
+func (t *PortraitEnvelope_Result) MergeListAssetGroupsResult(v ListAssetGroupsResult) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsCreateAssetResult returns the union data inside the PortraitEnvelope_Result as a CreateAssetResult
+func (t PortraitEnvelope_Result) AsCreateAssetResult() (CreateAssetResult, error) {
+	var body CreateAssetResult
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromCreateAssetResult overwrites any union data inside the PortraitEnvelope_Result as the provided CreateAssetResult
+func (t *PortraitEnvelope_Result) FromCreateAssetResult(v CreateAssetResult) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeCreateAssetResult performs a merge with any union data inside the PortraitEnvelope_Result, using the provided CreateAssetResult
+func (t *PortraitEnvelope_Result) MergeCreateAssetResult(v CreateAssetResult) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAssetItem returns the union data inside the PortraitEnvelope_Result as a AssetItem
+func (t PortraitEnvelope_Result) AsAssetItem() (AssetItem, error) {
+	var body AssetItem
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAssetItem overwrites any union data inside the PortraitEnvelope_Result as the provided AssetItem
+func (t *PortraitEnvelope_Result) FromAssetItem(v AssetItem) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAssetItem performs a merge with any union data inside the PortraitEnvelope_Result, using the provided AssetItem
+func (t *PortraitEnvelope_Result) MergeAssetItem(v AssetItem) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsListAssetsResult returns the union data inside the PortraitEnvelope_Result as a ListAssetsResult
+func (t PortraitEnvelope_Result) AsListAssetsResult() (ListAssetsResult, error) {
+	var body ListAssetsResult
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromListAssetsResult overwrites any union data inside the PortraitEnvelope_Result as the provided ListAssetsResult
+func (t *PortraitEnvelope_Result) FromListAssetsResult(v ListAssetsResult) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeListAssetsResult performs a merge with any union data inside the PortraitEnvelope_Result, using the provided ListAssetsResult
+func (t *PortraitEnvelope_Result) MergeListAssetsResult(v ListAssetsResult) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsPortraitEnvelopeResult8 returns the union data inside the PortraitEnvelope_Result as a PortraitEnvelopeResult8
+func (t PortraitEnvelope_Result) AsPortraitEnvelopeResult8() (PortraitEnvelopeResult8, error) {
+	var body PortraitEnvelopeResult8
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPortraitEnvelopeResult8 overwrites any union data inside the PortraitEnvelope_Result as the provided PortraitEnvelopeResult8
+func (t *PortraitEnvelope_Result) FromPortraitEnvelopeResult8(v PortraitEnvelopeResult8) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePortraitEnvelopeResult8 performs a merge with any union data inside the PortraitEnvelope_Result, using the provided PortraitEnvelopeResult8
+func (t *PortraitEnvelope_Result) MergePortraitEnvelopeResult8(v PortraitEnvelopeResult8) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t PortraitEnvelope_Result) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *PortraitEnvelope_Result) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
