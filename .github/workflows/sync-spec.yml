@@ -21,7 +21,7 @@ jobs:
 
       - name: Clone megaopenrouter
         run: |
-          git clone --depth 1 https://x-access-token:${{ secrets.GITLAB_TOKEN }}@${{ secrets.GITLAB_REPO_URL }} ../megaopenrouter
+          git clone --depth 1 https://${{ secrets.GITLAB_USERNAME }}:${{ secrets.GITLAB_TOKEN }}@${{ secrets.GITLAB_REPO_URL }} ../megaopenrouter
 
       - name: Run codegen
         run: go run scripts/generate.go
