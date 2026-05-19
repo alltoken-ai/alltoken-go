@@ -1759,21 +1759,6 @@ type CallPortraitActionParamsAction string
 // CallPortraitActionParamsVersion defines parameters for CallPortraitAction.
 type CallPortraitActionParamsVersion string
 
-// CallPortraitActionParams defines parameters for CallPortraitAction.
-type CallPortraitActionParams struct {
-	// Action 火山 Action 名。
-	Action CallPortraitActionParamsAction `form:"Action" json:"Action"`
-
-	// Version 火山 Assets API 版本；当前仅支持 `2024-01-01`。
-	Version *CallPortraitActionParamsVersion `form:"Version,omitempty" json:"Version,omitempty"`
-}
-
-// CallPortraitActionParamsAction defines parameters for CallPortraitAction.
-type CallPortraitActionParamsAction string
-
-// CallPortraitActionParamsVersion defines parameters for CallPortraitAction.
-type CallPortraitActionParamsVersion string
-
 // ListVideoGenerationsParams defines parameters for ListVideoGenerations.
 type ListVideoGenerationsParams struct {
 	Limit *int `form:"limit,omitempty" json:"limit,omitempty"`
@@ -1799,9 +1784,6 @@ type CreateImageVariationMultipartRequestBody = ImageVariationMultipartRequest
 
 // CreateMessageViaV1JSONRequestBody defines body for CreateMessageViaV1 for application/json ContentType.
 type CreateMessageViaV1JSONRequestBody = CreateMessageViaV1JSONBody
-
-// CallPortraitActionJSONRequestBody defines body for CallPortraitAction for application/json ContentType.
-type CallPortraitActionJSONRequestBody = PortraitActionRequest
 
 // CallPortraitActionJSONRequestBody defines body for CallPortraitAction for application/json ContentType.
 type CallPortraitActionJSONRequestBody = PortraitActionRequest
