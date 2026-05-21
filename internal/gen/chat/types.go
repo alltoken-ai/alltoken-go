@@ -139,6 +139,21 @@ func (e ContentPartType) Valid() bool {
 	}
 }
 
+// Defines values for CreditsResponseCurrency.
+const (
+	USD CreditsResponseCurrency = "USD"
+)
+
+// Valid indicates whether the value is a known member of the CreditsResponseCurrency enum.
+func (e CreditsResponseCurrency) Valid() bool {
+	switch e {
+	case USD:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for ImageCreateResponseStatus.
 const (
 	ImageCreateResponseStatusQueued ImageCreateResponseStatus = "queued"
@@ -595,6 +610,57 @@ func (e ToolCallType) Valid() bool {
 	}
 }
 
+// Defines values for TransactionItemDirection.
+const (
+	TransactionItemDirectionAdd      TransactionItemDirection = "add"
+	TransactionItemDirectionDeduct   TransactionItemDirection = "deduct"
+	TransactionItemDirectionExchange TransactionItemDirection = "exchange"
+	TransactionItemDirectionRefund   TransactionItemDirection = "refund"
+)
+
+// Valid indicates whether the value is a known member of the TransactionItemDirection enum.
+func (e TransactionItemDirection) Valid() bool {
+	switch e {
+	case TransactionItemDirectionAdd:
+		return true
+	case TransactionItemDirectionDeduct:
+		return true
+	case TransactionItemDirectionExchange:
+		return true
+	case TransactionItemDirectionRefund:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for TransactionItemSource.
+const (
+	TransactionItemSourceCredit   TransactionItemSource = "credit"
+	TransactionItemSourceExchange TransactionItemSource = "exchange"
+	TransactionItemSourceGrant    TransactionItemSource = "grant"
+	TransactionItemSourceImage    TransactionItemSource = "image"
+	TransactionItemSourceVideo    TransactionItemSource = "video"
+)
+
+// Valid indicates whether the value is a known member of the TransactionItemSource enum.
+func (e TransactionItemSource) Valid() bool {
+	switch e {
+	case TransactionItemSourceCredit:
+		return true
+	case TransactionItemSourceExchange:
+		return true
+	case TransactionItemSourceGrant:
+		return true
+	case TransactionItemSourceImage:
+		return true
+	case TransactionItemSourceVideo:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for VideoContentItemRole.
 const (
 	FirstFrame     VideoContentItemRole = "first_frame"
@@ -747,31 +813,31 @@ func (e VideoGenerationRequestToolsType) Valid() bool {
 
 // Defines values for VideoTaskResponseInputType.
 const (
-	DraftTask           VideoTaskResponseInputType = "draft_task"
-	ImageFirstFrame     VideoTaskResponseInputType = "image_first_frame"
-	ImageFirstLastFrame VideoTaskResponseInputType = "image_first_last_frame"
-	ImageReference      VideoTaskResponseInputType = "image_reference"
-	Multimodal          VideoTaskResponseInputType = "multimodal"
-	Text                VideoTaskResponseInputType = "text"
-	VideoReference      VideoTaskResponseInputType = "video_reference"
+	VideoTaskResponseInputTypeDraftTask           VideoTaskResponseInputType = "draft_task"
+	VideoTaskResponseInputTypeImageFirstFrame     VideoTaskResponseInputType = "image_first_frame"
+	VideoTaskResponseInputTypeImageFirstLastFrame VideoTaskResponseInputType = "image_first_last_frame"
+	VideoTaskResponseInputTypeImageReference      VideoTaskResponseInputType = "image_reference"
+	VideoTaskResponseInputTypeMultimodal          VideoTaskResponseInputType = "multimodal"
+	VideoTaskResponseInputTypeText                VideoTaskResponseInputType = "text"
+	VideoTaskResponseInputTypeVideoReference      VideoTaskResponseInputType = "video_reference"
 )
 
 // Valid indicates whether the value is a known member of the VideoTaskResponseInputType enum.
 func (e VideoTaskResponseInputType) Valid() bool {
 	switch e {
-	case DraftTask:
+	case VideoTaskResponseInputTypeDraftTask:
 		return true
-	case ImageFirstFrame:
+	case VideoTaskResponseInputTypeImageFirstFrame:
 		return true
-	case ImageFirstLastFrame:
+	case VideoTaskResponseInputTypeImageFirstLastFrame:
 		return true
-	case ImageReference:
+	case VideoTaskResponseInputTypeImageReference:
 		return true
-	case Multimodal:
+	case VideoTaskResponseInputTypeMultimodal:
 		return true
-	case Text:
+	case VideoTaskResponseInputTypeText:
 		return true
-	case VideoReference:
+	case VideoTaskResponseInputTypeVideoReference:
 		return true
 	default:
 		return false
@@ -802,6 +868,78 @@ func (e VideoTaskResponseStatus) Valid() bool {
 	case VideoTaskResponseStatusProcessing:
 		return true
 	case VideoTaskResponseStatusQueued:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ListTransactionsParamsSource.
+const (
+	ListTransactionsParamsSourceCredit   ListTransactionsParamsSource = "credit"
+	ListTransactionsParamsSourceExchange ListTransactionsParamsSource = "exchange"
+	ListTransactionsParamsSourceGrant    ListTransactionsParamsSource = "grant"
+	ListTransactionsParamsSourceImage    ListTransactionsParamsSource = "image"
+	ListTransactionsParamsSourceVideo    ListTransactionsParamsSource = "video"
+)
+
+// Valid indicates whether the value is a known member of the ListTransactionsParamsSource enum.
+func (e ListTransactionsParamsSource) Valid() bool {
+	switch e {
+	case ListTransactionsParamsSourceCredit:
+		return true
+	case ListTransactionsParamsSourceExchange:
+		return true
+	case ListTransactionsParamsSourceGrant:
+		return true
+	case ListTransactionsParamsSourceImage:
+		return true
+	case ListTransactionsParamsSourceVideo:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ListTransactionsParamsDirection.
+const (
+	Add      ListTransactionsParamsDirection = "add"
+	Deduct   ListTransactionsParamsDirection = "deduct"
+	Exchange ListTransactionsParamsDirection = "exchange"
+	Refund   ListTransactionsParamsDirection = "refund"
+)
+
+// Valid indicates whether the value is a known member of the ListTransactionsParamsDirection enum.
+func (e ListTransactionsParamsDirection) Valid() bool {
+	switch e {
+	case Add:
+		return true
+	case Deduct:
+		return true
+	case Exchange:
+		return true
+	case Refund:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ListTransactionsParamsBillingType.
+const (
+	N0 ListTransactionsParamsBillingType = 0
+	N1 ListTransactionsParamsBillingType = 1
+	N2 ListTransactionsParamsBillingType = 2
+)
+
+// Valid indicates whether the value is a known member of the ListTransactionsParamsBillingType enum.
+func (e ListTransactionsParamsBillingType) Valid() bool {
+	switch e {
+	case N0:
+		return true
+	case N1:
+		return true
+	case N2:
 		return true
 	default:
 		return false
@@ -1083,6 +1221,22 @@ type CreateVisualValidateSessionResult struct {
 	// H5Link 火山 H5 认证页面链接。
 	H5Link string `json:"H5Link"`
 }
+
+// CreditsResponse defines model for CreditsResponse.
+type CreditsResponse struct {
+	// CreditBalance USD credit 现金余额（原始精度，可能含 6 位小数）
+	CreditBalance float64 `json:"credit_balance"`
+
+	// CreditBalanceStr 展示用余额字符串，`$x.xx` 2 位小数 + 美元符号；负值前缀 `-$`
+	CreditBalanceStr string `json:"credit_balance_str"`
+
+	// Currency 当前固定 USD
+	Currency     CreditsResponseCurrency `json:"currency"`
+	TokenBalance TokenBalance            `json:"token_balance"`
+}
+
+// CreditsResponseCurrency 当前固定 USD
+type CreditsResponseCurrency string
 
 // ErrorResponse defines model for ErrorResponse.
 type ErrorResponse struct {
@@ -1525,6 +1679,21 @@ type ResponsesRequest struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
+// TokenBalance defines model for TokenBalance.
+type TokenBalance struct {
+	ByModel []TokenBalanceByModel `json:"by_model"`
+
+	// TotalRemaining 所有 `remaining_tokens > 0` 的 grant token 总和
+	TotalRemaining int64 `json:"total_remaining"`
+}
+
+// TokenBalanceByModel defines model for TokenBalanceByModel.
+type TokenBalanceByModel struct {
+	// Model 限定模型 ID；`null` 表示通用 grant（可对任意模型生效）
+	Model           *string `json:"model"`
+	RemainingTokens int64   `json:"remaining_tokens"`
+}
+
 // Tool defines model for Tool.
 type Tool struct {
 	Function struct {
@@ -1553,6 +1722,122 @@ type ToolCall struct {
 
 // ToolCallType defines model for ToolCall.Type.
 type ToolCallType string
+
+// TransactionDetailResponse defines model for TransactionDetailResponse.
+type TransactionDetailResponse struct {
+	// Ledgers 同一 request_id 下的多行 ledger，按 `id ASC` 排
+	Ledgers   []TransactionItem        `json:"ledgers"`
+	RequestId string                   `json:"request_id"`
+	Summary   TransactionDetailSummary `json:"summary"`
+}
+
+// TransactionDetailSummary defines model for TransactionDetailSummary.
+type TransactionDetailSummary struct {
+	BillingType *int    `json:"billing_type,omitempty"`
+	Category    *string `json:"category,omitempty"`
+
+	// FeeRate 手续费占比 `|sum(fee_cost)| / |sum(deduct_cost)|`，仅含 fee 的笔有值
+	FeeRate        *float64   `json:"fee_rate,omitempty"`
+	FirstCreatedAt *time.Time `json:"first_created_at,omitempty"`
+	Model          *string    `json:"model,omitempty"`
+
+	// TotalCost 所有 ledger 行 cost 聚合后的方向化总额
+	TotalCost float64 `json:"total_cost"`
+
+	// TotalCostStr 4 位小数 + $ 符号前置
+	TotalCostStr     string `json:"total_cost_str"`
+	TotalTokensDelta int64  `json:"total_tokens_delta"`
+}
+
+// TransactionItem defines model for TransactionItem.
+type TransactionItem struct {
+	// BillingType 0=未指定 / 1=Web / 2=API
+	BillingType *int `json:"billing_type"`
+
+	// BillingTypeLabel i18n 翻译（Web / API / CodePlan ...）
+	BillingTypeLabel *string `json:"billing_type_label,omitempty"`
+
+	// Category recharge / consumption / refund / fee / exchange
+	Category *string `json:"category,omitempty"`
+
+	// ChangeType 内部精确类型，如 `grant_add` / `grant_deduct` / `credit_add` / `credit_deduct` / `credit_refund` / `exchange_in` / `exchange_out` / `video_deduct` / `image_deduct` / `fee_deduct` / `fee_refund`
+	ChangeType string `json:"change_type"`
+
+	// Cost 仅扣款/退款类有值；非扣款类返 null
+	Cost *float64 `json:"cost"`
+
+	// CostStr 4 位小数 + $ 符号前置（负数 `-$0.0023`，负零已修复为 `$0.0000`）
+	CostStr   *string   `json:"cost_str"`
+	CreatedAt time.Time `json:"created_at"`
+
+	// Description 已 i18n 翻译；按 `Accept-Language` 切换
+	Description string                   `json:"description"`
+	Details     *[]TransactionItemDetail `json:"details,omitempty"`
+	Direction   TransactionItemDirection `json:"direction"`
+	GrantId     *int64                   `json:"grant_id,omitempty"`
+	Id          int64                    `json:"id"`
+
+	// Model 模型展示名（来自 `or_models.display_name`，不存在时回落 model_id）
+	Model   *string `json:"model,omitempty"`
+	ModelId *string `json:"model_id,omitempty"`
+
+	// PayMode postpay / prepay（视 change_type 而定，可选）
+	PayMode   *string               `json:"pay_mode,omitempty"`
+	Remark    *string               `json:"remark,omitempty"`
+	RequestId *string               `json:"request_id,omitempty"`
+	Source    TransactionItemSource `json:"source"`
+
+	// TokensDelta 带正负号（add=正，deduct=负）
+	TokensDelta int64 `json:"tokens_delta"`
+}
+
+// TransactionItemDirection defines model for TransactionItem.Direction.
+type TransactionItemDirection string
+
+// TransactionItemSource defines model for TransactionItem.Source.
+type TransactionItemSource string
+
+// TransactionItemDetail deduct 类附带的逐 token-type 明细（input/output/cache/reasoning ...）
+type TransactionItemDetail struct {
+	// Cost deduct 取正，refund 透传原符号
+	Cost    float64 `json:"cost"`
+	CostStr string  `json:"cost_str"`
+
+	// FallbackTokenType 价格 fallback 时记录原始 token_type
+	FallbackTokenType *string `json:"fallback_token_type,omitempty"`
+
+	// PriceNotFound 价格表 miss 时置 1，便于排障
+	PriceNotFound *int    `json:"price_not_found,omitempty"`
+	PricePer1k    float64 `json:"price_per_1k"`
+	PricePer1kStr string  `json:"price_per_1k_str"`
+
+	// TokenType input / output / cache_creation / cache_hit / reasoning ...
+	TokenType string `json:"token_type"`
+	Tokens    int    `json:"tokens"`
+}
+
+// TransactionListResponse defines model for TransactionListResponse.
+type TransactionListResponse struct {
+	Data struct {
+		Items []TransactionItem `json:"items"`
+
+		// Summary 按方向二分汇总当前页 items（不是 total 全集汇总）
+		Summary TransactionListSummary `json:"summary"`
+
+		// Total 满足过滤条件的总行数（不受 limit/offset 影响），用于分页 UI
+		Total int `json:"total"`
+	} `json:"data"`
+}
+
+// TransactionListSummary 按方向二分汇总当前页 items（不是 total 全集汇总）
+type TransactionListSummary struct {
+	CostAdded       *float64 `json:"cost_added,omitempty"`
+	CostAddedStr    *string  `json:"cost_added_str,omitempty"`
+	CostDeducted    *float64 `json:"cost_deducted,omitempty"`
+	CostDeductedStr *string  `json:"cost_deducted_str,omitempty"`
+	TokensAdded     *int64   `json:"tokens_added,omitempty"`
+	TokensDeducted  *int64   `json:"tokens_deducted,omitempty"`
+}
 
 // UpdateAssetGroupRequest defines model for UpdateAssetGroupRequest.
 type UpdateAssetGroupRequest struct {
@@ -1759,6 +2044,42 @@ type ServerError = ErrorResponse
 
 // Unauthorized defines model for Unauthorized.
 type Unauthorized = ErrorResponse
+
+// ListTransactionsParams defines parameters for ListTransactions.
+type ListTransactionsParams struct {
+	Limit  *int `form:"limit,omitempty" json:"limit,omitempty"`
+	Offset *int `form:"offset,omitempty" json:"offset,omitempty"`
+
+	// ChangeType 精确单选具体类型（与 source/direction 互斥；如 `grant_deduct` / `credit_add`）
+	ChangeType *string `form:"change_type,omitempty" json:"change_type,omitempty"`
+
+	// Source grant / credit / exchange / video / image
+	Source *ListTransactionsParamsSource `form:"source,omitempty" json:"source,omitempty"`
+
+	// Direction add / deduct / exchange / refund
+	Direction *ListTransactionsParamsDirection `form:"direction,omitempty" json:"direction,omitempty"`
+
+	// BillingType 0=全部 / 1=Web / 2=API
+	BillingType *ListTransactionsParamsBillingType `form:"billing_type,omitempty" json:"billing_type,omitempty"`
+
+	// DateFrom YYYY-MM-DD（含）
+	DateFrom *openapi_types.Date `form:"date_from,omitempty" json:"date_from,omitempty"`
+
+	// DateTo YYYY-MM-DD（含）；`date_from > date_to` 返 400
+	DateTo *openapi_types.Date `form:"date_to,omitempty" json:"date_to,omitempty"`
+
+	// Model 按 model 精确过滤
+	Model *string `form:"model,omitempty" json:"model,omitempty"`
+}
+
+// ListTransactionsParamsSource defines parameters for ListTransactions.
+type ListTransactionsParamsSource string
+
+// ListTransactionsParamsDirection defines parameters for ListTransactions.
+type ListTransactionsParamsDirection string
+
+// ListTransactionsParamsBillingType defines parameters for ListTransactions.
+type ListTransactionsParamsBillingType int
 
 // CreateImageEditParams defines parameters for CreateImageEdit.
 type CreateImageEditParams struct {
