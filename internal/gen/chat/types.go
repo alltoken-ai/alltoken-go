@@ -13,6 +13,7 @@ import (
 )
 
 const (
+	ApiKeyAuthScopes = "apiKeyAuth.Scopes"
 	BearerAuthScopes = "bearerAuth.Scopes"
 )
 
@@ -154,6 +155,129 @@ func (e CreditsResponseCurrency) Valid() bool {
 	}
 }
 
+// Defines values for FeedbackSelfItemStatus.
+const (
+	FeedbackSelfItemStatusDuplicate     FeedbackSelfItemStatus = "duplicate"
+	FeedbackSelfItemStatusInProgress    FeedbackSelfItemStatus = "in_progress"
+	FeedbackSelfItemStatusNeedsMoreInfo FeedbackSelfItemStatus = "needs_more_info"
+	FeedbackSelfItemStatusPlanned       FeedbackSelfItemStatus = "planned"
+	FeedbackSelfItemStatusReceived      FeedbackSelfItemStatus = "received"
+	FeedbackSelfItemStatusShipped       FeedbackSelfItemStatus = "shipped"
+	FeedbackSelfItemStatusTriaging      FeedbackSelfItemStatus = "triaging"
+	FeedbackSelfItemStatusWontfix       FeedbackSelfItemStatus = "wontfix"
+)
+
+// Valid indicates whether the value is a known member of the FeedbackSelfItemStatus enum.
+func (e FeedbackSelfItemStatus) Valid() bool {
+	switch e {
+	case FeedbackSelfItemStatusDuplicate:
+		return true
+	case FeedbackSelfItemStatusInProgress:
+		return true
+	case FeedbackSelfItemStatusNeedsMoreInfo:
+		return true
+	case FeedbackSelfItemStatusPlanned:
+		return true
+	case FeedbackSelfItemStatusReceived:
+		return true
+	case FeedbackSelfItemStatusShipped:
+		return true
+	case FeedbackSelfItemStatusTriaging:
+		return true
+	case FeedbackSelfItemStatusWontfix:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for FeedbackSubmitRequestAiPriority.
+const (
+	FeedbackSubmitRequestAiPriorityCritical FeedbackSubmitRequestAiPriority = "critical"
+	FeedbackSubmitRequestAiPriorityHigh     FeedbackSubmitRequestAiPriority = "high"
+	FeedbackSubmitRequestAiPriorityLow      FeedbackSubmitRequestAiPriority = "low"
+	FeedbackSubmitRequestAiPriorityMedium   FeedbackSubmitRequestAiPriority = "medium"
+)
+
+// Valid indicates whether the value is a known member of the FeedbackSubmitRequestAiPriority enum.
+func (e FeedbackSubmitRequestAiPriority) Valid() bool {
+	switch e {
+	case FeedbackSubmitRequestAiPriorityCritical:
+		return true
+	case FeedbackSubmitRequestAiPriorityHigh:
+		return true
+	case FeedbackSubmitRequestAiPriorityLow:
+		return true
+	case FeedbackSubmitRequestAiPriorityMedium:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for FeedbackSubmitRequestCategory.
+const (
+	FeedbackSubmitRequestCategoryBusinessGap       FeedbackSubmitRequestCategory = "business_gap"
+	FeedbackSubmitRequestCategoryDocumentation     FeedbackSubmitRequestCategory = "documentation"
+	FeedbackSubmitRequestCategoryErrorMessage      FeedbackSubmitRequestCategory = "error_message"
+	FeedbackSubmitRequestCategoryMissingCapability FeedbackSubmitRequestCategory = "missing_capability"
+	FeedbackSubmitRequestCategoryMissingEndpoint   FeedbackSubmitRequestCategory = "missing_endpoint"
+	FeedbackSubmitRequestCategoryMissingModel      FeedbackSubmitRequestCategory = "missing_model"
+	FeedbackSubmitRequestCategoryModelQuality      FeedbackSubmitRequestCategory = "model_quality"
+	FeedbackSubmitRequestCategoryOutOfScope        FeedbackSubmitRequestCategory = "out_of_scope"
+	FeedbackSubmitRequestCategoryPerformance       FeedbackSubmitRequestCategory = "performance"
+	FeedbackSubmitRequestCategoryPricing           FeedbackSubmitRequestCategory = "pricing"
+	FeedbackSubmitRequestCategoryReliability       FeedbackSubmitRequestCategory = "reliability"
+)
+
+// Valid indicates whether the value is a known member of the FeedbackSubmitRequestCategory enum.
+func (e FeedbackSubmitRequestCategory) Valid() bool {
+	switch e {
+	case FeedbackSubmitRequestCategoryBusinessGap:
+		return true
+	case FeedbackSubmitRequestCategoryDocumentation:
+		return true
+	case FeedbackSubmitRequestCategoryErrorMessage:
+		return true
+	case FeedbackSubmitRequestCategoryMissingCapability:
+		return true
+	case FeedbackSubmitRequestCategoryMissingEndpoint:
+		return true
+	case FeedbackSubmitRequestCategoryMissingModel:
+		return true
+	case FeedbackSubmitRequestCategoryModelQuality:
+		return true
+	case FeedbackSubmitRequestCategoryOutOfScope:
+		return true
+	case FeedbackSubmitRequestCategoryPerformance:
+		return true
+	case FeedbackSubmitRequestCategoryPricing:
+		return true
+	case FeedbackSubmitRequestCategoryReliability:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for FeedbackSubmitResponseStatus.
+const (
+	FeedbackSubmitResponseStatusDuplicate FeedbackSubmitResponseStatus = "duplicate"
+	FeedbackSubmitResponseStatusReceived  FeedbackSubmitResponseStatus = "received"
+)
+
+// Valid indicates whether the value is a known member of the FeedbackSubmitResponseStatus enum.
+func (e FeedbackSubmitResponseStatus) Valid() bool {
+	switch e {
+	case FeedbackSubmitResponseStatusDuplicate:
+		return true
+	case FeedbackSubmitResponseStatusReceived:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for ImageCreateResponseStatus.
 const (
 	ImageCreateResponseStatusQueued ImageCreateResponseStatus = "queued"
@@ -171,8 +295,9 @@ func (e ImageCreateResponseStatus) Valid() bool {
 
 // Defines values for ImageEditMultipartRequestBackground.
 const (
-	ImageEditMultipartRequestBackgroundAuto   ImageEditMultipartRequestBackground = "auto"
-	ImageEditMultipartRequestBackgroundOpaque ImageEditMultipartRequestBackground = "opaque"
+	ImageEditMultipartRequestBackgroundAuto        ImageEditMultipartRequestBackground = "auto"
+	ImageEditMultipartRequestBackgroundOpaque      ImageEditMultipartRequestBackground = "opaque"
+	ImageEditMultipartRequestBackgroundTransparent ImageEditMultipartRequestBackground = "transparent"
 )
 
 // Valid indicates whether the value is a known member of the ImageEditMultipartRequestBackground enum.
@@ -181,6 +306,8 @@ func (e ImageEditMultipartRequestBackground) Valid() bool {
 	case ImageEditMultipartRequestBackgroundAuto:
 		return true
 	case ImageEditMultipartRequestBackgroundOpaque:
+		return true
+	case ImageEditMultipartRequestBackgroundTransparent:
 		return true
 	default:
 		return false
@@ -250,34 +377,11 @@ func (e ImageEditMultipartRequestQuality) Valid() bool {
 	}
 }
 
-// Defines values for ImageEditMultipartRequestSize.
-const (
-	ImageEditMultipartRequestSizeAuto       ImageEditMultipartRequestSize = "auto"
-	ImageEditMultipartRequestSizeN1024x1024 ImageEditMultipartRequestSize = "1024x1024"
-	ImageEditMultipartRequestSizeN1024x1536 ImageEditMultipartRequestSize = "1024x1536"
-	ImageEditMultipartRequestSizeN1536x1024 ImageEditMultipartRequestSize = "1536x1024"
-)
-
-// Valid indicates whether the value is a known member of the ImageEditMultipartRequestSize enum.
-func (e ImageEditMultipartRequestSize) Valid() bool {
-	switch e {
-	case ImageEditMultipartRequestSizeAuto:
-		return true
-	case ImageEditMultipartRequestSizeN1024x1024:
-		return true
-	case ImageEditMultipartRequestSizeN1024x1536:
-		return true
-	case ImageEditMultipartRequestSizeN1536x1024:
-		return true
-	default:
-		return false
-	}
-}
-
 // Defines values for ImageGenerationRequestBackground.
 const (
-	ImageGenerationRequestBackgroundAuto   ImageGenerationRequestBackground = "auto"
-	ImageGenerationRequestBackgroundOpaque ImageGenerationRequestBackground = "opaque"
+	ImageGenerationRequestBackgroundAuto        ImageGenerationRequestBackground = "auto"
+	ImageGenerationRequestBackgroundOpaque      ImageGenerationRequestBackground = "opaque"
+	ImageGenerationRequestBackgroundTransparent ImageGenerationRequestBackground = "transparent"
 )
 
 // Valid indicates whether the value is a known member of the ImageGenerationRequestBackground enum.
@@ -286,6 +390,8 @@ func (e ImageGenerationRequestBackground) Valid() bool {
 	case ImageGenerationRequestBackgroundAuto:
 		return true
 	case ImageGenerationRequestBackgroundOpaque:
+		return true
+	case ImageGenerationRequestBackgroundTransparent:
 		return true
 	default:
 		return false
@@ -355,30 +461,6 @@ func (e ImageGenerationRequestQuality) Valid() bool {
 	}
 }
 
-// Defines values for ImageGenerationRequestSize.
-const (
-	ImageGenerationRequestSizeAuto       ImageGenerationRequestSize = "auto"
-	ImageGenerationRequestSizeN1024x1024 ImageGenerationRequestSize = "1024x1024"
-	ImageGenerationRequestSizeN1024x1536 ImageGenerationRequestSize = "1024x1536"
-	ImageGenerationRequestSizeN1536x1024 ImageGenerationRequestSize = "1536x1024"
-)
-
-// Valid indicates whether the value is a known member of the ImageGenerationRequestSize enum.
-func (e ImageGenerationRequestSize) Valid() bool {
-	switch e {
-	case ImageGenerationRequestSizeAuto:
-		return true
-	case ImageGenerationRequestSizeN1024x1024:
-		return true
-	case ImageGenerationRequestSizeN1024x1536:
-		return true
-	case ImageGenerationRequestSizeN1536x1024:
-		return true
-	default:
-		return false
-	}
-}
-
 // Defines values for ImageGenerationResponseStatus.
 const (
 	ImageGenerationResponseStatusCompleted ImageGenerationResponseStatus = "completed"
@@ -420,22 +502,22 @@ func (e ImageTaskStatusResponseStatus) Valid() bool {
 
 // Defines values for ImageVariationMultipartRequestSize.
 const (
-	ImageVariationMultipartRequestSizeAuto       ImageVariationMultipartRequestSize = "auto"
-	ImageVariationMultipartRequestSizeN1024x1024 ImageVariationMultipartRequestSize = "1024x1024"
-	ImageVariationMultipartRequestSizeN1024x1536 ImageVariationMultipartRequestSize = "1024x1536"
-	ImageVariationMultipartRequestSizeN1536x1024 ImageVariationMultipartRequestSize = "1536x1024"
+	Auto       ImageVariationMultipartRequestSize = "auto"
+	N1024x1024 ImageVariationMultipartRequestSize = "1024x1024"
+	N1024x1536 ImageVariationMultipartRequestSize = "1024x1536"
+	N1536x1024 ImageVariationMultipartRequestSize = "1536x1024"
 )
 
 // Valid indicates whether the value is a known member of the ImageVariationMultipartRequestSize enum.
 func (e ImageVariationMultipartRequestSize) Valid() bool {
 	switch e {
-	case ImageVariationMultipartRequestSizeAuto:
+	case Auto:
 		return true
-	case ImageVariationMultipartRequestSizeN1024x1024:
+	case N1024x1024:
 		return true
-	case ImageVariationMultipartRequestSizeN1024x1536:
+	case N1024x1536:
 		return true
-	case ImageVariationMultipartRequestSizeN1536x1024:
+	case N1536x1024:
 		return true
 	default:
 		return false
@@ -874,6 +956,108 @@ func (e VideoTaskResponseStatus) Valid() bool {
 	}
 }
 
+// Defines values for FeedbackCategory.
+const (
+	FeedbackCategoryBusinessGap       FeedbackCategory = "business_gap"
+	FeedbackCategoryDocumentation     FeedbackCategory = "documentation"
+	FeedbackCategoryErrorMessage      FeedbackCategory = "error_message"
+	FeedbackCategoryMissingCapability FeedbackCategory = "missing_capability"
+	FeedbackCategoryMissingEndpoint   FeedbackCategory = "missing_endpoint"
+	FeedbackCategoryMissingModel      FeedbackCategory = "missing_model"
+	FeedbackCategoryModelQuality      FeedbackCategory = "model_quality"
+	FeedbackCategoryOutOfScope        FeedbackCategory = "out_of_scope"
+	FeedbackCategoryPerformance       FeedbackCategory = "performance"
+	FeedbackCategoryPricing           FeedbackCategory = "pricing"
+	FeedbackCategoryReliability       FeedbackCategory = "reliability"
+)
+
+// Valid indicates whether the value is a known member of the FeedbackCategory enum.
+func (e FeedbackCategory) Valid() bool {
+	switch e {
+	case FeedbackCategoryBusinessGap:
+		return true
+	case FeedbackCategoryDocumentation:
+		return true
+	case FeedbackCategoryErrorMessage:
+		return true
+	case FeedbackCategoryMissingCapability:
+		return true
+	case FeedbackCategoryMissingEndpoint:
+		return true
+	case FeedbackCategoryMissingModel:
+		return true
+	case FeedbackCategoryModelQuality:
+		return true
+	case FeedbackCategoryOutOfScope:
+		return true
+	case FeedbackCategoryPerformance:
+		return true
+	case FeedbackCategoryPricing:
+		return true
+	case FeedbackCategoryReliability:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for FeedbackSort.
+const (
+	FeedbackSortCreatedAsc        FeedbackSort = "created_asc"
+	FeedbackSortCreatedDesc       FeedbackSort = "created_desc"
+	FeedbackSortStatusChangedDesc FeedbackSort = "status_changed_desc"
+)
+
+// Valid indicates whether the value is a known member of the FeedbackSort enum.
+func (e FeedbackSort) Valid() bool {
+	switch e {
+	case FeedbackSortCreatedAsc:
+		return true
+	case FeedbackSortCreatedDesc:
+		return true
+	case FeedbackSortStatusChangedDesc:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for FeedbackStatus.
+const (
+	FeedbackStatusDuplicate     FeedbackStatus = "duplicate"
+	FeedbackStatusInProgress    FeedbackStatus = "in_progress"
+	FeedbackStatusNeedsMoreInfo FeedbackStatus = "needs_more_info"
+	FeedbackStatusPlanned       FeedbackStatus = "planned"
+	FeedbackStatusReceived      FeedbackStatus = "received"
+	FeedbackStatusShipped       FeedbackStatus = "shipped"
+	FeedbackStatusTriaging      FeedbackStatus = "triaging"
+	FeedbackStatusWontfix       FeedbackStatus = "wontfix"
+)
+
+// Valid indicates whether the value is a known member of the FeedbackStatus enum.
+func (e FeedbackStatus) Valid() bool {
+	switch e {
+	case FeedbackStatusDuplicate:
+		return true
+	case FeedbackStatusInProgress:
+		return true
+	case FeedbackStatusNeedsMoreInfo:
+		return true
+	case FeedbackStatusPlanned:
+		return true
+	case FeedbackStatusReceived:
+		return true
+	case FeedbackStatusShipped:
+		return true
+	case FeedbackStatusTriaging:
+		return true
+	case FeedbackStatusWontfix:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for ListTransactionsParamsSource.
 const (
 	ListTransactionsParamsSourceCredit   ListTransactionsParamsSource = "credit"
@@ -940,6 +1124,210 @@ func (e ListTransactionsParamsBillingType) Valid() bool {
 	case N1:
 		return true
 	case N2:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ListOwnFeedbackParamsCategory.
+const (
+	ListOwnFeedbackParamsCategoryBusinessGap       ListOwnFeedbackParamsCategory = "business_gap"
+	ListOwnFeedbackParamsCategoryDocumentation     ListOwnFeedbackParamsCategory = "documentation"
+	ListOwnFeedbackParamsCategoryErrorMessage      ListOwnFeedbackParamsCategory = "error_message"
+	ListOwnFeedbackParamsCategoryMissingCapability ListOwnFeedbackParamsCategory = "missing_capability"
+	ListOwnFeedbackParamsCategoryMissingEndpoint   ListOwnFeedbackParamsCategory = "missing_endpoint"
+	ListOwnFeedbackParamsCategoryMissingModel      ListOwnFeedbackParamsCategory = "missing_model"
+	ListOwnFeedbackParamsCategoryModelQuality      ListOwnFeedbackParamsCategory = "model_quality"
+	ListOwnFeedbackParamsCategoryOutOfScope        ListOwnFeedbackParamsCategory = "out_of_scope"
+	ListOwnFeedbackParamsCategoryPerformance       ListOwnFeedbackParamsCategory = "performance"
+	ListOwnFeedbackParamsCategoryPricing           ListOwnFeedbackParamsCategory = "pricing"
+	ListOwnFeedbackParamsCategoryReliability       ListOwnFeedbackParamsCategory = "reliability"
+)
+
+// Valid indicates whether the value is a known member of the ListOwnFeedbackParamsCategory enum.
+func (e ListOwnFeedbackParamsCategory) Valid() bool {
+	switch e {
+	case ListOwnFeedbackParamsCategoryBusinessGap:
+		return true
+	case ListOwnFeedbackParamsCategoryDocumentation:
+		return true
+	case ListOwnFeedbackParamsCategoryErrorMessage:
+		return true
+	case ListOwnFeedbackParamsCategoryMissingCapability:
+		return true
+	case ListOwnFeedbackParamsCategoryMissingEndpoint:
+		return true
+	case ListOwnFeedbackParamsCategoryMissingModel:
+		return true
+	case ListOwnFeedbackParamsCategoryModelQuality:
+		return true
+	case ListOwnFeedbackParamsCategoryOutOfScope:
+		return true
+	case ListOwnFeedbackParamsCategoryPerformance:
+		return true
+	case ListOwnFeedbackParamsCategoryPricing:
+		return true
+	case ListOwnFeedbackParamsCategoryReliability:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ListOwnFeedbackParamsStatus.
+const (
+	ListOwnFeedbackParamsStatusDuplicate     ListOwnFeedbackParamsStatus = "duplicate"
+	ListOwnFeedbackParamsStatusInProgress    ListOwnFeedbackParamsStatus = "in_progress"
+	ListOwnFeedbackParamsStatusNeedsMoreInfo ListOwnFeedbackParamsStatus = "needs_more_info"
+	ListOwnFeedbackParamsStatusPlanned       ListOwnFeedbackParamsStatus = "planned"
+	ListOwnFeedbackParamsStatusReceived      ListOwnFeedbackParamsStatus = "received"
+	ListOwnFeedbackParamsStatusShipped       ListOwnFeedbackParamsStatus = "shipped"
+	ListOwnFeedbackParamsStatusTriaging      ListOwnFeedbackParamsStatus = "triaging"
+	ListOwnFeedbackParamsStatusWontfix       ListOwnFeedbackParamsStatus = "wontfix"
+)
+
+// Valid indicates whether the value is a known member of the ListOwnFeedbackParamsStatus enum.
+func (e ListOwnFeedbackParamsStatus) Valid() bool {
+	switch e {
+	case ListOwnFeedbackParamsStatusDuplicate:
+		return true
+	case ListOwnFeedbackParamsStatusInProgress:
+		return true
+	case ListOwnFeedbackParamsStatusNeedsMoreInfo:
+		return true
+	case ListOwnFeedbackParamsStatusPlanned:
+		return true
+	case ListOwnFeedbackParamsStatusReceived:
+		return true
+	case ListOwnFeedbackParamsStatusShipped:
+		return true
+	case ListOwnFeedbackParamsStatusTriaging:
+		return true
+	case ListOwnFeedbackParamsStatusWontfix:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ListOwnFeedbackParamsSort.
+const (
+	ListOwnFeedbackParamsSortCreatedAsc        ListOwnFeedbackParamsSort = "created_asc"
+	ListOwnFeedbackParamsSortCreatedDesc       ListOwnFeedbackParamsSort = "created_desc"
+	ListOwnFeedbackParamsSortStatusChangedDesc ListOwnFeedbackParamsSort = "status_changed_desc"
+)
+
+// Valid indicates whether the value is a known member of the ListOwnFeedbackParamsSort enum.
+func (e ListOwnFeedbackParamsSort) Valid() bool {
+	switch e {
+	case ListOwnFeedbackParamsSortCreatedAsc:
+		return true
+	case ListOwnFeedbackParamsSortCreatedDesc:
+		return true
+	case ListOwnFeedbackParamsSortStatusChangedDesc:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ListPublicFeedbackParamsCategory.
+const (
+	ListPublicFeedbackParamsCategoryBusinessGap       ListPublicFeedbackParamsCategory = "business_gap"
+	ListPublicFeedbackParamsCategoryDocumentation     ListPublicFeedbackParamsCategory = "documentation"
+	ListPublicFeedbackParamsCategoryErrorMessage      ListPublicFeedbackParamsCategory = "error_message"
+	ListPublicFeedbackParamsCategoryMissingCapability ListPublicFeedbackParamsCategory = "missing_capability"
+	ListPublicFeedbackParamsCategoryMissingEndpoint   ListPublicFeedbackParamsCategory = "missing_endpoint"
+	ListPublicFeedbackParamsCategoryMissingModel      ListPublicFeedbackParamsCategory = "missing_model"
+	ListPublicFeedbackParamsCategoryModelQuality      ListPublicFeedbackParamsCategory = "model_quality"
+	ListPublicFeedbackParamsCategoryOutOfScope        ListPublicFeedbackParamsCategory = "out_of_scope"
+	ListPublicFeedbackParamsCategoryPerformance       ListPublicFeedbackParamsCategory = "performance"
+	ListPublicFeedbackParamsCategoryPricing           ListPublicFeedbackParamsCategory = "pricing"
+	ListPublicFeedbackParamsCategoryReliability       ListPublicFeedbackParamsCategory = "reliability"
+)
+
+// Valid indicates whether the value is a known member of the ListPublicFeedbackParamsCategory enum.
+func (e ListPublicFeedbackParamsCategory) Valid() bool {
+	switch e {
+	case ListPublicFeedbackParamsCategoryBusinessGap:
+		return true
+	case ListPublicFeedbackParamsCategoryDocumentation:
+		return true
+	case ListPublicFeedbackParamsCategoryErrorMessage:
+		return true
+	case ListPublicFeedbackParamsCategoryMissingCapability:
+		return true
+	case ListPublicFeedbackParamsCategoryMissingEndpoint:
+		return true
+	case ListPublicFeedbackParamsCategoryMissingModel:
+		return true
+	case ListPublicFeedbackParamsCategoryModelQuality:
+		return true
+	case ListPublicFeedbackParamsCategoryOutOfScope:
+		return true
+	case ListPublicFeedbackParamsCategoryPerformance:
+		return true
+	case ListPublicFeedbackParamsCategoryPricing:
+		return true
+	case ListPublicFeedbackParamsCategoryReliability:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ListPublicFeedbackParamsStatus.
+const (
+	Duplicate     ListPublicFeedbackParamsStatus = "duplicate"
+	InProgress    ListPublicFeedbackParamsStatus = "in_progress"
+	NeedsMoreInfo ListPublicFeedbackParamsStatus = "needs_more_info"
+	Planned       ListPublicFeedbackParamsStatus = "planned"
+	Received      ListPublicFeedbackParamsStatus = "received"
+	Shipped       ListPublicFeedbackParamsStatus = "shipped"
+	Triaging      ListPublicFeedbackParamsStatus = "triaging"
+	Wontfix       ListPublicFeedbackParamsStatus = "wontfix"
+)
+
+// Valid indicates whether the value is a known member of the ListPublicFeedbackParamsStatus enum.
+func (e ListPublicFeedbackParamsStatus) Valid() bool {
+	switch e {
+	case Duplicate:
+		return true
+	case InProgress:
+		return true
+	case NeedsMoreInfo:
+		return true
+	case Planned:
+		return true
+	case Received:
+		return true
+	case Shipped:
+		return true
+	case Triaging:
+		return true
+	case Wontfix:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ListPublicFeedbackParamsSort.
+const (
+	CreatedAsc        ListPublicFeedbackParamsSort = "created_asc"
+	CreatedDesc       ListPublicFeedbackParamsSort = "created_desc"
+	StatusChangedDesc ListPublicFeedbackParamsSort = "status_changed_desc"
+)
+
+// Valid indicates whether the value is a known member of the ListPublicFeedbackParamsSort enum.
+func (e ListPublicFeedbackParamsSort) Valid() bool {
+	switch e {
+	case CreatedAsc:
+		return true
+	case CreatedDesc:
+		return true
+	case StatusChangedDesc:
 		return true
 	default:
 		return false
@@ -1224,10 +1612,10 @@ type CreateVisualValidateSessionResult struct {
 
 // CreditsResponse defines model for CreditsResponse.
 type CreditsResponse struct {
-	// CreditBalance USD credit 现金余额（原始精度，可能含 6 位小数）
+	// CreditBalance USD API 使用额度数值（原始精度，可能含 6 位小数）
 	CreditBalance float64 `json:"credit_balance"`
 
-	// CreditBalanceStr 展示用余额字符串，`$x.xx` 2 位小数 + 美元符号；负值前缀 `-$`
+	// CreditBalanceStr 展示用 API 使用额度字符串，`$x.xx` 2 位小数 + 美元符号；负值前缀 `-$`
 	CreditBalanceStr string `json:"credit_balance_str"`
 
 	// Currency 当前固定 USD
@@ -1251,6 +1639,150 @@ type ErrorResponse struct {
 		Type   string  `json:"type"`
 	} `json:"error"`
 }
+
+// FeedbackPublicItem Public 视图：他人看公开反馈（严格脱敏）。
+// 不暴露：user_id / api_key_id_hint / webhook_url / request_ids / public_share_note /
+// triage_notes 内部 / webhook_failed / webhook_last_error。
+type FeedbackPublicItem struct {
+	// AiAssistant 无 webhook_url 字段
+	AiAssistant *struct {
+		Name    *string `json:"name,omitempty"`
+		Version *string `json:"version,omitempty"`
+	} `json:"ai_assistant,omitempty"`
+	AiPriority         *string                 `json:"ai_priority,omitempty"`
+	Category           *string                 `json:"category,omitempty"`
+	CompetitorExamples *[]string               `json:"competitor_examples,omitempty"`
+	Context            *map[string]interface{} `json:"context,omitempty"`
+	CreatedAt          *time.Time              `json:"created_at,omitempty"`
+	DedupWith          *string                 `json:"dedup_with,omitempty"`
+	Details            *string                 `json:"details,omitempty"`
+
+	// Evidence 无 request_ids 字段
+	Evidence *struct {
+		FrequencyEstimate *string `json:"frequency_estimate,omitempty"`
+	} `json:"evidence,omitempty"`
+	FeedbackId        *string    `json:"feedback_id,omitempty"`
+	InternalPriority  *string    `json:"internal_priority,omitempty"`
+	IsPublic          *bool      `json:"is_public,omitempty"`
+	PublishedAt       *time.Time `json:"published_at,omitempty"`
+	ResolutionUrl     *string    `json:"resolution_url,omitempty"`
+	Status            *string    `json:"status,omitempty"`
+	StatusChangedAt   *time.Time `json:"status_changed_at,omitempty"`
+	SuggestedSolution *string    `json:"suggested_solution,omitempty"`
+	Summary           *string    `json:"summary,omitempty"`
+	TriageNotesPublic *string    `json:"triage_notes_public,omitempty"`
+}
+
+// FeedbackSelfItem Self 视图：用户看自己提交的全部字段（不含 secret / 内部 triage_notes）
+type FeedbackSelfItem struct {
+	AiAssistant *struct {
+		Name       *string `json:"name,omitempty"`
+		Version    *string `json:"version,omitempty"`
+		WebhookUrl *string `json:"webhook_url,omitempty"`
+	} `json:"ai_assistant,omitempty"`
+	AiPriority *string `json:"ai_priority,omitempty"`
+
+	// ApiKeyIdHint 末 4 位 mask（***1234）
+	ApiKeyIdHint       *string                 `json:"api_key_id_hint,omitempty"`
+	Category           *string                 `json:"category,omitempty"`
+	CompetitorExamples *[]string               `json:"competitor_examples,omitempty"`
+	Context            *map[string]interface{} `json:"context,omitempty"`
+	CreatedAt          *time.Time              `json:"created_at,omitempty"`
+	DedupWith          *string                 `json:"dedup_with,omitempty"`
+	Details            *string                 `json:"details,omitempty"`
+	Evidence           *struct {
+		FrequencyEstimate *string   `json:"frequency_estimate,omitempty"`
+		RequestIds        *[]string `json:"request_ids,omitempty"`
+	} `json:"evidence,omitempty"`
+	FeedbackId          *string                 `json:"feedback_id,omitempty"`
+	InternalPriority    *string                 `json:"internal_priority,omitempty"`
+	IsPublic            *bool                   `json:"is_public,omitempty"`
+	PendingPublicReview *bool                   `json:"pending_public_review,omitempty"`
+	PublicShareNote     *string                 `json:"public_share_note,omitempty"`
+	PublishedAt         *time.Time              `json:"published_at,omitempty"`
+	ResolutionUrl       *string                 `json:"resolution_url,omitempty"`
+	Status              *FeedbackSelfItemStatus `json:"status,omitempty"`
+	StatusChangedAt     *time.Time              `json:"status_changed_at,omitempty"`
+	SuggestedSolution   *string                 `json:"suggested_solution,omitempty"`
+	Summary             *string                 `json:"summary,omitempty"`
+
+	// TriageNotesPublic admin 显式标公开的备注（与内部 triage_notes 分离）
+	TriageNotesPublic *string    `json:"triage_notes_public,omitempty"`
+	UpdatedAt         *time.Time `json:"updated_at,omitempty"`
+	WebhookFailed     *bool      `json:"webhook_failed,omitempty"`
+	WebhookLastError  *string    `json:"webhook_last_error,omitempty"`
+}
+
+// FeedbackSelfItemStatus defines model for FeedbackSelfItem.Status.
+type FeedbackSelfItemStatus string
+
+// FeedbackSubmitRequest defines model for FeedbackSubmitRequest.
+type FeedbackSubmitRequest struct {
+	AiAssistant struct {
+		Name    string  `json:"name"`
+		Version *string `json:"version,omitempty"`
+
+		// WebhookUrl 必须 HTTPS；完整 SSRF + IP denylist + DNS rebinding 防护在 PR-2 worker 接通
+		WebhookUrl *string `json:"webhook_url,omitempty"`
+	} `json:"ai_assistant"`
+	AiPriority         *FeedbackSubmitRequestAiPriority `json:"ai_priority,omitempty"`
+	Category           FeedbackSubmitRequestCategory    `json:"category"`
+	CompetitorExamples *[]string                        `json:"competitor_examples,omitempty"`
+
+	// Context 触发上下文（model / endpoint / user_intent / tried_approach / wished_for 等）；JSON marshal ≤ 8KB
+	Context  *map[string]interface{} `json:"context,omitempty"`
+	Details  *string                 `json:"details,omitempty"`
+	Evidence *struct {
+		FrequencyEstimate *string `json:"frequency_estimate,omitempty"`
+
+		// RequestIds 跨用户的 request_id 服务端静默丢弃；response 仅返 accepted/dropped count
+		RequestIds *[]string `json:"request_ids,omitempty"`
+	} `json:"evidence,omitempty"`
+
+	// IsPublic 默认私密；PR-2 起，若 PII 扫描命中则强制 false + 进 admin 审核队列
+	IsPublic          *bool   `json:"is_public,omitempty"`
+	PublicShareNote   *string `json:"public_share_note,omitempty"`
+	SuggestedSolution *string `json:"suggested_solution,omitempty"`
+	Summary           string  `json:"summary"`
+}
+
+// FeedbackSubmitRequestAiPriority defines model for FeedbackSubmitRequest.AiPriority.
+type FeedbackSubmitRequestAiPriority string
+
+// FeedbackSubmitRequestCategory defines model for FeedbackSubmitRequest.Category.
+type FeedbackSubmitRequestCategory string
+
+// FeedbackSubmitResponse defines model for FeedbackSubmitResponse.
+type FeedbackSubmitResponse struct {
+	AcknowledgedAt time.Time `json:"acknowledged_at"`
+
+	// AiWebhookSecret 仅当本次 Submit 携 `ai_assistant.webhook_url` 时返回（首次明文，一次性，
+	// wsk_ 前缀 + 64 字符 hex）；后续 GET / list 永不再返。
+	// AI 助手用此 secret 校验 webhook payload 的 HMAC-SHA256 签名（PR-2 接通）。
+	AiWebhookSecret *string `json:"ai_webhook_secret,omitempty"`
+
+	// DedupWith PR-2 dedup 命中时指向已有 feedback_id
+	DedupWith *string `json:"dedup_with,omitempty"`
+
+	// DedupWithStatus 关联反馈的当前 status
+	DedupWithStatus *string `json:"dedup_with_status,omitempty"`
+
+	// EvidenceRequestIdsAcceptedCount 本人命中并保留的 request_ids 数量
+	EvidenceRequestIdsAcceptedCount *int `json:"evidence_request_ids_accepted_count,omitempty"`
+
+	// EvidenceRequestIdsDroppedCount 不命中静默丢弃的数量；不返具体哪些被丢，防跨用户探测
+	EvidenceRequestIdsDroppedCount *int   `json:"evidence_request_ids_dropped_count,omitempty"`
+	FeedbackId                     string `json:"feedback_id"`
+	IsPublic                       *bool  `json:"is_public,omitempty"`
+	NextSteps                      string `json:"next_steps"`
+
+	// PendingPublicReview PR-2 起：PII 扫描命中时 true
+	PendingPublicReview *bool                        `json:"pending_public_review,omitempty"`
+	Status              FeedbackSubmitResponseStatus `json:"status"`
+}
+
+// FeedbackSubmitResponseStatus defines model for FeedbackSubmitResponse.Status.
+type FeedbackSubmitResponseStatus string
 
 // GetVisualValidateResultRequest defines model for GetVisualValidateResultRequest.
 type GetVisualValidateResultRequest struct {
@@ -1303,28 +1835,35 @@ type ImageDataItem struct {
 
 // ImageEditMultipartRequest defines model for ImageEditMultipartRequest.
 type ImageEditMultipartRequest struct {
-	// Background `transparent` 当前不支持。
 	Background *ImageEditMultipartRequestBackground `json:"background,omitempty"`
 
 	// Image 源图，必填。≤ 25MB，MIME ∈ `image/png` / `image/jpeg` / `image/webp`。
 	Image openapi_types.File `json:"image"`
 
 	// Mask 可选 mask 图；提供则按 mask_edit 处理（透明区域为编辑区）。≤ 25MB，同 MIME 约束。
-	Mask         *openapi_types.File                    `json:"mask,omitempty"`
-	Model        string                                 `json:"model"`
-	Moderation   *ImageEditMultipartRequestModeration   `json:"moderation,omitempty"`
-	OutputFormat *ImageEditMultipartRequestOutputFormat `json:"output_format,omitempty"`
+	Mask       *openapi_types.File                  `json:"mask,omitempty"`
+	Model      string                               `json:"model"`
+	Moderation *ImageEditMultipartRequestModeration `json:"moderation,omitempty"`
+
+	// N 单次生成张数，1-10。
+	N *int `json:"n,omitempty"`
+
+	// OutputCompression 仅 jpeg / webp 生效，0-100；未传则上游默认 100。
+	OutputCompression *int                                   `json:"output_compression,omitempty"`
+	OutputFormat      *ImageEditMultipartRequestOutputFormat `json:"output_format,omitempty"`
 
 	// Prompt 编辑提示词，必填。
 	Prompt  string                            `json:"prompt"`
 	Quality *ImageEditMultipartRequestQuality `json:"quality,omitempty"`
-	Size    *ImageEditMultipartRequestSize    `json:"size,omitempty"`
+
+	// Size `auto` 或 `WIDTHxHEIGHT`；gpt-image-2 起支持任意分辨率（16 整除、最大 3840x2160、比例 1:3 ~ 3:1）。
+	Size *string `json:"size,omitempty"`
 
 	// User 透传上游用于滥用监控。
 	User *string `json:"user,omitempty"`
 }
 
-// ImageEditMultipartRequestBackground `transparent` 当前不支持。
+// ImageEditMultipartRequestBackground defines model for ImageEditMultipartRequest.Background.
 type ImageEditMultipartRequestBackground string
 
 // ImageEditMultipartRequestModeration defines model for ImageEditMultipartRequest.Moderation.
@@ -1336,9 +1875,6 @@ type ImageEditMultipartRequestOutputFormat string
 // ImageEditMultipartRequestQuality defines model for ImageEditMultipartRequest.Quality.
 type ImageEditMultipartRequestQuality string
 
-// ImageEditMultipartRequestSize defines model for ImageEditMultipartRequest.Size.
-type ImageEditMultipartRequestSize string
-
 // ImageError defines model for ImageError.
 type ImageError struct {
 	Code    string  `json:"code"`
@@ -1348,20 +1884,27 @@ type ImageError struct {
 
 // ImageGenerationRequest defines model for ImageGenerationRequest.
 type ImageGenerationRequest struct {
-	// Background `transparent` 当前不支持。
-	Background   *ImageGenerationRequestBackground   `json:"background,omitempty"`
-	Model        string                              `json:"model"`
-	Moderation   *ImageGenerationRequestModeration   `json:"moderation,omitempty"`
-	OutputFormat *ImageGenerationRequestOutputFormat `json:"output_format,omitempty"`
-	Prompt       string                              `json:"prompt"`
-	Quality      *ImageGenerationRequestQuality      `json:"quality,omitempty"`
-	Size         *ImageGenerationRequestSize         `json:"size,omitempty"`
+	Background *ImageGenerationRequestBackground `json:"background,omitempty"`
+	Model      string                            `json:"model"`
+	Moderation *ImageGenerationRequestModeration `json:"moderation,omitempty"`
+
+	// N 单次生成张数，1-10。
+	N *int `json:"n,omitempty"`
+
+	// OutputCompression 仅 jpeg / webp 生效，0-100；未传则上游默认 100。
+	OutputCompression *int                                `json:"output_compression,omitempty"`
+	OutputFormat      *ImageGenerationRequestOutputFormat `json:"output_format,omitempty"`
+	Prompt            string                              `json:"prompt"`
+	Quality           *ImageGenerationRequestQuality      `json:"quality,omitempty"`
+
+	// Size `auto` 或 `WIDTHxHEIGHT`；gpt-image-2 起支持任意分辨率（16 整除、最大 3840x2160、比例 1:3 ~ 3:1）。
+	Size *string `json:"size,omitempty"`
 
 	// User 透传上游用于滥用监控。
 	User *string `json:"user,omitempty"`
 }
 
-// ImageGenerationRequestBackground `transparent` 当前不支持。
+// ImageGenerationRequestBackground defines model for ImageGenerationRequest.Background.
 type ImageGenerationRequestBackground string
 
 // ImageGenerationRequestModeration defines model for ImageGenerationRequest.Moderation.
@@ -1372,9 +1915,6 @@ type ImageGenerationRequestOutputFormat string
 
 // ImageGenerationRequestQuality defines model for ImageGenerationRequest.Quality.
 type ImageGenerationRequestQuality string
-
-// ImageGenerationRequestSize defines model for ImageGenerationRequest.Size.
-type ImageGenerationRequestSize string
 
 // ImageGenerationResponse defines model for ImageGenerationResponse.
 type ImageGenerationResponse struct {
@@ -1757,10 +2297,10 @@ type TransactionItem struct {
 	// BillingTypeLabel i18n 翻译（Web / API / CodePlan ...）
 	BillingTypeLabel *string `json:"billing_type_label,omitempty"`
 
-	// Category recharge / consumption / refund / fee / exchange
+	// Category API 返回的旧版 category 值：recharge / consumption / refund / fee / exchange
 	Category *string `json:"category,omitempty"`
 
-	// ChangeType 内部精确类型，如 `grant_add` / `grant_deduct` / `credit_add` / `credit_deduct` / `credit_refund` / `exchange_in` / `exchange_out` / `video_deduct` / `image_deduct` / `fee_deduct` / `fee_refund`
+	// ChangeType API 返回的旧版内部精确类型，如 `grant_add` / `grant_deduct` / `credit_add` / `credit_deduct` / `credit_refund` / `exchange_in` / `exchange_out` / `video_deduct` / `image_deduct` / `fee_deduct` / `fee_refund`
 	ChangeType string `json:"change_type"`
 
 	// Cost 仅扣款/退款类有值；非扣款类返 null
@@ -2024,6 +2564,30 @@ type VideoTaskResponseInputType string
 // VideoTaskResponseStatus defines model for VideoTaskResponse.Status.
 type VideoTaskResponseStatus string
 
+// FeedbackCategory defines model for FeedbackCategory.
+type FeedbackCategory string
+
+// FeedbackDateFrom defines model for FeedbackDateFrom.
+type FeedbackDateFrom = openapi_types.Date
+
+// FeedbackDateTo defines model for FeedbackDateTo.
+type FeedbackDateTo = openapi_types.Date
+
+// FeedbackLimit defines model for FeedbackLimit.
+type FeedbackLimit = int
+
+// FeedbackOffset defines model for FeedbackOffset.
+type FeedbackOffset = int
+
+// FeedbackQ defines model for FeedbackQ.
+type FeedbackQ = string
+
+// FeedbackSort defines model for FeedbackSort.
+type FeedbackSort string
+
+// FeedbackStatus defines model for FeedbackStatus.
+type FeedbackStatus string
+
 // BadRequest defines model for BadRequest.
 type BadRequest = ErrorResponse
 
@@ -2050,10 +2614,10 @@ type ListTransactionsParams struct {
 	Limit  *int `form:"limit,omitempty" json:"limit,omitempty"`
 	Offset *int `form:"offset,omitempty" json:"offset,omitempty"`
 
-	// ChangeType 精确单选具体类型（与 source/direction 互斥；如 `grant_deduct` / `credit_add`）
+	// ChangeType API 返回的旧版 change_type 值，可精确单选（与 source/direction 互斥；如 `grant_deduct` / `credit_add`）
 	ChangeType *string `form:"change_type,omitempty" json:"change_type,omitempty"`
 
-	// Source grant / credit / exchange / video / image
+	// Source API 返回的旧版 source 值：grant / credit / exchange / video / image
 	Source *ListTransactionsParamsSource `form:"source,omitempty" json:"source,omitempty"`
 
 	// Direction add / deduct / exchange / refund
@@ -2080,6 +2644,60 @@ type ListTransactionsParamsDirection string
 
 // ListTransactionsParamsBillingType defines parameters for ListTransactions.
 type ListTransactionsParamsBillingType int
+
+// ListOwnFeedbackParams defines parameters for ListOwnFeedback.
+type ListOwnFeedbackParams struct {
+	Category *ListOwnFeedbackParamsCategory `form:"category,omitempty" json:"category,omitempty"`
+	Status   *ListOwnFeedbackParamsStatus   `form:"status,omitempty" json:"status,omitempty"`
+
+	// Q 关键字搜索 summary+details；rune ≤ 1 返 400 invalid_q
+	Q *FeedbackQ `form:"q,omitempty" json:"q,omitempty"`
+
+	// DateFrom YYYY-MM-DD（UTC midnight）
+	DateFrom *FeedbackDateFrom `form:"date_from,omitempty" json:"date_from,omitempty"`
+
+	// DateTo YYYY-MM-DD（UTC midnight，exclusive 上限）
+	DateTo *FeedbackDateTo            `form:"date_to,omitempty" json:"date_to,omitempty"`
+	Sort   *ListOwnFeedbackParamsSort `form:"sort,omitempty" json:"sort,omitempty"`
+	Limit  *FeedbackLimit             `form:"limit,omitempty" json:"limit,omitempty"`
+	Offset *FeedbackOffset            `form:"offset,omitempty" json:"offset,omitempty"`
+}
+
+// ListOwnFeedbackParamsCategory defines parameters for ListOwnFeedback.
+type ListOwnFeedbackParamsCategory string
+
+// ListOwnFeedbackParamsStatus defines parameters for ListOwnFeedback.
+type ListOwnFeedbackParamsStatus string
+
+// ListOwnFeedbackParamsSort defines parameters for ListOwnFeedback.
+type ListOwnFeedbackParamsSort string
+
+// ListPublicFeedbackParams defines parameters for ListPublicFeedback.
+type ListPublicFeedbackParams struct {
+	Category *ListPublicFeedbackParamsCategory `form:"category,omitempty" json:"category,omitempty"`
+	Status   *ListPublicFeedbackParamsStatus   `form:"status,omitempty" json:"status,omitempty"`
+
+	// Q 关键字搜索 summary+details；rune ≤ 1 返 400 invalid_q
+	Q *FeedbackQ `form:"q,omitempty" json:"q,omitempty"`
+
+	// DateFrom YYYY-MM-DD（UTC midnight）
+	DateFrom *FeedbackDateFrom `form:"date_from,omitempty" json:"date_from,omitempty"`
+
+	// DateTo YYYY-MM-DD（UTC midnight，exclusive 上限）
+	DateTo *FeedbackDateTo               `form:"date_to,omitempty" json:"date_to,omitempty"`
+	Sort   *ListPublicFeedbackParamsSort `form:"sort,omitempty" json:"sort,omitempty"`
+	Limit  *FeedbackLimit                `form:"limit,omitempty" json:"limit,omitempty"`
+	Offset *FeedbackOffset               `form:"offset,omitempty" json:"offset,omitempty"`
+}
+
+// ListPublicFeedbackParamsCategory defines parameters for ListPublicFeedback.
+type ListPublicFeedbackParamsCategory string
+
+// ListPublicFeedbackParamsStatus defines parameters for ListPublicFeedback.
+type ListPublicFeedbackParamsStatus string
+
+// ListPublicFeedbackParamsSort defines parameters for ListPublicFeedback.
+type ListPublicFeedbackParamsSort string
 
 // CreateImageEditParams defines parameters for CreateImageEdit.
 type CreateImageEditParams struct {
@@ -2133,6 +2751,9 @@ type ListVideoGenerationsParams struct {
 
 // CreateChatCompletionJSONRequestBody defines body for CreateChatCompletion for application/json ContentType.
 type CreateChatCompletionJSONRequestBody = ChatCompletionRequest
+
+// SubmitFeedbackJSONRequestBody defines body for SubmitFeedback for application/json ContentType.
+type SubmitFeedbackJSONRequestBody = FeedbackSubmitRequest
 
 // CreateImageEditMultipartRequestBody defines body for CreateImageEdit for multipart/form-data ContentType.
 type CreateImageEditMultipartRequestBody = ImageEditMultipartRequest
