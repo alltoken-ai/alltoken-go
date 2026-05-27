@@ -743,6 +743,24 @@ func (e TransactionItemSource) Valid() bool {
 	}
 }
 
+// Defines values for VideoCapabilitiesDurationType.
+const (
+	Enum  VideoCapabilitiesDurationType = "enum"
+	Range VideoCapabilitiesDurationType = "range"
+)
+
+// Valid indicates whether the value is a known member of the VideoCapabilitiesDurationType enum.
+func (e VideoCapabilitiesDurationType) Valid() bool {
+	switch e {
+	case Enum:
+		return true
+	case Range:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for VideoContentItemRole.
 const (
 	FirstFrame     VideoContentItemRole = "first_frame"
@@ -2031,14 +2049,19 @@ type ListAssetsResult struct {
 
 // ModelInfo defines model for ModelInfo.
 type ModelInfo struct {
-	Brand           *string   `json:"brand,omitempty"`
-	Created         *int64    `json:"created,omitempty"`
-	Description     *string   `json:"description,omitempty"`
-	DisplayName     *string   `json:"display_name,omitempty"`
-	Family          *string   `json:"family,omitempty"`
-	Id              string    `json:"id"`
-	InputModalities *[]string `json:"input_modalities,omitempty"`
-	LogoUrl         *string   `json:"logo_url,omitempty"`
+	Brand *string `json:"brand,omitempty"`
+
+	// Capabilities Video model capability hints for /videos/models. These are UI hints, not
+	// server-side validation constraints. Models not in the whitelist omit this
+	// field (omitempty); the frontend falls back to hardcoded defaults.
+	Capabilities    *VideoCapabilities `json:"capabilities,omitempty"`
+	Created         *int64             `json:"created,omitempty"`
+	Description     *string            `json:"description,omitempty"`
+	DisplayName     *string            `json:"display_name,omitempty"`
+	Family          *string            `json:"family,omitempty"`
+	Id              string             `json:"id"`
+	InputModalities *[]string          `json:"input_modalities,omitempty"`
+	LogoUrl         *string            `json:"logo_url,omitempty"`
 
 	// Modality Top-level modality classification (R1 / 2026-05-14):
 	// - `text` — text-only chat models
@@ -2415,6 +2438,91 @@ type Usage struct {
 	ServerToolUse *map[string]int `json:"server_tool_use,omitempty"`
 	TotalTokens   int             `json:"total_tokens"`
 }
+
+// VideoCapabilities Video model capability hints for /videos/models. These are UI hints, not
+// server-side validation constraints. Models not in the whitelist omit this
+// field (omitempty); the frontend falls back to hardcoded defaults.
+type VideoCapabilities struct {
+	// Content Multimodal input constraint; null means text-only / no constraint
+	Content *struct {
+		// AllowedRoles Allowed content item roles; null means any role accepted
+		AllowedRoles *[]string `json:"allowed_roles,omitempty"`
+		ImageCount   *struct {
+			Max *int `json:"max,omitempty"`
+			Min *int `json:"min,omitempty"`
+		} `json:"image_count,omitempty"`
+		VideoCount *struct {
+			Max *int `json:"max,omitempty"`
+			Min *int `json:"min,omitempty"`
+		} `json:"video_count,omitempty"`
+	} `json:"content,omitempty"`
+
+	// Duration Duration constraint; null means upstream-adaptive (e.g. happyhorse-1.0-video-edit).
+	// type=range: continuous integer range; type=enum: fixed values.
+	Duration *struct {
+		Default *int `json:"default,omitempty"`
+
+		// Max Present when type=range
+		Max *int `json:"max,omitempty"`
+
+		// Min Present when type=range
+		Min *int `json:"min,omitempty"`
+
+		// Step Present when type=range
+		Step *int `json:"step,omitempty"`
+
+		// SupportsAuto Whether duration=-1 (auto) is supported
+		SupportsAuto *bool                          `json:"supports_auto,omitempty"`
+		Type         *VideoCapabilitiesDurationType `json:"type,omitempty"`
+
+		// Values Present when type=enum
+		Values *[]int `json:"values,omitempty"`
+	} `json:"duration,omitempty"`
+
+	// Features UI feature flags (hand-maintained; not server-side enforced)
+	Features *struct {
+		CameraFixed     *bool `json:"camera_fixed,omitempty"`
+		Draft           *bool `json:"draft,omitempty"`
+		GenerateAudio   *bool `json:"generate_audio,omitempty"`
+		ReturnLastFrame *bool `json:"return_last_frame,omitempty"`
+		Seed            *bool `json:"seed,omitempty"`
+		ServiceTierFlex *bool `json:"service_tier_flex,omitempty"`
+		ToolsWebSearch  *bool `json:"tools_web_search,omitempty"`
+		Watermark       *bool `json:"watermark,omitempty"`
+	} `json:"features,omitempty"`
+
+	// Frames Frame count constraint; null means not supported (only seedance-1.0-pro is non-null)
+	Frames *struct {
+		Base *int `json:"base,omitempty"`
+		Max  *int `json:"max,omitempty"`
+		Min  *int `json:"min,omitempty"`
+		Step *int `json:"step,omitempty"`
+	} `json:"frames,omitempty"`
+
+	// InputTypes Supported input type identifiers (e.g. text, image_first_frame, video_reference)
+	InputTypes *[]string `json:"input_types,omitempty"`
+
+	// Prompt Prompt constraint; null means no gateway-level limit (e.g. Seedance)
+	Prompt *struct {
+		// MaxLength Max prompt length in rune count
+		MaxLength *int `json:"max_length,omitempty"`
+	} `json:"prompt,omitempty"`
+
+	// Ratios Aspect ratio config; values=null means UI hides the ratio control
+	Ratios *struct {
+		Default *string   `json:"default,omitempty"`
+		Values  *[]string `json:"values,omitempty"`
+	} `json:"ratios,omitempty"`
+
+	// Resolutions Resolution config; values=null means single-price (UI hides control)
+	Resolutions *struct {
+		Default *string   `json:"default,omitempty"`
+		Values  *[]string `json:"values,omitempty"`
+	} `json:"resolutions,omitempty"`
+}
+
+// VideoCapabilitiesDurationType defines model for VideoCapabilities.Duration.Type.
+type VideoCapabilitiesDurationType string
 
 // VideoContentItem defines model for VideoContentItem.
 type VideoContentItem struct {
