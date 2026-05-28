@@ -398,6 +398,27 @@ func (e ImageGenerationRequestBackground) Valid() bool {
 	}
 }
 
+// Defines values for ImageGenerationRequestModel.
+const (
+	GptImage2     ImageGenerationRequestModel = "gpt-image-2"
+	Wan27Image    ImageGenerationRequestModel = "wan2.7-image"
+	Wan27ImagePro ImageGenerationRequestModel = "wan2.7-image-pro"
+)
+
+// Valid indicates whether the value is a known member of the ImageGenerationRequestModel enum.
+func (e ImageGenerationRequestModel) Valid() bool {
+	switch e {
+	case GptImage2:
+		return true
+	case Wan27Image:
+		return true
+	case Wan27ImagePro:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for ImageGenerationRequestModeration.
 const (
 	ImageGenerationRequestModerationAuto ImageGenerationRequestModeration = "auto"
@@ -1903,7 +1924,7 @@ type ImageError struct {
 // ImageGenerationRequest defines model for ImageGenerationRequest.
 type ImageGenerationRequest struct {
 	Background *ImageGenerationRequestBackground `json:"background,omitempty"`
-	Model      string                            `json:"model"`
+	Model      ImageGenerationRequestModel       `json:"model"`
 	Moderation *ImageGenerationRequestModeration `json:"moderation,omitempty"`
 
 	// N 单次生成张数，1-10。
@@ -1924,6 +1945,9 @@ type ImageGenerationRequest struct {
 
 // ImageGenerationRequestBackground defines model for ImageGenerationRequest.Background.
 type ImageGenerationRequestBackground string
+
+// ImageGenerationRequestModel defines model for ImageGenerationRequest.Model.
+type ImageGenerationRequestModel string
 
 // ImageGenerationRequestModeration defines model for ImageGenerationRequest.Moderation.
 type ImageGenerationRequestModeration string
