@@ -17,6 +17,57 @@ const (
 	BearerAuthScopes = "bearerAuth.Scopes"
 )
 
+// Defines values for AudioVoiceListResponseObject.
+const (
+	AudioVoiceListResponseObjectList AudioVoiceListResponseObject = "list"
+)
+
+// Valid indicates whether the value is a known member of the AudioVoiceListResponseObject enum.
+func (e AudioVoiceListResponseObject) Valid() bool {
+	switch e {
+	case AudioVoiceListResponseObjectList:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for AudioVoiceObjectObject.
+const (
+	AudioVoice AudioVoiceObjectObject = "audio.voice"
+)
+
+// Valid indicates whether the value is a known member of the AudioVoiceObjectObject enum.
+func (e AudioVoiceObjectObject) Valid() bool {
+	switch e {
+	case AudioVoice:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for AudioVoiceObjectSource.
+const (
+	Builtin AudioVoiceObjectSource = "builtin"
+	Clone   AudioVoiceObjectSource = "clone"
+	Design  AudioVoiceObjectSource = "design"
+)
+
+// Valid indicates whether the value is a known member of the AudioVoiceObjectSource enum.
+func (e AudioVoiceObjectSource) Valid() bool {
+	switch e {
+	case Builtin:
+		return true
+	case Clone:
+		return true
+	case Design:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for ChatCompletionRequestResponseFormatType.
 const (
 	ChatCompletionRequestResponseFormatTypeJsonObject ChatCompletionRequestResponseFormatType = "json_object"
@@ -134,21 +185,6 @@ func (e ContentPartType) Valid() bool {
 	case ContentPartTypeImageUrl:
 		return true
 	case ContentPartTypeText:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for CreditsResponseCurrency.
-const (
-	USD CreditsResponseCurrency = "USD"
-)
-
-// Valid indicates whether the value is a known member of the CreditsResponseCurrency enum.
-func (e CreditsResponseCurrency) Valid() bool {
-	switch e {
-	case USD:
 		return true
 	default:
 		return false
@@ -565,6 +601,7 @@ func (e ListAssetsRequestSortOrder) Valid() bool {
 
 // Defines values for ModelInfoModality.
 const (
+	ModelInfoModalityAudio  ModelInfoModality = "audio"
 	ModelInfoModalityImage  ModelInfoModality = "image"
 	ModelInfoModalityText   ModelInfoModality = "text"
 	ModelInfoModalityVideo  ModelInfoModality = "video"
@@ -574,6 +611,8 @@ const (
 // Valid indicates whether the value is a known member of the ModelInfoModality enum.
 func (e ModelInfoModality) Valid() bool {
 	switch e {
+	case ModelInfoModalityAudio:
+		return true
 	case ModelInfoModalityImage:
 		return true
 	case ModelInfoModalityText:
@@ -589,6 +628,7 @@ func (e ModelInfoModality) Valid() bool {
 
 // Defines values for ModelInfoObject.
 const (
+	ModelInfoObjectAudio ModelInfoObject = "audio"
 	ModelInfoObjectImage ModelInfoObject = "image"
 	ModelInfoObjectModel ModelInfoObject = "model"
 	ModelInfoObjectVideo ModelInfoObject = "video"
@@ -597,6 +637,8 @@ const (
 // Valid indicates whether the value is a known member of the ModelInfoObject enum.
 func (e ModelInfoObject) Valid() bool {
 	switch e {
+	case ModelInfoObjectAudio:
+		return true
 	case ModelInfoObjectImage:
 		return true
 	case ModelInfoObjectModel:
@@ -610,13 +652,13 @@ func (e ModelInfoObject) Valid() bool {
 
 // Defines values for ModelListObject.
 const (
-	List ModelListObject = "list"
+	ModelListObjectList ModelListObject = "list"
 )
 
 // Valid indicates whether the value is a known member of the ModelListObject enum.
 func (e ModelListObject) Valid() bool {
 	switch e {
-	case List:
+	case ModelListObjectList:
 		return true
 	default:
 		return false
@@ -625,19 +667,19 @@ func (e ModelListObject) Valid() bool {
 
 // Defines values for PortraitAssetStatus.
 const (
-	Active     PortraitAssetStatus = "Active"
-	Failed     PortraitAssetStatus = "Failed"
-	Processing PortraitAssetStatus = "Processing"
+	PortraitAssetStatusActive     PortraitAssetStatus = "Active"
+	PortraitAssetStatusFailed     PortraitAssetStatus = "Failed"
+	PortraitAssetStatusProcessing PortraitAssetStatus = "Processing"
 )
 
 // Valid indicates whether the value is a known member of the PortraitAssetStatus enum.
 func (e PortraitAssetStatus) Valid() bool {
 	switch e {
-	case Active:
+	case PortraitAssetStatusActive:
 		return true
-	case Failed:
+	case PortraitAssetStatusFailed:
 		return true
-	case Processing:
+	case PortraitAssetStatusProcessing:
 		return true
 	default:
 		return false
@@ -677,6 +719,36 @@ func (e PortraitGroupType) Valid() bool {
 	case AIGC:
 		return true
 	case LivenessFace:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for TTSSpeechRequestResponseFormat.
+const (
+	Aac  TTSSpeechRequestResponseFormat = "aac"
+	Flac TTSSpeechRequestResponseFormat = "flac"
+	Mp3  TTSSpeechRequestResponseFormat = "mp3"
+	Opus TTSSpeechRequestResponseFormat = "opus"
+	Pcm  TTSSpeechRequestResponseFormat = "pcm"
+	Wav  TTSSpeechRequestResponseFormat = "wav"
+)
+
+// Valid indicates whether the value is a known member of the TTSSpeechRequestResponseFormat enum.
+func (e TTSSpeechRequestResponseFormat) Valid() bool {
+	switch e {
+	case Aac:
+		return true
+	case Flac:
+		return true
+	case Mp3:
+		return true
+	case Opus:
+		return true
+	case Pcm:
+		return true
+	case Wav:
 		return true
 	default:
 		return false
@@ -758,6 +830,21 @@ func (e TransactionItemSource) Valid() bool {
 	case TransactionItemSourceImage:
 		return true
 	case TransactionItemSourceVideo:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for UsageResponseCurrency.
+const (
+	USD UsageResponseCurrency = "USD"
+)
+
+// Valid indicates whether the value is a known member of the UsageResponseCurrency enum.
+func (e UsageResponseCurrency) Valid() bool {
+	switch e {
+	case USD:
 		return true
 	default:
 		return false
@@ -989,6 +1076,66 @@ func (e VideoTaskResponseStatus) Valid() bool {
 	case VideoTaskResponseStatusProcessing:
 		return true
 	case VideoTaskResponseStatusQueued:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for VoiceTaskCreateRequestModel.
+const (
+	MimoV25TtsVoiceclone  VoiceTaskCreateRequestModel = "mimo-v2.5-tts-voiceclone"
+	MimoV25TtsVoicedesign VoiceTaskCreateRequestModel = "mimo-v2.5-tts-voicedesign"
+)
+
+// Valid indicates whether the value is a known member of the VoiceTaskCreateRequestModel enum.
+func (e VoiceTaskCreateRequestModel) Valid() bool {
+	switch e {
+	case MimoV25TtsVoiceclone:
+		return true
+	case MimoV25TtsVoicedesign:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for VoiceTaskResponseObject.
+const (
+	AudioVoiceTask VoiceTaskResponseObject = "audio.voice.task"
+)
+
+// Valid indicates whether the value is a known member of the VoiceTaskResponseObject enum.
+func (e VoiceTaskResponseObject) Valid() bool {
+	switch e {
+	case AudioVoiceTask:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for VoiceTaskResponseStatus.
+const (
+	VoiceTaskResponseStatusCanceled  VoiceTaskResponseStatus = "canceled"
+	VoiceTaskResponseStatusCompleted VoiceTaskResponseStatus = "completed"
+	VoiceTaskResponseStatusFailed    VoiceTaskResponseStatus = "failed"
+	VoiceTaskResponseStatusQueued    VoiceTaskResponseStatus = "queued"
+	VoiceTaskResponseStatusRunning   VoiceTaskResponseStatus = "running"
+)
+
+// Valid indicates whether the value is a known member of the VoiceTaskResponseStatus enum.
+func (e VoiceTaskResponseStatus) Valid() bool {
+	switch e {
+	case VoiceTaskResponseStatusCanceled:
+		return true
+	case VoiceTaskResponseStatusCompleted:
+		return true
+	case VoiceTaskResponseStatusFailed:
+		return true
+	case VoiceTaskResponseStatusQueued:
+		return true
+	case VoiceTaskResponseStatusRunning:
 		return true
 	default:
 		return false
@@ -1469,6 +1616,31 @@ type AssetItem struct {
 	UpdateTime *time.Time `json:"UpdateTime,omitempty"`
 }
 
+// AudioVoiceListResponse defines model for AudioVoiceListResponse.
+type AudioVoiceListResponse struct {
+	Data   []AudioVoiceObject           `json:"data"`
+	Object AudioVoiceListResponseObject `json:"object"`
+}
+
+// AudioVoiceListResponseObject defines model for AudioVoiceListResponse.Object.
+type AudioVoiceListResponseObject string
+
+// AudioVoiceObject defines model for AudioVoiceObject.
+type AudioVoiceObject struct {
+	CreatedAt int64                  `json:"created_at"`
+	Id        string                 `json:"id"`
+	Language  *string                `json:"language,omitempty"`
+	Name      string                 `json:"name"`
+	Object    AudioVoiceObjectObject `json:"object"`
+	Source    AudioVoiceObjectSource `json:"source"`
+}
+
+// AudioVoiceObjectObject defines model for AudioVoiceObject.Object.
+type AudioVoiceObjectObject string
+
+// AudioVoiceObjectSource defines model for AudioVoiceObject.Source.
+type AudioVoiceObjectSource string
+
 // ChatCompletionRequest defines model for ChatCompletionRequest.
 type ChatCompletionRequest struct {
 	// ConversationId 网关扩展 —— 关联网关托管的会话 ID（自动持久化消息）
@@ -1648,22 +1820,6 @@ type CreateVisualValidateSessionResult struct {
 	// H5Link 火山 H5 认证页面链接。
 	H5Link string `json:"H5Link"`
 }
-
-// CreditsResponse defines model for CreditsResponse.
-type CreditsResponse struct {
-	// CreditBalance USD API 使用额度数值（原始精度，可能含 6 位小数）
-	CreditBalance float64 `json:"credit_balance"`
-
-	// CreditBalanceStr 展示用 API 使用额度字符串，`$x.xx` 2 位小数 + 美元符号；负值前缀 `-$`
-	CreditBalanceStr string `json:"credit_balance_str"`
-
-	// Currency 当前固定 USD
-	Currency     CreditsResponseCurrency `json:"currency"`
-	TokenBalance TokenBalance            `json:"token_balance"`
-}
-
-// CreditsResponseCurrency 当前固定 USD
-type CreditsResponseCurrency string
 
 // ErrorResponse defines model for ErrorResponse.
 type ErrorResponse struct {
@@ -2266,6 +2422,27 @@ type ResponsesRequest struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
+// TTSSpeechRequest defines model for TTSSpeechRequest.
+type TTSSpeechRequest struct {
+	Input string `json:"input"`
+	Model string `json:"model"`
+
+	// ResponseFormat First release accepts wav/pcm/mp3; opus/aac/flac return 400.
+	ResponseFormat *TTSSpeechRequestResponseFormat `json:"response_format,omitempty"`
+
+	// Speed Must be 1.0 in the first release; other values return 422.
+	Speed *float32 `json:"speed,omitempty"`
+
+	// Stream true is not supported in the first release.
+	Stream *bool `json:"stream,omitempty"`
+
+	// Voice Builtin voice string, gateway voice_id string, or OpenAI-style {id} object.
+	Voice VoiceField `json:"voice"`
+}
+
+// TTSSpeechRequestResponseFormat First release accepts wav/pcm/mp3; opus/aac/flac return 400.
+type TTSSpeechRequestResponseFormat string
+
 // TokenBalance defines model for TokenBalance.
 type TokenBalance struct {
 	ByModel []TokenBalanceByModel `json:"by_model"`
@@ -2462,6 +2639,22 @@ type Usage struct {
 	ServerToolUse *map[string]int `json:"server_tool_use,omitempty"`
 	TotalTokens   int             `json:"total_tokens"`
 }
+
+// UsageResponse defines model for UsageResponse.
+type UsageResponse struct {
+	// Currency 当前固定 USD
+	Currency   UsageResponseCurrency `json:"currency"`
+	TokenQuota TokenBalance          `json:"token_quota"`
+
+	// UsageQuota USD API 使用额度数值（原始精度，可能含 6 位小数）
+	UsageQuota float64 `json:"usage_quota"`
+
+	// UsageQuotaStr 展示用 API 使用额度字符串，`$x.xx` 2 位小数 + 美元符号；负值前缀 `-$`
+	UsageQuotaStr string `json:"usage_quota_str"`
+}
+
+// UsageResponseCurrency 当前固定 USD
+type UsageResponseCurrency string
 
 // VideoCapabilities Video model capability hints for /videos/models. These are UI hints, not
 // server-side validation constraints. Models not in the whitelist omit this
@@ -2696,6 +2889,68 @@ type VideoTaskResponseInputType string
 // VideoTaskResponseStatus defines model for VideoTaskResponse.Status.
 type VideoTaskResponseStatus string
 
+// VoiceField Builtin voice string, gateway voice_id string, or OpenAI-style {id} object.
+type VoiceField struct {
+	union json.RawMessage
+}
+
+// VoiceField0 defines model for .
+type VoiceField0 = string
+
+// VoiceField1 defines model for .
+type VoiceField1 struct {
+	Id string `json:"id"`
+}
+
+// VoiceTaskCreateRequest defines model for VoiceTaskCreateRequest.
+type VoiceTaskCreateRequest struct {
+	// Consent Clone requests must set consent=true.
+	Consent *bool `json:"consent,omitempty"`
+
+	// Description Voice design prompt.
+	Description *string                     `json:"description,omitempty"`
+	Language    *string                     `json:"language,omitempty"`
+	Model       VoiceTaskCreateRequestModel `json:"model"`
+	Name        string                      `json:"name"`
+
+	// SampleAudioBase64 Clone only. Base64 audio sample, decoded size <= 10 MiB, MIME allowlist wav/mp3/mp4/m4a.
+	SampleAudioBase64 *string `json:"sample_audio_base64,omitempty"`
+
+	// SampleAudioUrl Rejected by the server; remote samples are not supported.
+	SampleAudioUrl *string `json:"sample_audio_url,omitempty"`
+	SampleText     *string `json:"sample_text,omitempty"`
+}
+
+// VoiceTaskCreateRequestModel defines model for VoiceTaskCreateRequest.Model.
+type VoiceTaskCreateRequestModel string
+
+// VoiceTaskError defines model for VoiceTaskError.
+type VoiceTaskError struct {
+	Code    *string `json:"code,omitempty"`
+	Message *string `json:"message,omitempty"`
+	Type    *string `json:"type,omitempty"`
+}
+
+// VoiceTaskResponse defines model for VoiceTaskResponse.
+type VoiceTaskResponse struct {
+	CreatedAt          int64                   `json:"created_at"`
+	Error              *VoiceTaskError         `json:"error,omitempty"`
+	Id                 string                  `json:"id"`
+	Model              string                  `json:"model"`
+	Name               *string                 `json:"name,omitempty"`
+	Object             VoiceTaskResponseObject `json:"object"`
+	SampleUrl          *string                 `json:"sample_url,omitempty"`
+	SampleUrlExpiresAt *time.Time              `json:"sample_url_expires_at,omitempty"`
+	Status             VoiceTaskResponseStatus `json:"status"`
+	VoiceId            *string                 `json:"voice_id,omitempty"`
+}
+
+// VoiceTaskResponseObject defines model for VoiceTaskResponse.Object.
+type VoiceTaskResponseObject string
+
+// VoiceTaskResponseStatus defines model for VoiceTaskResponse.Status.
+type VoiceTaskResponseStatus string
+
 // FeedbackCategory defines model for FeedbackCategory.
 type FeedbackCategory string
 
@@ -2732,14 +2987,29 @@ type InsufficientBalance = ErrorResponse
 // NotFound defines model for NotFound.
 type NotFound = ErrorResponse
 
+// PayloadTooLarge defines model for PayloadTooLarge.
+type PayloadTooLarge = ErrorResponse
+
 // RateLimited defines model for RateLimited.
 type RateLimited = ErrorResponse
 
 // ServerError defines model for ServerError.
 type ServerError = ErrorResponse
 
+// TooManyRequests defines model for TooManyRequests.
+type TooManyRequests = ErrorResponse
+
 // Unauthorized defines model for Unauthorized.
 type Unauthorized = ErrorResponse
+
+// UnprocessableEntity defines model for UnprocessableEntity.
+type UnprocessableEntity = ErrorResponse
+
+// CreateAudioVoiceTaskParams defines parameters for CreateAudioVoiceTask.
+type CreateAudioVoiceTaskParams struct {
+	// IdempotencyKey 24-hour idempotency key for voice task creation.
+	IdempotencyKey *string `json:"Idempotency-Key,omitempty"`
+}
 
 // ListTransactionsParams defines parameters for ListTransactions.
 type ListTransactionsParams struct {
@@ -2880,6 +3150,12 @@ type ListVideoGenerationsParams struct {
 	// Status queued / processing / completed / failed / expired / cancelled
 	Status *string `form:"status,omitempty" json:"status,omitempty"`
 }
+
+// CreateSpeechJSONRequestBody defines body for CreateSpeech for application/json ContentType.
+type CreateSpeechJSONRequestBody = TTSSpeechRequest
+
+// CreateAudioVoiceTaskJSONRequestBody defines body for CreateAudioVoiceTask for application/json ContentType.
+type CreateAudioVoiceTaskJSONRequestBody = VoiceTaskCreateRequest
 
 // CreateChatCompletionJSONRequestBody defines body for CreateChatCompletion for application/json ContentType.
 type CreateChatCompletionJSONRequestBody = ChatCompletionRequest
@@ -3554,6 +3830,68 @@ func (t PortraitEnvelope_Result) MarshalJSON() ([]byte, error) {
 }
 
 func (t *PortraitEnvelope_Result) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsVoiceField0 returns the union data inside the VoiceField as a VoiceField0
+func (t VoiceField) AsVoiceField0() (VoiceField0, error) {
+	var body VoiceField0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromVoiceField0 overwrites any union data inside the VoiceField as the provided VoiceField0
+func (t *VoiceField) FromVoiceField0(v VoiceField0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeVoiceField0 performs a merge with any union data inside the VoiceField, using the provided VoiceField0
+func (t *VoiceField) MergeVoiceField0(v VoiceField0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsVoiceField1 returns the union data inside the VoiceField as a VoiceField1
+func (t VoiceField) AsVoiceField1() (VoiceField1, error) {
+	var body VoiceField1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromVoiceField1 overwrites any union data inside the VoiceField as the provided VoiceField1
+func (t *VoiceField) FromVoiceField1(v VoiceField1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeVoiceField1 performs a merge with any union data inside the VoiceField, using the provided VoiceField1
+func (t *VoiceField) MergeVoiceField1(v VoiceField1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t VoiceField) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *VoiceField) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
