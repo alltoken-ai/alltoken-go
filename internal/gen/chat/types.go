@@ -755,6 +755,51 @@ func (e TTSSpeechRequestResponseFormat) Valid() bool {
 	}
 }
 
+// Defines values for TTSUploadPresignRequestContentType.
+const (
+	Audiowav TTSUploadPresignRequestContentType = "audio/wav"
+)
+
+// Valid indicates whether the value is a known member of the TTSUploadPresignRequestContentType enum.
+func (e TTSUploadPresignRequestContentType) Valid() bool {
+	switch e {
+	case Audiowav:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for TTSUploadPresignRequestPurpose.
+const (
+	VoiceCloneSample TTSUploadPresignRequestPurpose = "voice_clone_sample"
+)
+
+// Valid indicates whether the value is a known member of the TTSUploadPresignRequestPurpose enum.
+func (e TTSUploadPresignRequestPurpose) Valid() bool {
+	switch e {
+	case VoiceCloneSample:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for TTSUploadPresignResponseMethod.
+const (
+	PUT TTSUploadPresignResponseMethod = "PUT"
+)
+
+// Valid indicates whether the value is a known member of the TTSUploadPresignResponseMethod enum.
+func (e TTSUploadPresignResponseMethod) Valid() bool {
+	switch e {
+	case PUT:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for ToolType.
 const (
 	ToolTypeFunction ToolType = "function"
@@ -2443,6 +2488,56 @@ type TTSSpeechRequest struct {
 // TTSSpeechRequestResponseFormat First release accepts wav/pcm/mp3; opus/aac/flac return 400.
 type TTSSpeechRequestResponseFormat string
 
+// TTSUploadPresignRequest defines model for TTSUploadPresignRequest.
+type TTSUploadPresignRequest struct {
+	// ChecksumSha256 Lowercase hex SHA-256 (64 chars). Recomputed server-side at commit.
+	ChecksumSha256 string `json:"checksum_sha256"`
+
+	// ContentLength Byte length of the file to upload. Hard cap 10 MiB (10485760).
+	ContentLength int `json:"content_length"`
+
+	// ContentMd5 Base64 MD5 (16-byte digest -> 24 chars). Enforced by R2 PUT.
+	ContentMd5 string `json:"content_md5"`
+
+	// ContentType Strict allowlist; audio/wav only (MP3/M4A in a follow-up release).
+	ContentType TTSUploadPresignRequestContentType `json:"content_type"`
+
+	// Purpose Strict allowlist; only `voice_clone_sample` is accepted in this release.
+	Purpose TTSUploadPresignRequestPurpose `json:"purpose"`
+}
+
+// TTSUploadPresignRequestContentType Strict allowlist; audio/wav only (MP3/M4A in a follow-up release).
+type TTSUploadPresignRequestContentType string
+
+// TTSUploadPresignRequestPurpose Strict allowlist; only `voice_clone_sample` is accepted in this release.
+type TTSUploadPresignRequestPurpose string
+
+// TTSUploadPresignResponse defines model for TTSUploadPresignResponse.
+type TTSUploadPresignResponse struct {
+	// ExpiresIn Presign validity in seconds (300).
+	ExpiresIn int `json:"expires_in"`
+
+	// MaxContentLength Server-enforced upper bound on the upload size, in bytes (10485760).
+	MaxContentLength int                            `json:"max_content_length"`
+	Method           TTSUploadPresignResponseMethod `json:"method"`
+
+	// RequiredHeaders Headers the client must send on the PUT. `Content-Length` is omitted on purpose
+	// because browsers treat it as a forbidden header (set automatically by fetch/XHR).
+	RequiredHeaders struct {
+		ContentMD5  string `json:"Content-MD5"`
+		ContentType string `json:"Content-Type"`
+	} `json:"required_headers"`
+
+	// UploadId Claim ID to pass back as `upload_id` when calling `POST /audio/voices`.
+	UploadId string `json:"upload_id"`
+
+	// UploadUrl Pre-signed R2 PUT URL valid for `expires_in` seconds.
+	UploadUrl string `json:"upload_url"`
+}
+
+// TTSUploadPresignResponseMethod defines model for TTSUploadPresignResponse.Method.
+type TTSUploadPresignResponseMethod string
+
 // TokenBalance defines model for TokenBalance.
 type TokenBalance struct {
 	ByModel []TokenBalanceByModel `json:"by_model"`
@@ -2771,7 +2866,9 @@ type VideoContentItemType string
 
 // VideoGenerationRequest defines model for VideoGenerationRequest.
 type VideoGenerationRequest struct {
-	CallbackUrl *string             `json:"callback_url,omitempty"`
+	CallbackUrl *string `json:"callback_url,omitempty"`
+
+	// CameraFixed 是否固定镜头，默认 false；仅 seedance-1.0-pro / 1.5-pro 支持
 	CameraFixed *bool               `json:"camera_fixed,omitempty"`
 	Content     *[]VideoContentItem `json:"content,omitempty"`
 	Draft       *bool               `json:"draft,omitempty"`
@@ -2817,6 +2914,8 @@ type VideoGenerationRequest struct {
 	Tools            *[]struct {
 		Type *VideoGenerationRequestToolsType `json:"type,omitempty"`
 	} `json:"tools,omitempty"`
+
+	// Watermark 生成视频是否加水印，默认 false
 	Watermark *bool `json:"watermark,omitempty"`
 }
 
@@ -2919,6 +3018,12 @@ type VoiceTaskCreateRequest struct {
 	// SampleAudioUrl Rejected by the server; remote samples are not supported.
 	SampleAudioUrl *string `json:"sample_audio_url,omitempty"`
 	SampleText     *string `json:"sample_text,omitempty"`
+
+	// UploadId PR-TTS-6 R2 direct-upload claim ID (recommended path, up to 10 MiB sample).
+	// Mutually exclusive with multipart `sample_audio` and `sample_audio_base64`;
+	// exclusivity check is only triggered when `upload_id` is present — legacy single-source
+	// clients see zero behavior change.
+	UploadId *string `json:"upload_id,omitempty"`
 }
 
 // VoiceTaskCreateRequestModel defines model for VoiceTaskCreateRequest.Model.
@@ -3156,6 +3261,9 @@ type CreateSpeechJSONRequestBody = TTSSpeechRequest
 
 // CreateAudioVoiceTaskJSONRequestBody defines body for CreateAudioVoiceTask for application/json ContentType.
 type CreateAudioVoiceTaskJSONRequestBody = VoiceTaskCreateRequest
+
+// CreateVoiceSampleUploadPresignJSONRequestBody defines body for CreateVoiceSampleUploadPresign for application/json ContentType.
+type CreateVoiceSampleUploadPresignJSONRequestBody = TTSUploadPresignRequest
 
 // CreateChatCompletionJSONRequestBody defines body for CreateChatCompletion for application/json ContentType.
 type CreateChatCompletionJSONRequestBody = ChatCompletionRequest
