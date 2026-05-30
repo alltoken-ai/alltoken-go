@@ -2915,7 +2915,7 @@ type VideoGenerationRequest struct {
 		Type *VideoGenerationRequestToolsType `json:"type,omitempty"`
 	} `json:"tools,omitempty"`
 
-	// Watermark 生成视频是否加水印，默认 false
+	// Watermark 生成视频是否加水印。不传跟随上游默认，传值显式控制
 	Watermark *bool `json:"watermark,omitempty"`
 }
 
