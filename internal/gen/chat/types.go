@@ -329,84 +329,84 @@ func (e ImageCreateResponseStatus) Valid() bool {
 	}
 }
 
-// Defines values for ImageEditMultipartRequestBackground.
+// Defines values for ImageEditUploadIDRequestBackground.
 const (
-	ImageEditMultipartRequestBackgroundAuto        ImageEditMultipartRequestBackground = "auto"
-	ImageEditMultipartRequestBackgroundOpaque      ImageEditMultipartRequestBackground = "opaque"
-	ImageEditMultipartRequestBackgroundTransparent ImageEditMultipartRequestBackground = "transparent"
+	ImageEditUploadIDRequestBackgroundAuto        ImageEditUploadIDRequestBackground = "auto"
+	ImageEditUploadIDRequestBackgroundOpaque      ImageEditUploadIDRequestBackground = "opaque"
+	ImageEditUploadIDRequestBackgroundTransparent ImageEditUploadIDRequestBackground = "transparent"
 )
 
-// Valid indicates whether the value is a known member of the ImageEditMultipartRequestBackground enum.
-func (e ImageEditMultipartRequestBackground) Valid() bool {
+// Valid indicates whether the value is a known member of the ImageEditUploadIDRequestBackground enum.
+func (e ImageEditUploadIDRequestBackground) Valid() bool {
 	switch e {
-	case ImageEditMultipartRequestBackgroundAuto:
+	case ImageEditUploadIDRequestBackgroundAuto:
 		return true
-	case ImageEditMultipartRequestBackgroundOpaque:
+	case ImageEditUploadIDRequestBackgroundOpaque:
 		return true
-	case ImageEditMultipartRequestBackgroundTransparent:
+	case ImageEditUploadIDRequestBackgroundTransparent:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for ImageEditMultipartRequestModeration.
+// Defines values for ImageEditUploadIDRequestModeration.
 const (
-	ImageEditMultipartRequestModerationAuto ImageEditMultipartRequestModeration = "auto"
-	ImageEditMultipartRequestModerationLow  ImageEditMultipartRequestModeration = "low"
+	ImageEditUploadIDRequestModerationAuto ImageEditUploadIDRequestModeration = "auto"
+	ImageEditUploadIDRequestModerationLow  ImageEditUploadIDRequestModeration = "low"
 )
 
-// Valid indicates whether the value is a known member of the ImageEditMultipartRequestModeration enum.
-func (e ImageEditMultipartRequestModeration) Valid() bool {
+// Valid indicates whether the value is a known member of the ImageEditUploadIDRequestModeration enum.
+func (e ImageEditUploadIDRequestModeration) Valid() bool {
 	switch e {
-	case ImageEditMultipartRequestModerationAuto:
+	case ImageEditUploadIDRequestModerationAuto:
 		return true
-	case ImageEditMultipartRequestModerationLow:
+	case ImageEditUploadIDRequestModerationLow:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for ImageEditMultipartRequestOutputFormat.
+// Defines values for ImageEditUploadIDRequestOutputFormat.
 const (
-	ImageEditMultipartRequestOutputFormatJpeg ImageEditMultipartRequestOutputFormat = "jpeg"
-	ImageEditMultipartRequestOutputFormatPng  ImageEditMultipartRequestOutputFormat = "png"
-	ImageEditMultipartRequestOutputFormatWebp ImageEditMultipartRequestOutputFormat = "webp"
+	ImageEditUploadIDRequestOutputFormatJpeg ImageEditUploadIDRequestOutputFormat = "jpeg"
+	ImageEditUploadIDRequestOutputFormatPng  ImageEditUploadIDRequestOutputFormat = "png"
+	ImageEditUploadIDRequestOutputFormatWebp ImageEditUploadIDRequestOutputFormat = "webp"
 )
 
-// Valid indicates whether the value is a known member of the ImageEditMultipartRequestOutputFormat enum.
-func (e ImageEditMultipartRequestOutputFormat) Valid() bool {
+// Valid indicates whether the value is a known member of the ImageEditUploadIDRequestOutputFormat enum.
+func (e ImageEditUploadIDRequestOutputFormat) Valid() bool {
 	switch e {
-	case ImageEditMultipartRequestOutputFormatJpeg:
+	case ImageEditUploadIDRequestOutputFormatJpeg:
 		return true
-	case ImageEditMultipartRequestOutputFormatPng:
+	case ImageEditUploadIDRequestOutputFormatPng:
 		return true
-	case ImageEditMultipartRequestOutputFormatWebp:
+	case ImageEditUploadIDRequestOutputFormatWebp:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for ImageEditMultipartRequestQuality.
+// Defines values for ImageEditUploadIDRequestQuality.
 const (
-	ImageEditMultipartRequestQualityAuto   ImageEditMultipartRequestQuality = "auto"
-	ImageEditMultipartRequestQualityHigh   ImageEditMultipartRequestQuality = "high"
-	ImageEditMultipartRequestQualityLow    ImageEditMultipartRequestQuality = "low"
-	ImageEditMultipartRequestQualityMedium ImageEditMultipartRequestQuality = "medium"
+	ImageEditUploadIDRequestQualityAuto   ImageEditUploadIDRequestQuality = "auto"
+	ImageEditUploadIDRequestQualityHigh   ImageEditUploadIDRequestQuality = "high"
+	ImageEditUploadIDRequestQualityLow    ImageEditUploadIDRequestQuality = "low"
+	ImageEditUploadIDRequestQualityMedium ImageEditUploadIDRequestQuality = "medium"
 )
 
-// Valid indicates whether the value is a known member of the ImageEditMultipartRequestQuality enum.
-func (e ImageEditMultipartRequestQuality) Valid() bool {
+// Valid indicates whether the value is a known member of the ImageEditUploadIDRequestQuality enum.
+func (e ImageEditUploadIDRequestQuality) Valid() bool {
 	switch e {
-	case ImageEditMultipartRequestQualityAuto:
+	case ImageEditUploadIDRequestQualityAuto:
 		return true
-	case ImageEditMultipartRequestQualityHigh:
+	case ImageEditUploadIDRequestQualityHigh:
 		return true
-	case ImageEditMultipartRequestQualityLow:
+	case ImageEditUploadIDRequestQualityLow:
 		return true
-	case ImageEditMultipartRequestQualityMedium:
+	case ImageEditUploadIDRequestQualityMedium:
 		return true
 	default:
 		return false
@@ -557,16 +557,16 @@ func (e ImageTaskStatusResponseStatus) Valid() bool {
 	}
 }
 
-// Defines values for ImageVariationMultipartRequestSize.
+// Defines values for ImageVariationUploadIDRequestSize.
 const (
-	Auto       ImageVariationMultipartRequestSize = "auto"
-	N1024x1024 ImageVariationMultipartRequestSize = "1024x1024"
-	N1024x1536 ImageVariationMultipartRequestSize = "1024x1536"
-	N1536x1024 ImageVariationMultipartRequestSize = "1536x1024"
+	Auto       ImageVariationUploadIDRequestSize = "auto"
+	N1024x1024 ImageVariationUploadIDRequestSize = "1024x1024"
+	N1024x1536 ImageVariationUploadIDRequestSize = "1024x1536"
+	N1536x1024 ImageVariationUploadIDRequestSize = "1536x1024"
 )
 
-// Valid indicates whether the value is a known member of the ImageVariationMultipartRequestSize enum.
-func (e ImageVariationMultipartRequestSize) Valid() bool {
+// Valid indicates whether the value is a known member of the ImageVariationUploadIDRequestSize enum.
+func (e ImageVariationUploadIDRequestSize) Valid() bool {
 	switch e {
 	case Auto:
 		return true
@@ -593,6 +593,99 @@ func (e ListAssetsRequestSortOrder) Valid() bool {
 	case Asc:
 		return true
 	case Desc:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for MediaUploadPresignRequestContentType.
+const (
+	MediaUploadPresignRequestContentTypeAudioaac       MediaUploadPresignRequestContentType = "audio/aac"
+	MediaUploadPresignRequestContentTypeAudiomp4       MediaUploadPresignRequestContentType = "audio/mp4"
+	MediaUploadPresignRequestContentTypeAudiompeg      MediaUploadPresignRequestContentType = "audio/mpeg"
+	MediaUploadPresignRequestContentTypeAudioogg       MediaUploadPresignRequestContentType = "audio/ogg"
+	MediaUploadPresignRequestContentTypeAudiowav       MediaUploadPresignRequestContentType = "audio/wav"
+	MediaUploadPresignRequestContentTypeAudiowebm      MediaUploadPresignRequestContentType = "audio/webm"
+	MediaUploadPresignRequestContentTypeImagejpeg      MediaUploadPresignRequestContentType = "image/jpeg"
+	MediaUploadPresignRequestContentTypeImagepng       MediaUploadPresignRequestContentType = "image/png"
+	MediaUploadPresignRequestContentTypeImagewebp      MediaUploadPresignRequestContentType = "image/webp"
+	MediaUploadPresignRequestContentTypeVideomp4       MediaUploadPresignRequestContentType = "video/mp4"
+	MediaUploadPresignRequestContentTypeVideoquicktime MediaUploadPresignRequestContentType = "video/quicktime"
+	MediaUploadPresignRequestContentTypeVideowebm      MediaUploadPresignRequestContentType = "video/webm"
+)
+
+// Valid indicates whether the value is a known member of the MediaUploadPresignRequestContentType enum.
+func (e MediaUploadPresignRequestContentType) Valid() bool {
+	switch e {
+	case MediaUploadPresignRequestContentTypeAudioaac:
+		return true
+	case MediaUploadPresignRequestContentTypeAudiomp4:
+		return true
+	case MediaUploadPresignRequestContentTypeAudiompeg:
+		return true
+	case MediaUploadPresignRequestContentTypeAudioogg:
+		return true
+	case MediaUploadPresignRequestContentTypeAudiowav:
+		return true
+	case MediaUploadPresignRequestContentTypeAudiowebm:
+		return true
+	case MediaUploadPresignRequestContentTypeImagejpeg:
+		return true
+	case MediaUploadPresignRequestContentTypeImagepng:
+		return true
+	case MediaUploadPresignRequestContentTypeImagewebp:
+		return true
+	case MediaUploadPresignRequestContentTypeVideomp4:
+		return true
+	case MediaUploadPresignRequestContentTypeVideoquicktime:
+		return true
+	case MediaUploadPresignRequestContentTypeVideowebm:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for MediaUploadPresignRequestPurpose.
+const (
+	ImageEditMask        MediaUploadPresignRequestPurpose = "image_edit_mask"
+	ImageEditSource      MediaUploadPresignRequestPurpose = "image_edit_source"
+	ImageVariationSource MediaUploadPresignRequestPurpose = "image_variation_source"
+	VideoInputAudio      MediaUploadPresignRequestPurpose = "video_input_audio"
+	VideoInputImage      MediaUploadPresignRequestPurpose = "video_input_image"
+	VideoInputVideo      MediaUploadPresignRequestPurpose = "video_input_video"
+)
+
+// Valid indicates whether the value is a known member of the MediaUploadPresignRequestPurpose enum.
+func (e MediaUploadPresignRequestPurpose) Valid() bool {
+	switch e {
+	case ImageEditMask:
+		return true
+	case ImageEditSource:
+		return true
+	case ImageVariationSource:
+		return true
+	case VideoInputAudio:
+		return true
+	case VideoInputImage:
+		return true
+	case VideoInputVideo:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for MediaUploadPresignResponseMethod.
+const (
+	MediaUploadPresignResponseMethodPUT MediaUploadPresignResponseMethod = "PUT"
+)
+
+// Valid indicates whether the value is a known member of the MediaUploadPresignResponseMethod enum.
+func (e MediaUploadPresignResponseMethod) Valid() bool {
+	switch e {
+	case MediaUploadPresignResponseMethodPUT:
 		return true
 	default:
 		return false
@@ -757,13 +850,13 @@ func (e TTSSpeechRequestResponseFormat) Valid() bool {
 
 // Defines values for TTSUploadPresignRequestContentType.
 const (
-	Audiowav TTSUploadPresignRequestContentType = "audio/wav"
+	TTSUploadPresignRequestContentTypeAudiowav TTSUploadPresignRequestContentType = "audio/wav"
 )
 
 // Valid indicates whether the value is a known member of the TTSUploadPresignRequestContentType enum.
 func (e TTSUploadPresignRequestContentType) Valid() bool {
 	switch e {
-	case Audiowav:
+	case TTSUploadPresignRequestContentTypeAudiowav:
 		return true
 	default:
 		return false
@@ -787,13 +880,13 @@ func (e TTSUploadPresignRequestPurpose) Valid() bool {
 
 // Defines values for TTSUploadPresignResponseMethod.
 const (
-	PUT TTSUploadPresignResponseMethod = "PUT"
+	TTSUploadPresignResponseMethodPUT TTSUploadPresignResponseMethod = "PUT"
 )
 
 // Valid indicates whether the value is a known member of the TTSUploadPresignResponseMethod enum.
 func (e TTSUploadPresignResponseMethod) Valid() bool {
 	switch e {
-	case PUT:
+	case TTSUploadPresignResponseMethodPUT:
 		return true
 	default:
 		return false
@@ -2073,47 +2166,39 @@ type ImageDataItem struct {
 	Url *string `json:"url,omitempty"`
 }
 
-// ImageEditMultipartRequest defines model for ImageEditMultipartRequest.
-type ImageEditMultipartRequest struct {
-	Background *ImageEditMultipartRequestBackground `json:"background,omitempty"`
+// ImageEditUploadIDRequest defines model for ImageEditUploadIDRequest.
+type ImageEditUploadIDRequest struct {
+	Background *ImageEditUploadIDRequestBackground `json:"background,omitempty"`
 
-	// Image 源图，必填。≤ 25MB，MIME ∈ `image/png` / `image/jpeg` / `image/webp`。
-	Image openapi_types.File `json:"image"`
+	// ImageUploadId `POST /uploads/presign` 以 `purpose=image_edit_source` 返回的 upload_id。
+	ImageUploadId string `json:"image_upload_id"`
 
-	// Mask 可选 mask 图；提供则按 mask_edit 处理（透明区域为编辑区）。≤ 25MB，同 MIME 约束。
-	Mask       *openapi_types.File                  `json:"mask,omitempty"`
-	Model      string                               `json:"model"`
-	Moderation *ImageEditMultipartRequestModeration `json:"moderation,omitempty"`
-
-	// N 单次生成张数，1-10。
-	N *int `json:"n,omitempty"`
-
-	// OutputCompression 仅 jpeg / webp 生效，0-100；未传则上游默认 100。
-	OutputCompression *int                                   `json:"output_compression,omitempty"`
-	OutputFormat      *ImageEditMultipartRequestOutputFormat `json:"output_format,omitempty"`
+	// MaskUploadId 可选 mask；必须来自 `purpose=image_edit_mask` 的 upload_id。
+	MaskUploadId      *string                               `json:"mask_upload_id,omitempty"`
+	Model             string                                `json:"model"`
+	Moderation        *ImageEditUploadIDRequestModeration   `json:"moderation,omitempty"`
+	N                 *int                                  `json:"n,omitempty"`
+	OutputCompression *int                                  `json:"output_compression,omitempty"`
+	OutputFormat      *ImageEditUploadIDRequestOutputFormat `json:"output_format,omitempty"`
 
 	// Prompt 编辑提示词，必填。
-	Prompt  string                            `json:"prompt"`
-	Quality *ImageEditMultipartRequestQuality `json:"quality,omitempty"`
-
-	// Size `auto` 或 `WIDTHxHEIGHT`；gpt-image-2 起支持任意分辨率（16 整除、最大 3840x2160、比例 1:3 ~ 3:1）。
-	Size *string `json:"size,omitempty"`
-
-	// User 透传上游用于滥用监控。
-	User *string `json:"user,omitempty"`
+	Prompt  string                           `json:"prompt"`
+	Quality *ImageEditUploadIDRequestQuality `json:"quality,omitempty"`
+	Size    *string                          `json:"size,omitempty"`
+	User    *string                          `json:"user,omitempty"`
 }
 
-// ImageEditMultipartRequestBackground defines model for ImageEditMultipartRequest.Background.
-type ImageEditMultipartRequestBackground string
+// ImageEditUploadIDRequestBackground defines model for ImageEditUploadIDRequest.Background.
+type ImageEditUploadIDRequestBackground string
 
-// ImageEditMultipartRequestModeration defines model for ImageEditMultipartRequest.Moderation.
-type ImageEditMultipartRequestModeration string
+// ImageEditUploadIDRequestModeration defines model for ImageEditUploadIDRequest.Moderation.
+type ImageEditUploadIDRequestModeration string
 
-// ImageEditMultipartRequestOutputFormat defines model for ImageEditMultipartRequest.OutputFormat.
-type ImageEditMultipartRequestOutputFormat string
+// ImageEditUploadIDRequestOutputFormat defines model for ImageEditUploadIDRequest.OutputFormat.
+type ImageEditUploadIDRequestOutputFormat string
 
-// ImageEditMultipartRequestQuality defines model for ImageEditMultipartRequest.Quality.
-type ImageEditMultipartRequestQuality string
+// ImageEditUploadIDRequestQuality defines model for ImageEditUploadIDRequest.Quality.
+type ImageEditUploadIDRequestQuality string
 
 // ImageError defines model for ImageError.
 type ImageError struct {
@@ -2136,6 +2221,9 @@ type ImageGenerationRequest struct {
 	OutputFormat      *ImageGenerationRequestOutputFormat `json:"output_format,omitempty"`
 	Prompt            string                              `json:"prompt"`
 	Quality           *ImageGenerationRequestQuality      `json:"quality,omitempty"`
+
+	// Seed 仅 `wan2.7-image` / `wan2.7-image-pro` 生效，透传到 DashScope Wan `parameters.seed`；其它图像模型不保证生效。
+	Seed *int64 `json:"seed,omitempty"`
 
 	// Size `auto` 或 `WIDTHxHEIGHT`；gpt-image-2 起支持任意分辨率（16 整除、最大 3840x2160、比例 1:3 ~ 3:1）。
 	Size *string `json:"size,omitempty"`
@@ -2206,19 +2294,17 @@ type ImageUsage struct {
 	TotalTokens  *int `json:"total_tokens,omitempty"`
 }
 
-// ImageVariationMultipartRequest defines model for ImageVariationMultipartRequest.
-type ImageVariationMultipartRequest struct {
-	// Image 源图，必填。≤ 25MB，MIME ∈ `image/png` / `image/jpeg` / `image/webp`。
-	Image openapi_types.File                  `json:"image"`
-	Model string                              `json:"model"`
-	Size  *ImageVariationMultipartRequestSize `json:"size,omitempty"`
-
-	// User 透传上游用于滥用监控。
-	User *string `json:"user,omitempty"`
+// ImageVariationUploadIDRequest defines model for ImageVariationUploadIDRequest.
+type ImageVariationUploadIDRequest struct {
+	// ImageUploadId `POST /uploads/presign` 以 `purpose=image_variation_source` 返回的 upload_id。
+	ImageUploadId string                             `json:"image_upload_id"`
+	Model         string                             `json:"model"`
+	Size          *ImageVariationUploadIDRequestSize `json:"size,omitempty"`
+	User          *string                            `json:"user,omitempty"`
 }
 
-// ImageVariationMultipartRequestSize defines model for ImageVariationMultipartRequest.Size.
-type ImageVariationMultipartRequestSize string
+// ImageVariationUploadIDRequestSize defines model for ImageVariationUploadIDRequest.Size.
+type ImageVariationUploadIDRequestSize string
 
 // ListAssetGroupsRequest defines model for ListAssetGroupsRequest.
 type ListAssetGroupsRequest struct {
@@ -2271,6 +2357,59 @@ type ListAssetsResult struct {
 	PageSize   int         `json:"PageSize"`
 	TotalCount int         `json:"TotalCount"`
 }
+
+// MediaUploadPresignRequest defines model for MediaUploadPresignRequest.
+type MediaUploadPresignRequest struct {
+	// ChecksumSha256 Lowercase hex SHA-256；bind 时用于服务端一致性校验。
+	ChecksumSha256 string `json:"checksum_sha256"`
+
+	// ContentLength 上传字节数；不同 purpose 有独立上限。
+	ContentLength int `json:"content_length"`
+
+	// ContentMd5 Base64 MD5；R2 PUT 必须携带同值 Content-MD5。
+	ContentMd5 string `json:"content_md5"`
+
+	// ContentType 必须落在 purpose 对应白名单内；服务端 bind 时还会 HeadObject 复核真实类型。
+	ContentType MediaUploadPresignRequestContentType `json:"content_type"`
+
+	// Purpose 输入素材用途。claim 绑定时会按 endpoint 和字段再次校验 purpose，不能跨用途复用。
+	Purpose MediaUploadPresignRequestPurpose `json:"purpose"`
+}
+
+// MediaUploadPresignRequestContentType 必须落在 purpose 对应白名单内；服务端 bind 时还会 HeadObject 复核真实类型。
+type MediaUploadPresignRequestContentType string
+
+// MediaUploadPresignRequestPurpose 输入素材用途。claim 绑定时会按 endpoint 和字段再次校验 purpose，不能跨用途复用。
+type MediaUploadPresignRequestPurpose string
+
+// MediaUploadPresignResponse defines model for MediaUploadPresignResponse.
+type MediaUploadPresignResponse struct {
+	// ClaimExpiresAt 未绑定 claim 的 UTC 过期时间；过期后可由 cleanup worker 删除临时对象。
+	ClaimExpiresAt time.Time `json:"claim_expires_at"`
+
+	// ExpiresIn presign URL 有效秒数，当前为 300。
+	ExpiresIn int `json:"expires_in"`
+
+	// MaxContentLength 当前 purpose 允许的最大上传字节数。
+	MaxContentLength int                              `json:"max_content_length"`
+	Method           MediaUploadPresignResponseMethod `json:"method"`
+
+	// PublicUrl 调试用临时对象 URL；客户端不应提交该 URL，提交任务只使用 `upload_id`。
+	PublicUrl       *string `json:"public_url,omitempty"`
+	RequiredHeaders struct {
+		ContentMD5  string `json:"Content-MD5"`
+		ContentType string `json:"Content-Type"`
+	} `json:"required_headers"`
+
+	// UploadId 提交生成任务时使用的 claim ID；仅当前用户和当前 API Key 可绑定一次。
+	UploadId string `json:"upload_id"`
+
+	// UploadUrl 预签名 R2 PUT URL，仅在 `expires_in` 秒内有效；不要持久化或回显到日志。
+	UploadUrl string `json:"upload_url"`
+}
+
+// MediaUploadPresignResponseMethod defines model for MediaUploadPresignResponse.Method.
+type MediaUploadPresignResponseMethod string
 
 // ModelInfo defines model for ModelInfo.
 type ModelInfo struct {
@@ -2851,6 +2990,12 @@ type VideoContentItem struct {
 	Text *string               `json:"text,omitempty"`
 	Type VideoContentItemType  `json:"type"`
 
+	// UploadId 由 `POST /uploads/presign` 返回的媒体输入 claim ID。简化格式中：
+	// `type=image` 必须使用 `video_input_image`，`type=video` 必须使用
+	// `video_input_video`，`type=audio` 必须使用 `video_input_audio`。
+	// 与同一 item 内的 URL 字段互斥；任务终态后输入对象会被删除。
+	UploadId *string `json:"upload_id,omitempty"`
+
 	// Url 简化格式（type=image/video/audio 时）
 	Url      *string `json:"url,omitempty"`
 	VideoUrl *struct {
@@ -3271,8 +3416,8 @@ type CreateChatCompletionJSONRequestBody = ChatCompletionRequest
 // SubmitFeedbackJSONRequestBody defines body for SubmitFeedback for application/json ContentType.
 type SubmitFeedbackJSONRequestBody = FeedbackSubmitRequest
 
-// CreateImageEditMultipartRequestBody defines body for CreateImageEdit for multipart/form-data ContentType.
-type CreateImageEditMultipartRequestBody = ImageEditMultipartRequest
+// CreateImageEditJSONRequestBody defines body for CreateImageEdit for application/json ContentType.
+type CreateImageEditJSONRequestBody = ImageEditUploadIDRequest
 
 // CreateImageGenerationJSONRequestBody defines body for CreateImageGeneration for application/json ContentType.
 type CreateImageGenerationJSONRequestBody = ImageGenerationRequest
@@ -3280,8 +3425,8 @@ type CreateImageGenerationJSONRequestBody = ImageGenerationRequest
 // CreateAsyncImageGenerationJSONRequestBody defines body for CreateAsyncImageGeneration for application/json ContentType.
 type CreateAsyncImageGenerationJSONRequestBody = ImageGenerationRequest
 
-// CreateImageVariationMultipartRequestBody defines body for CreateImageVariation for multipart/form-data ContentType.
-type CreateImageVariationMultipartRequestBody = ImageVariationMultipartRequest
+// CreateImageVariationJSONRequestBody defines body for CreateImageVariation for application/json ContentType.
+type CreateImageVariationJSONRequestBody = ImageVariationUploadIDRequest
 
 // CreateMessageViaV1JSONRequestBody defines body for CreateMessageViaV1 for application/json ContentType.
 type CreateMessageViaV1JSONRequestBody = CreateMessageViaV1JSONBody
@@ -3294,6 +3439,9 @@ type UploadPortraitAssetMultipartRequestBody = PortraitUploadRequest
 
 // CreateResponseJSONRequestBody defines body for CreateResponse for application/json ContentType.
 type CreateResponseJSONRequestBody = ResponsesRequest
+
+// CreateMediaUploadPresignJSONRequestBody defines body for CreateMediaUploadPresign for application/json ContentType.
+type CreateMediaUploadPresignJSONRequestBody = MediaUploadPresignRequest
 
 // CreateVideoGenerationJSONRequestBody defines body for CreateVideoGeneration for application/json ContentType.
 type CreateVideoGenerationJSONRequestBody = VideoGenerationRequest
