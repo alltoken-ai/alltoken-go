@@ -191,6 +191,24 @@ func (e ContentPartType) Valid() bool {
 	}
 }
 
+// Defines values for EmbeddingRequestEncodingFormat.
+const (
+	Base64 EmbeddingRequestEncodingFormat = "base64"
+	Float  EmbeddingRequestEncodingFormat = "float"
+)
+
+// Valid indicates whether the value is a known member of the EmbeddingRequestEncodingFormat enum.
+func (e EmbeddingRequestEncodingFormat) Valid() bool {
+	switch e {
+	case Base64:
+		return true
+	case Float:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for FeedbackSelfItemStatus.
 const (
 	FeedbackSelfItemStatusDuplicate     FeedbackSelfItemStatus = "duplicate"
@@ -2130,6 +2148,66 @@ type CreateVisualValidateSessionResult struct {
 	H5Link string `json:"H5Link"`
 }
 
+// EmbeddingObject defines model for EmbeddingObject.
+type EmbeddingObject struct {
+	// Embedding float 数组（默认）或 base64 字符串（encoding_format=base64 时）。
+	Embedding EmbeddingObject_Embedding `json:"embedding"`
+	Index     int                       `json:"index"`
+	Object    string                    `json:"object"`
+}
+
+// EmbeddingObjectEmbedding0 defines model for .
+type EmbeddingObjectEmbedding0 = []float32
+
+// EmbeddingObjectEmbedding1 defines model for .
+type EmbeddingObjectEmbedding1 = string
+
+// EmbeddingObject_Embedding float 数组（默认）或 base64 字符串（encoding_format=base64 时）。
+type EmbeddingObject_Embedding struct {
+	union json.RawMessage
+}
+
+// EmbeddingRequest defines model for EmbeddingRequest.
+type EmbeddingRequest struct {
+	// Dimensions 自定义输出维度（text-embedding-v4 支持 64~2048，默认 1024）；上游不支持时忽略。
+	Dimensions *int `json:"dimensions,omitempty"`
+
+	// EncodingFormat float（默认）或 base64。
+	EncodingFormat *EmbeddingRequestEncodingFormat `json:"encoding_format,omitempty"`
+
+	// Input 待向量化文本；字符串或字符串数组。
+	Input EmbeddingRequest_Input `json:"input"`
+
+	// Model 网关模型 ID，必须是 embedding 模型（如 text-embedding-v4）。
+	Model string  `json:"model"`
+	User  *string `json:"user,omitempty"`
+}
+
+// EmbeddingRequestEncodingFormat float（默认）或 base64。
+type EmbeddingRequestEncodingFormat string
+
+// EmbeddingRequestInput0 defines model for .
+type EmbeddingRequestInput0 = string
+
+// EmbeddingRequestInput1 defines model for .
+type EmbeddingRequestInput1 = []string
+
+// EmbeddingRequest_Input 待向量化文本；字符串或字符串数组。
+type EmbeddingRequest_Input struct {
+	union json.RawMessage
+}
+
+// EmbeddingResponse defines model for EmbeddingResponse.
+type EmbeddingResponse struct {
+	Data   []EmbeddingObject `json:"data"`
+	Model  string            `json:"model"`
+	Object string            `json:"object"`
+	Usage  struct {
+		PromptTokens int `json:"prompt_tokens"`
+		TotalTokens  int `json:"total_tokens"`
+	} `json:"usage"`
+}
+
 // ErrorResponse defines model for ErrorResponse.
 type ErrorResponse struct {
 	Error struct {
@@ -3753,6 +3831,9 @@ type CreateVoiceSampleUploadPresignJSONRequestBody = TTSUploadPresignRequest
 // CreateChatCompletionJSONRequestBody defines body for CreateChatCompletion for application/json ContentType.
 type CreateChatCompletionJSONRequestBody = ChatCompletionRequest
 
+// CreateEmbeddingJSONRequestBody defines body for CreateEmbedding for application/json ContentType.
+type CreateEmbeddingJSONRequestBody = EmbeddingRequest
+
 // SubmitFeedbackJSONRequestBody defines body for SubmitFeedback for application/json ContentType.
 type SubmitFeedbackJSONRequestBody = FeedbackSubmitRequest
 
@@ -3938,6 +4019,130 @@ func (t ChatMessage_Content) MarshalJSON() ([]byte, error) {
 }
 
 func (t *ChatMessage_Content) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsEmbeddingObjectEmbedding0 returns the union data inside the EmbeddingObject_Embedding as a EmbeddingObjectEmbedding0
+func (t EmbeddingObject_Embedding) AsEmbeddingObjectEmbedding0() (EmbeddingObjectEmbedding0, error) {
+	var body EmbeddingObjectEmbedding0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromEmbeddingObjectEmbedding0 overwrites any union data inside the EmbeddingObject_Embedding as the provided EmbeddingObjectEmbedding0
+func (t *EmbeddingObject_Embedding) FromEmbeddingObjectEmbedding0(v EmbeddingObjectEmbedding0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeEmbeddingObjectEmbedding0 performs a merge with any union data inside the EmbeddingObject_Embedding, using the provided EmbeddingObjectEmbedding0
+func (t *EmbeddingObject_Embedding) MergeEmbeddingObjectEmbedding0(v EmbeddingObjectEmbedding0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsEmbeddingObjectEmbedding1 returns the union data inside the EmbeddingObject_Embedding as a EmbeddingObjectEmbedding1
+func (t EmbeddingObject_Embedding) AsEmbeddingObjectEmbedding1() (EmbeddingObjectEmbedding1, error) {
+	var body EmbeddingObjectEmbedding1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromEmbeddingObjectEmbedding1 overwrites any union data inside the EmbeddingObject_Embedding as the provided EmbeddingObjectEmbedding1
+func (t *EmbeddingObject_Embedding) FromEmbeddingObjectEmbedding1(v EmbeddingObjectEmbedding1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeEmbeddingObjectEmbedding1 performs a merge with any union data inside the EmbeddingObject_Embedding, using the provided EmbeddingObjectEmbedding1
+func (t *EmbeddingObject_Embedding) MergeEmbeddingObjectEmbedding1(v EmbeddingObjectEmbedding1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t EmbeddingObject_Embedding) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *EmbeddingObject_Embedding) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsEmbeddingRequestInput0 returns the union data inside the EmbeddingRequest_Input as a EmbeddingRequestInput0
+func (t EmbeddingRequest_Input) AsEmbeddingRequestInput0() (EmbeddingRequestInput0, error) {
+	var body EmbeddingRequestInput0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromEmbeddingRequestInput0 overwrites any union data inside the EmbeddingRequest_Input as the provided EmbeddingRequestInput0
+func (t *EmbeddingRequest_Input) FromEmbeddingRequestInput0(v EmbeddingRequestInput0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeEmbeddingRequestInput0 performs a merge with any union data inside the EmbeddingRequest_Input, using the provided EmbeddingRequestInput0
+func (t *EmbeddingRequest_Input) MergeEmbeddingRequestInput0(v EmbeddingRequestInput0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsEmbeddingRequestInput1 returns the union data inside the EmbeddingRequest_Input as a EmbeddingRequestInput1
+func (t EmbeddingRequest_Input) AsEmbeddingRequestInput1() (EmbeddingRequestInput1, error) {
+	var body EmbeddingRequestInput1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromEmbeddingRequestInput1 overwrites any union data inside the EmbeddingRequest_Input as the provided EmbeddingRequestInput1
+func (t *EmbeddingRequest_Input) FromEmbeddingRequestInput1(v EmbeddingRequestInput1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeEmbeddingRequestInput1 performs a merge with any union data inside the EmbeddingRequest_Input, using the provided EmbeddingRequestInput1
+func (t *EmbeddingRequest_Input) MergeEmbeddingRequestInput1(v EmbeddingRequestInput1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t EmbeddingRequest_Input) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *EmbeddingRequest_Input) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
