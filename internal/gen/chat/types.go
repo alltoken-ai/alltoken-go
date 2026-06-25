@@ -413,90 +413,6 @@ func (e ImageEditUploadIDRequestQuality) Valid() bool {
 	}
 }
 
-// Defines values for ImageEditUploadIDRequestBackground.
-const (
-	ImageEditUploadIDRequestBackgroundAuto        ImageEditUploadIDRequestBackground = "auto"
-	ImageEditUploadIDRequestBackgroundOpaque      ImageEditUploadIDRequestBackground = "opaque"
-	ImageEditUploadIDRequestBackgroundTransparent ImageEditUploadIDRequestBackground = "transparent"
-)
-
-// Valid indicates whether the value is a known member of the ImageEditUploadIDRequestBackground enum.
-func (e ImageEditUploadIDRequestBackground) Valid() bool {
-	switch e {
-	case ImageEditUploadIDRequestBackgroundAuto:
-		return true
-	case ImageEditUploadIDRequestBackgroundOpaque:
-		return true
-	case ImageEditUploadIDRequestBackgroundTransparent:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for ImageEditUploadIDRequestModeration.
-const (
-	ImageEditUploadIDRequestModerationAuto ImageEditUploadIDRequestModeration = "auto"
-	ImageEditUploadIDRequestModerationLow  ImageEditUploadIDRequestModeration = "low"
-)
-
-// Valid indicates whether the value is a known member of the ImageEditUploadIDRequestModeration enum.
-func (e ImageEditUploadIDRequestModeration) Valid() bool {
-	switch e {
-	case ImageEditUploadIDRequestModerationAuto:
-		return true
-	case ImageEditUploadIDRequestModerationLow:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for ImageEditUploadIDRequestOutputFormat.
-const (
-	ImageEditUploadIDRequestOutputFormatJpeg ImageEditUploadIDRequestOutputFormat = "jpeg"
-	ImageEditUploadIDRequestOutputFormatPng  ImageEditUploadIDRequestOutputFormat = "png"
-	ImageEditUploadIDRequestOutputFormatWebp ImageEditUploadIDRequestOutputFormat = "webp"
-)
-
-// Valid indicates whether the value is a known member of the ImageEditUploadIDRequestOutputFormat enum.
-func (e ImageEditUploadIDRequestOutputFormat) Valid() bool {
-	switch e {
-	case ImageEditUploadIDRequestOutputFormatJpeg:
-		return true
-	case ImageEditUploadIDRequestOutputFormatPng:
-		return true
-	case ImageEditUploadIDRequestOutputFormatWebp:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for ImageEditUploadIDRequestQuality.
-const (
-	ImageEditUploadIDRequestQualityAuto   ImageEditUploadIDRequestQuality = "auto"
-	ImageEditUploadIDRequestQualityHigh   ImageEditUploadIDRequestQuality = "high"
-	ImageEditUploadIDRequestQualityLow    ImageEditUploadIDRequestQuality = "low"
-	ImageEditUploadIDRequestQualityMedium ImageEditUploadIDRequestQuality = "medium"
-)
-
-// Valid indicates whether the value is a known member of the ImageEditUploadIDRequestQuality enum.
-func (e ImageEditUploadIDRequestQuality) Valid() bool {
-	switch e {
-	case ImageEditUploadIDRequestQualityAuto:
-		return true
-	case ImageEditUploadIDRequestQualityHigh:
-		return true
-	case ImageEditUploadIDRequestQualityLow:
-		return true
-	case ImageEditUploadIDRequestQualityMedium:
-		return true
-	default:
-		return false
-	}
-}
-
 // Defines values for ImageGenerationRequestBackground.
 const (
 	ImageGenerationRequestBackgroundAuto        ImageGenerationRequestBackground = "auto"
@@ -635,30 +551,6 @@ func (e ImageTaskStatusResponseStatus) Valid() bool {
 	case ImageTaskStatusResponseStatusProcessing:
 		return true
 	case ImageTaskStatusResponseStatusQueued:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for ImageVariationUploadIDRequestSize.
-const (
-	Auto       ImageVariationUploadIDRequestSize = "auto"
-	N1024x1024 ImageVariationUploadIDRequestSize = "1024x1024"
-	N1024x1536 ImageVariationUploadIDRequestSize = "1024x1536"
-	N1536x1024 ImageVariationUploadIDRequestSize = "1536x1024"
-)
-
-// Valid indicates whether the value is a known member of the ImageVariationUploadIDRequestSize enum.
-func (e ImageVariationUploadIDRequestSize) Valid() bool {
-	switch e {
-	case ImageVariationMultipartRequestSizeAuto:
-		return true
-	case ImageVariationMultipartRequestSizeN1024x1024:
-		return true
-	case ImageVariationMultipartRequestSizeN1024x1536:
-		return true
-	case ImageVariationMultipartRequestSizeN1536x1024:
 		return true
 	default:
 		return false
@@ -1001,6 +893,177 @@ func (e TTSUploadPresignResponseMethod) Valid() bool {
 	}
 }
 
+// Defines values for ThreedGenerationResponseInputMode.
+const (
+	ThreedGenerationResponseInputModeMultiImage  ThreedGenerationResponseInputMode = "multi_image"
+	ThreedGenerationResponseInputModeSingleImage ThreedGenerationResponseInputMode = "single_image"
+	ThreedGenerationResponseInputModeText        ThreedGenerationResponseInputMode = "text"
+)
+
+// Valid indicates whether the value is a known member of the ThreedGenerationResponseInputMode enum.
+func (e ThreedGenerationResponseInputMode) Valid() bool {
+	switch e {
+	case ThreedGenerationResponseInputModeMultiImage:
+		return true
+	case ThreedGenerationResponseInputModeSingleImage:
+		return true
+	case ThreedGenerationResponseInputModeText:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ThreedGenerationResponseObject.
+const (
+	ThreedGeneration ThreedGenerationResponseObject = "threed.generation"
+)
+
+// Valid indicates whether the value is a known member of the ThreedGenerationResponseObject enum.
+func (e ThreedGenerationResponseObject) Valid() bool {
+	switch e {
+	case ThreedGeneration:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ThreedGenerationResponseStatus.
+const (
+	ThreedGenerationResponseStatusCancelled  ThreedGenerationResponseStatus = "cancelled"
+	ThreedGenerationResponseStatusCancelling ThreedGenerationResponseStatus = "cancelling"
+	ThreedGenerationResponseStatusCompleted  ThreedGenerationResponseStatus = "completed"
+	ThreedGenerationResponseStatusExpired    ThreedGenerationResponseStatus = "expired"
+	ThreedGenerationResponseStatusFailed     ThreedGenerationResponseStatus = "failed"
+	ThreedGenerationResponseStatusProcessing ThreedGenerationResponseStatus = "processing"
+	ThreedGenerationResponseStatusQueued     ThreedGenerationResponseStatus = "queued"
+)
+
+// Valid indicates whether the value is a known member of the ThreedGenerationResponseStatus enum.
+func (e ThreedGenerationResponseStatus) Valid() bool {
+	switch e {
+	case ThreedGenerationResponseStatusCancelled:
+		return true
+	case ThreedGenerationResponseStatusCancelling:
+		return true
+	case ThreedGenerationResponseStatusCompleted:
+		return true
+	case ThreedGenerationResponseStatusExpired:
+		return true
+	case ThreedGenerationResponseStatusFailed:
+		return true
+	case ThreedGenerationResponseStatusProcessing:
+		return true
+	case ThreedGenerationResponseStatusQueued:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ThreedParametersDetailLevel.
+const (
+	ThreedParametersDetailLevelHigh   ThreedParametersDetailLevel = "high"
+	ThreedParametersDetailLevelLow    ThreedParametersDetailLevel = "low"
+	ThreedParametersDetailLevelMedium ThreedParametersDetailLevel = "medium"
+)
+
+// Valid indicates whether the value is a known member of the ThreedParametersDetailLevel enum.
+func (e ThreedParametersDetailLevel) Valid() bool {
+	switch e {
+	case ThreedParametersDetailLevelHigh:
+		return true
+	case ThreedParametersDetailLevelLow:
+		return true
+	case ThreedParametersDetailLevelMedium:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ThreedParametersFileFormat.
+const (
+	Glb  ThreedParametersFileFormat = "glb"
+	Obj  ThreedParametersFileFormat = "obj"
+	Usd  ThreedParametersFileFormat = "usd"
+	Usdz ThreedParametersFileFormat = "usdz"
+)
+
+// Valid indicates whether the value is a known member of the ThreedParametersFileFormat enum.
+func (e ThreedParametersFileFormat) Valid() bool {
+	switch e {
+	case Glb:
+		return true
+	case Obj:
+		return true
+	case Usd:
+		return true
+	case Usdz:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ThreedParametersTextureQuality.
+const (
+	Detailed ThreedParametersTextureQuality = "detailed"
+	Standard ThreedParametersTextureQuality = "standard"
+)
+
+// Valid indicates whether the value is a known member of the ThreedParametersTextureQuality enum.
+func (e ThreedParametersTextureQuality) Valid() bool {
+	switch e {
+	case Detailed:
+		return true
+	case Standard:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ThreedUsageDetailLevel.
+const (
+	ThreedUsageDetailLevelHigh   ThreedUsageDetailLevel = "high"
+	ThreedUsageDetailLevelLow    ThreedUsageDetailLevel = "low"
+	ThreedUsageDetailLevelMedium ThreedUsageDetailLevel = "medium"
+)
+
+// Valid indicates whether the value is a known member of the ThreedUsageDetailLevel enum.
+func (e ThreedUsageDetailLevel) Valid() bool {
+	switch e {
+	case ThreedUsageDetailLevelHigh:
+		return true
+	case ThreedUsageDetailLevelLow:
+		return true
+	case ThreedUsageDetailLevelMedium:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ThreedUsageTaskType.
+const (
+	ImageTo3d ThreedUsageTaskType = "image_to_3d"
+	TextTo3d  ThreedUsageTaskType = "text_to_3d"
+)
+
+// Valid indicates whether the value is a known member of the ThreedUsageTaskType enum.
+func (e ThreedUsageTaskType) Valid() bool {
+	switch e {
+	case ImageTo3d:
+		return true
+	case TextTo3d:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for ToolType.
 const (
 	ToolTypeFunction ToolType = "function"
@@ -1267,31 +1330,31 @@ func (e VideoGenerationRequestToolsType) Valid() bool {
 
 // Defines values for VideoTaskResponseInputType.
 const (
-	VideoTaskResponseInputTypeDraftTask           VideoTaskResponseInputType = "draft_task"
-	VideoTaskResponseInputTypeImageFirstFrame     VideoTaskResponseInputType = "image_first_frame"
-	VideoTaskResponseInputTypeImageFirstLastFrame VideoTaskResponseInputType = "image_first_last_frame"
-	VideoTaskResponseInputTypeImageReference      VideoTaskResponseInputType = "image_reference"
-	VideoTaskResponseInputTypeMultimodal          VideoTaskResponseInputType = "multimodal"
-	VideoTaskResponseInputTypeText                VideoTaskResponseInputType = "text"
-	VideoTaskResponseInputTypeVideoReference      VideoTaskResponseInputType = "video_reference"
+	DraftTask           VideoTaskResponseInputType = "draft_task"
+	ImageFirstFrame     VideoTaskResponseInputType = "image_first_frame"
+	ImageFirstLastFrame VideoTaskResponseInputType = "image_first_last_frame"
+	ImageReference      VideoTaskResponseInputType = "image_reference"
+	Multimodal          VideoTaskResponseInputType = "multimodal"
+	Text                VideoTaskResponseInputType = "text"
+	VideoReference      VideoTaskResponseInputType = "video_reference"
 )
 
 // Valid indicates whether the value is a known member of the VideoTaskResponseInputType enum.
 func (e VideoTaskResponseInputType) Valid() bool {
 	switch e {
-	case VideoTaskResponseInputTypeDraftTask:
+	case DraftTask:
 		return true
-	case VideoTaskResponseInputTypeImageFirstFrame:
+	case ImageFirstFrame:
 		return true
-	case VideoTaskResponseInputTypeImageFirstLastFrame:
+	case ImageFirstLastFrame:
 		return true
-	case VideoTaskResponseInputTypeImageReference:
+	case ImageReference:
 		return true
-	case VideoTaskResponseInputTypeMultimodal:
+	case Multimodal:
 		return true
-	case VideoTaskResponseInputTypeText:
+	case Text:
 		return true
-	case VideoTaskResponseInputTypeVideoReference:
+	case VideoReference:
 		return true
 	default:
 		return false
@@ -1363,25 +1426,25 @@ func (e VoiceTaskResponseObject) Valid() bool {
 
 // Defines values for VoiceTaskResponseStatus.
 const (
-	VoiceTaskResponseStatusCanceled  VoiceTaskResponseStatus = "canceled"
-	VoiceTaskResponseStatusCompleted VoiceTaskResponseStatus = "completed"
-	VoiceTaskResponseStatusFailed    VoiceTaskResponseStatus = "failed"
-	VoiceTaskResponseStatusQueued    VoiceTaskResponseStatus = "queued"
-	VoiceTaskResponseStatusRunning   VoiceTaskResponseStatus = "running"
+	Canceled  VoiceTaskResponseStatus = "canceled"
+	Completed VoiceTaskResponseStatus = "completed"
+	Failed    VoiceTaskResponseStatus = "failed"
+	Queued    VoiceTaskResponseStatus = "queued"
+	Running   VoiceTaskResponseStatus = "running"
 )
 
 // Valid indicates whether the value is a known member of the VoiceTaskResponseStatus enum.
 func (e VoiceTaskResponseStatus) Valid() bool {
 	switch e {
-	case VoiceTaskResponseStatusCanceled:
+	case Canceled:
 		return true
-	case VoiceTaskResponseStatusCompleted:
+	case Completed:
 		return true
-	case VoiceTaskResponseStatusFailed:
+	case Failed:
 		return true
-	case VoiceTaskResponseStatusQueued:
+	case Queued:
 		return true
-	case VoiceTaskResponseStatusRunning:
+	case Running:
 		return true
 	default:
 		return false
@@ -2308,40 +2371,6 @@ type ImageEditUploadIDRequestOutputFormat string
 // ImageEditUploadIDRequestQuality defines model for ImageEditUploadIDRequest.Quality.
 type ImageEditUploadIDRequestQuality string
 
-// ImageEditUploadIDRequest defines model for ImageEditUploadIDRequest.
-type ImageEditUploadIDRequest struct {
-	Background *ImageEditUploadIDRequestBackground `json:"background,omitempty"`
-
-	// ImageUploadId `POST /uploads/presign` 以 `purpose=image_edit_source` 返回的 upload_id。
-	ImageUploadId string `json:"image_upload_id"`
-
-	// MaskUploadId 可选 mask；必须来自 `purpose=image_edit_mask` 的 upload_id。
-	MaskUploadId      *string                               `json:"mask_upload_id,omitempty"`
-	Model             string                                `json:"model"`
-	Moderation        *ImageEditUploadIDRequestModeration   `json:"moderation,omitempty"`
-	N                 *int                                  `json:"n,omitempty"`
-	OutputCompression *int                                  `json:"output_compression,omitempty"`
-	OutputFormat      *ImageEditUploadIDRequestOutputFormat `json:"output_format,omitempty"`
-
-	// Prompt 编辑提示词，必填。
-	Prompt  string                           `json:"prompt"`
-	Quality *ImageEditUploadIDRequestQuality `json:"quality,omitempty"`
-	Size    *string                          `json:"size,omitempty"`
-	User    *string                          `json:"user,omitempty"`
-}
-
-// ImageEditUploadIDRequestBackground defines model for ImageEditUploadIDRequest.Background.
-type ImageEditUploadIDRequestBackground string
-
-// ImageEditUploadIDRequestModeration defines model for ImageEditUploadIDRequest.Moderation.
-type ImageEditUploadIDRequestModeration string
-
-// ImageEditUploadIDRequestOutputFormat defines model for ImageEditUploadIDRequest.OutputFormat.
-type ImageEditUploadIDRequestOutputFormat string
-
-// ImageEditUploadIDRequestQuality defines model for ImageEditUploadIDRequest.Quality.
-type ImageEditUploadIDRequestQuality string
-
 // ImageError defines model for ImageError.
 type ImageError struct {
 	Code    string  `json:"code"`
@@ -2435,18 +2464,6 @@ type ImageUsage struct {
 	OutputTokens *int `json:"output_tokens,omitempty"`
 	TotalTokens  *int `json:"total_tokens,omitempty"`
 }
-
-// ImageVariationUploadIDRequest defines model for ImageVariationUploadIDRequest.
-type ImageVariationUploadIDRequest struct {
-	// ImageUploadId `POST /uploads/presign` 以 `purpose=image_variation_source` 返回的 upload_id。
-	ImageUploadId string                             `json:"image_upload_id"`
-	Model         string                             `json:"model"`
-	Size          *ImageVariationUploadIDRequestSize `json:"size,omitempty"`
-	User          *string                            `json:"user,omitempty"`
-}
-
-// ImageVariationUploadIDRequestSize defines model for ImageVariationUploadIDRequest.Size.
-type ImageVariationUploadIDRequestSize string
 
 // ImageVariationUploadIDRequest defines model for ImageVariationUploadIDRequest.
 type ImageVariationUploadIDRequest struct {
@@ -2830,6 +2847,158 @@ type TTSUploadPresignResponse struct {
 
 // TTSUploadPresignResponseMethod defines model for TTSUploadPresignResponse.Method.
 type TTSUploadPresignResponseMethod string
+
+// ThreedAsset defines model for ThreedAsset.
+type ThreedAsset struct {
+	// ContainedFormats 仅 role=archive 填，描述压缩包内的文件格式（如 `[glb]`）
+	ContainedFormats *[]string `json:"contained_formats,omitempty"`
+
+	// ExpiresAt 该 asset 的失效时间
+	ExpiresAt *time.Time `json:"expires_at,omitempty"`
+
+	// Format 文件格式（glb / png / zip / 未来 fbx / obj 等）
+	Format string `json:"format"`
+
+	// MimeType MIME 类型（`model/gltf-binary` / `image/png` / `application/zip`）
+	MimeType *string `json:"mime_type,omitempty"`
+
+	// Role 资产类型。OpenAPI 用 string 而非 enum（未来供应商可能新增 role）。已知值：
+	// - `textured_model`：tripo PBR 带贴图模型
+	// - `base_mesh`：tripo 基础几何无贴图
+	// - `preview`：tripo 预览渲染图
+	// - `archive`：seed3d zip（含 contained_formats[]）
+	Role string `json:"role"`
+
+	// Url 上游签名 URL 或固定 URL（无签名）；按 expires_at 失效
+	Url string `json:"url"`
+}
+
+// ThreedError defines model for ThreedError.
+type ThreedError struct {
+	Code    string  `json:"code"`
+	Message string  `json:"message"`
+	Type    *string `json:"type,omitempty"`
+}
+
+// ThreedGenerationRequest defines model for ThreedGenerationRequest.
+type ThreedGenerationRequest struct {
+	// Input 三选一互斥（prompt xor image xor images）；按模型 capability 校验，跨族错配返 400。
+	Input ThreedInput `json:"input"`
+
+	// Model 网关模型 ID（`tripo-h3.1` / `tripo-p1.0` / `seed3d-2.0`）
+	Model string `json:"model"`
+
+	// Parameters 公共参数；不在模型 capability 接受集内的字段传入会返 400 `param_not_supported_for_model`（不静默忽略）。
+	Parameters *ThreedParameters `json:"parameters,omitempty"`
+}
+
+// ThreedGenerationResponse defines model for ThreedGenerationResponse.
+type ThreedGenerationResponse struct {
+	// Assets 仅 status=completed 时填；按 model api_format 投影（tripo 3 资产 / seed3d 单 archive）
+	Assets      *[]ThreedAsset `json:"assets,omitempty"`
+	CompletedAt *time.Time     `json:"completed_at,omitempty"`
+	CreatedAt   time.Time      `json:"created_at"`
+	Error       *ThreedError   `json:"error,omitempty"`
+
+	// ExpiresAt 顶层 expires_at = min(assets[].expires_at)
+	ExpiresAt *time.Time `json:"expires_at,omitempty"`
+
+	// ExpiresIn 距离 expires_at 的剩余秒数
+	ExpiresIn *int `json:"expires_in,omitempty"`
+
+	// Id 任务 ID，前缀 `td3d_`
+	Id        string                             `json:"id"`
+	InputMode *ThreedGenerationResponseInputMode `json:"input_mode,omitempty"`
+
+	// IsExpired 仅 completed 状态有意义；true 时 HTTP 410 + error.code=result_expired
+	IsExpired bool                           `json:"is_expired"`
+	Model     string                         `json:"model"`
+	Object    ThreedGenerationResponseObject `json:"object"`
+
+	// Status 注意：completed 任务过期时 status **保留为 completed**，过期信号通过 `is_expired=true` + HTTP 410 + `error.code=result_expired` 表达。
+	Status    ThreedGenerationResponseStatus `json:"status"`
+	UpdatedAt *time.Time                     `json:"updated_at,omitempty"`
+	Usage     *ThreedUsage                   `json:"usage,omitempty"`
+}
+
+// ThreedGenerationResponseInputMode defines model for ThreedGenerationResponse.InputMode.
+type ThreedGenerationResponseInputMode string
+
+// ThreedGenerationResponseObject defines model for ThreedGenerationResponse.Object.
+type ThreedGenerationResponseObject string
+
+// ThreedGenerationResponseStatus 注意：completed 任务过期时 status **保留为 completed**，过期信号通过 `is_expired=true` + HTTP 410 + `error.code=result_expired` 表达。
+type ThreedGenerationResponseStatus string
+
+// ThreedInput 三选一互斥（prompt xor image xor images）；按模型 capability 校验，跨族错配返 400。
+type ThreedInput struct {
+	// Image 单图生 3D 图片 URL（tripo + seed3d 支持；仅 https，禁 base64，SSRF 黑名单校验）
+	Image *string `json:"image,omitempty"`
+
+	// Images 多图生 3D（仅 tripo 支持，2-4 张 URL）
+	Images *[]string `json:"images,omitempty"`
+
+	// Prompt 文生 3D 提示词（仅 tripo 支持）
+	Prompt *string `json:"prompt,omitempty"`
+}
+
+// ThreedParameters 公共参数；不在模型 capability 接受集内的字段传入会返 400 `param_not_supported_for_model`（不静默忽略）。
+type ThreedParameters struct {
+	// DetailLevel 公共档位。
+	// - seed3d-2.0：直接映射 `--subdivisionlevel low/medium/high`
+	// - tripo-h3.1：low/medium → 上游 geometry_quality=standard；high → ultra
+	// - tripo-p1.0：仅接受 low/medium（不接 high，上游无 ultra 档位）
+	DetailLevel *ThreedParametersDetailLevel `json:"detail_level,omitempty"`
+
+	// FileFormat 输出文件格式（仅 seed3d；tripo 固定 glb）
+	FileFormat *ThreedParametersFileFormat `json:"file_format,omitempty"`
+
+	// Pbr 是否生成 PBR 材质（仅 tripo）
+	Pbr *bool `json:"pbr,omitempty"`
+
+	// Texture 是否生成贴图（仅 tripo）
+	Texture *bool `json:"texture,omitempty"`
+
+	// TextureQuality 仅 tripo 系列；seed3d 传入返 400
+	TextureQuality *ThreedParametersTextureQuality `json:"texture_quality,omitempty"`
+}
+
+// ThreedParametersDetailLevel 公共档位。
+// - seed3d-2.0：直接映射 `--subdivisionlevel low/medium/high`
+// - tripo-h3.1：low/medium → 上游 geometry_quality=standard；high → ultra
+// - tripo-p1.0：仅接受 low/medium（不接 high，上游无 ultra 档位）
+type ThreedParametersDetailLevel string
+
+// ThreedParametersFileFormat 输出文件格式（仅 seed3d；tripo 固定 glb）
+type ThreedParametersFileFormat string
+
+// ThreedParametersTextureQuality 仅 tripo 系列；seed3d 传入返 400
+type ThreedParametersTextureQuality string
+
+// ThreedUsage defines model for ThreedUsage.
+type ThreedUsage struct {
+	// CompletionTokens 仅 seed3d；火山按 token 计费的审计字段（v1 chat 侧按任务计费）
+	CompletionTokens *int64 `json:"completion_tokens,omitempty"`
+
+	// Count 通常 1
+	Count *int `json:"count,omitempty"`
+
+	// DetailLevel 请求参数回显
+	DetailLevel *ThreedUsageDetailLevel `json:"detail_level,omitempty"`
+
+	// FileFormat 仅 seed3d
+	FileFormat *string              `json:"file_format,omitempty"`
+	TaskType   *ThreedUsageTaskType `json:"task_type,omitempty"`
+
+	// TextureQuality 仅 tripo
+	TextureQuality *string `json:"texture_quality,omitempty"`
+}
+
+// ThreedUsageDetailLevel 请求参数回显
+type ThreedUsageDetailLevel string
+
+// ThreedUsageTaskType defines model for ThreedUsage.TaskType.
+type ThreedUsageTaskType string
 
 // TokenBalance defines model for TokenBalance.
 type TokenBalance struct {
@@ -3409,6 +3578,17 @@ type Unauthorized = ErrorResponse
 // UnprocessableEntity defines model for UnprocessableEntity.
 type UnprocessableEntity = ErrorResponse
 
+// Create3DGenerationParams defines parameters for Create3DGeneration.
+type Create3DGenerationParams struct {
+	IdempotencyKey *string `json:"Idempotency-Key,omitempty"`
+}
+
+// CreateAsync3DGenerationParams defines parameters for CreateAsync3DGeneration.
+type CreateAsync3DGenerationParams struct {
+	// IdempotencyKey 24h 短期去重；命中时直接返既有 task 的当前状态。
+	IdempotencyKey *string `json:"Idempotency-Key,omitempty"`
+}
+
 // CreateAudioVoiceTaskParams defines parameters for CreateAudioVoiceTask.
 type CreateAudioVoiceTaskParams struct {
 	// IdempotencyKey 24-hour idempotency key for voice task creation.
@@ -3554,6 +3734,12 @@ type ListVideoGenerationsParams struct {
 	// Status queued / processing / completed / failed / expired / cancelled
 	Status *string `form:"status,omitempty" json:"status,omitempty"`
 }
+
+// Create3DGenerationJSONRequestBody defines body for Create3DGeneration for application/json ContentType.
+type Create3DGenerationJSONRequestBody = ThreedGenerationRequest
+
+// CreateAsync3DGenerationJSONRequestBody defines body for CreateAsync3DGeneration for application/json ContentType.
+type CreateAsync3DGenerationJSONRequestBody = ThreedGenerationRequest
 
 // CreateSpeechJSONRequestBody defines body for CreateSpeech for application/json ContentType.
 type CreateSpeechJSONRequestBody = TTSSpeechRequest
