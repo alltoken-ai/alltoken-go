@@ -413,6 +413,90 @@ func (e ImageEditUploadIDRequestQuality) Valid() bool {
 	}
 }
 
+// Defines values for ImageEditUploadIDRequestBackground.
+const (
+	ImageEditUploadIDRequestBackgroundAuto        ImageEditUploadIDRequestBackground = "auto"
+	ImageEditUploadIDRequestBackgroundOpaque      ImageEditUploadIDRequestBackground = "opaque"
+	ImageEditUploadIDRequestBackgroundTransparent ImageEditUploadIDRequestBackground = "transparent"
+)
+
+// Valid indicates whether the value is a known member of the ImageEditUploadIDRequestBackground enum.
+func (e ImageEditUploadIDRequestBackground) Valid() bool {
+	switch e {
+	case ImageEditUploadIDRequestBackgroundAuto:
+		return true
+	case ImageEditUploadIDRequestBackgroundOpaque:
+		return true
+	case ImageEditUploadIDRequestBackgroundTransparent:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ImageEditUploadIDRequestModeration.
+const (
+	ImageEditUploadIDRequestModerationAuto ImageEditUploadIDRequestModeration = "auto"
+	ImageEditUploadIDRequestModerationLow  ImageEditUploadIDRequestModeration = "low"
+)
+
+// Valid indicates whether the value is a known member of the ImageEditUploadIDRequestModeration enum.
+func (e ImageEditUploadIDRequestModeration) Valid() bool {
+	switch e {
+	case ImageEditUploadIDRequestModerationAuto:
+		return true
+	case ImageEditUploadIDRequestModerationLow:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ImageEditUploadIDRequestOutputFormat.
+const (
+	ImageEditUploadIDRequestOutputFormatJpeg ImageEditUploadIDRequestOutputFormat = "jpeg"
+	ImageEditUploadIDRequestOutputFormatPng  ImageEditUploadIDRequestOutputFormat = "png"
+	ImageEditUploadIDRequestOutputFormatWebp ImageEditUploadIDRequestOutputFormat = "webp"
+)
+
+// Valid indicates whether the value is a known member of the ImageEditUploadIDRequestOutputFormat enum.
+func (e ImageEditUploadIDRequestOutputFormat) Valid() bool {
+	switch e {
+	case ImageEditUploadIDRequestOutputFormatJpeg:
+		return true
+	case ImageEditUploadIDRequestOutputFormatPng:
+		return true
+	case ImageEditUploadIDRequestOutputFormatWebp:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ImageEditUploadIDRequestQuality.
+const (
+	ImageEditUploadIDRequestQualityAuto   ImageEditUploadIDRequestQuality = "auto"
+	ImageEditUploadIDRequestQualityHigh   ImageEditUploadIDRequestQuality = "high"
+	ImageEditUploadIDRequestQualityLow    ImageEditUploadIDRequestQuality = "low"
+	ImageEditUploadIDRequestQualityMedium ImageEditUploadIDRequestQuality = "medium"
+)
+
+// Valid indicates whether the value is a known member of the ImageEditUploadIDRequestQuality enum.
+func (e ImageEditUploadIDRequestQuality) Valid() bool {
+	switch e {
+	case ImageEditUploadIDRequestQualityAuto:
+		return true
+	case ImageEditUploadIDRequestQualityHigh:
+		return true
+	case ImageEditUploadIDRequestQualityLow:
+		return true
+	case ImageEditUploadIDRequestQualityMedium:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for ImageGenerationRequestBackground.
 const (
 	ImageGenerationRequestBackgroundAuto        ImageGenerationRequestBackground = "auto"
@@ -475,19 +559,19 @@ func (e ImageGenerationRequestModeration) Valid() bool {
 
 // Defines values for ImageGenerationRequestOutputFormat.
 const (
-	ImageGenerationRequestOutputFormatJpeg ImageGenerationRequestOutputFormat = "jpeg"
-	ImageGenerationRequestOutputFormatPng  ImageGenerationRequestOutputFormat = "png"
-	ImageGenerationRequestOutputFormatWebp ImageGenerationRequestOutputFormat = "webp"
+	Jpeg ImageGenerationRequestOutputFormat = "jpeg"
+	Png  ImageGenerationRequestOutputFormat = "png"
+	Webp ImageGenerationRequestOutputFormat = "webp"
 )
 
 // Valid indicates whether the value is a known member of the ImageGenerationRequestOutputFormat enum.
 func (e ImageGenerationRequestOutputFormat) Valid() bool {
 	switch e {
-	case ImageGenerationRequestOutputFormatJpeg:
+	case Jpeg:
 		return true
-	case ImageGenerationRequestOutputFormatPng:
+	case Png:
 		return true
-	case ImageGenerationRequestOutputFormatWebp:
+	case Webp:
 		return true
 	default:
 		return false
@@ -551,6 +635,30 @@ func (e ImageTaskStatusResponseStatus) Valid() bool {
 	case ImageTaskStatusResponseStatusProcessing:
 		return true
 	case ImageTaskStatusResponseStatusQueued:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ImageVariationUploadIDRequestSize.
+const (
+	Auto       ImageVariationUploadIDRequestSize = "auto"
+	N1024x1024 ImageVariationUploadIDRequestSize = "1024x1024"
+	N1024x1536 ImageVariationUploadIDRequestSize = "1024x1536"
+	N1536x1024 ImageVariationUploadIDRequestSize = "1536x1024"
+)
+
+// Valid indicates whether the value is a known member of the ImageVariationUploadIDRequestSize enum.
+func (e ImageVariationUploadIDRequestSize) Valid() bool {
+	switch e {
+	case ImageVariationMultipartRequestSizeAuto:
+		return true
+	case ImageVariationMultipartRequestSizeN1024x1024:
+		return true
+	case ImageVariationMultipartRequestSizeN1024x1536:
+		return true
+	case ImageVariationMultipartRequestSizeN1536x1024:
 		return true
 	default:
 		return false
@@ -2200,6 +2308,40 @@ type ImageEditUploadIDRequestOutputFormat string
 // ImageEditUploadIDRequestQuality defines model for ImageEditUploadIDRequest.Quality.
 type ImageEditUploadIDRequestQuality string
 
+// ImageEditUploadIDRequest defines model for ImageEditUploadIDRequest.
+type ImageEditUploadIDRequest struct {
+	Background *ImageEditUploadIDRequestBackground `json:"background,omitempty"`
+
+	// ImageUploadId `POST /uploads/presign` 以 `purpose=image_edit_source` 返回的 upload_id。
+	ImageUploadId string `json:"image_upload_id"`
+
+	// MaskUploadId 可选 mask；必须来自 `purpose=image_edit_mask` 的 upload_id。
+	MaskUploadId      *string                               `json:"mask_upload_id,omitempty"`
+	Model             string                                `json:"model"`
+	Moderation        *ImageEditUploadIDRequestModeration   `json:"moderation,omitempty"`
+	N                 *int                                  `json:"n,omitempty"`
+	OutputCompression *int                                  `json:"output_compression,omitempty"`
+	OutputFormat      *ImageEditUploadIDRequestOutputFormat `json:"output_format,omitempty"`
+
+	// Prompt 编辑提示词，必填。
+	Prompt  string                           `json:"prompt"`
+	Quality *ImageEditUploadIDRequestQuality `json:"quality,omitempty"`
+	Size    *string                          `json:"size,omitempty"`
+	User    *string                          `json:"user,omitempty"`
+}
+
+// ImageEditUploadIDRequestBackground defines model for ImageEditUploadIDRequest.Background.
+type ImageEditUploadIDRequestBackground string
+
+// ImageEditUploadIDRequestModeration defines model for ImageEditUploadIDRequest.Moderation.
+type ImageEditUploadIDRequestModeration string
+
+// ImageEditUploadIDRequestOutputFormat defines model for ImageEditUploadIDRequest.OutputFormat.
+type ImageEditUploadIDRequestOutputFormat string
+
+// ImageEditUploadIDRequestQuality defines model for ImageEditUploadIDRequest.Quality.
+type ImageEditUploadIDRequestQuality string
+
 // ImageError defines model for ImageError.
 type ImageError struct {
 	Code    string  `json:"code"`
@@ -2293,6 +2435,18 @@ type ImageUsage struct {
 	OutputTokens *int `json:"output_tokens,omitempty"`
 	TotalTokens  *int `json:"total_tokens,omitempty"`
 }
+
+// ImageVariationUploadIDRequest defines model for ImageVariationUploadIDRequest.
+type ImageVariationUploadIDRequest struct {
+	// ImageUploadId `POST /uploads/presign` 以 `purpose=image_variation_source` 返回的 upload_id。
+	ImageUploadId string                             `json:"image_upload_id"`
+	Model         string                             `json:"model"`
+	Size          *ImageVariationUploadIDRequestSize `json:"size,omitempty"`
+	User          *string                            `json:"user,omitempty"`
+}
+
+// ImageVariationUploadIDRequestSize defines model for ImageVariationUploadIDRequest.Size.
+type ImageVariationUploadIDRequestSize string
 
 // ImageVariationUploadIDRequest defines model for ImageVariationUploadIDRequest.
 type ImageVariationUploadIDRequest struct {
