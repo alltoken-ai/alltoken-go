@@ -493,19 +493,19 @@ func (e ImageGenerationRequestModeration) Valid() bool {
 
 // Defines values for ImageGenerationRequestOutputFormat.
 const (
-	Jpeg ImageGenerationRequestOutputFormat = "jpeg"
-	Png  ImageGenerationRequestOutputFormat = "png"
-	Webp ImageGenerationRequestOutputFormat = "webp"
+	ImageGenerationRequestOutputFormatJpeg ImageGenerationRequestOutputFormat = "jpeg"
+	ImageGenerationRequestOutputFormatPng  ImageGenerationRequestOutputFormat = "png"
+	ImageGenerationRequestOutputFormatWebp ImageGenerationRequestOutputFormat = "webp"
 )
 
 // Valid indicates whether the value is a known member of the ImageGenerationRequestOutputFormat enum.
 func (e ImageGenerationRequestOutputFormat) Valid() bool {
 	switch e {
-	case Jpeg:
+	case ImageGenerationRequestOutputFormatJpeg:
 		return true
-	case Png:
+	case ImageGenerationRequestOutputFormatPng:
 		return true
-	case Webp:
+	case ImageGenerationRequestOutputFormatWebp:
 		return true
 	default:
 		return false
