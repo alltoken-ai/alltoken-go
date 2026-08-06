@@ -3379,12 +3379,16 @@ type VideoCapabilitiesDurationType string
 // VideoContentItem defines model for VideoContentItem.
 type VideoContentItem struct {
 	AudioUrl *struct {
+		// Url 公网可访问的 `http(s)` 地址。**`data:` base64 内联已下线**（2026-08-06），
+		// 本地文件请先走 `POST /uploads/presign` 直传后用 `upload_id` 引用。
 		Url *string `json:"url,omitempty"`
 	} `json:"audio_url,omitempty"`
 	DraftTask *struct {
 		Id *string `json:"id,omitempty"`
 	} `json:"draft_task,omitempty"`
 	ImageUrl *struct {
+		// Url 公网可访问的 `http(s)` 地址。**`data:` base64 内联已下线**（2026-08-06），
+		// 本地文件请先走 `POST /uploads/presign` 直传后用 `upload_id` 引用。
 		Url *string `json:"url,omitempty"`
 	} `json:"image_url,omitempty"`
 	Role *VideoContentItemRole `json:"role,omitempty"`
@@ -3397,9 +3401,12 @@ type VideoContentItem struct {
 	// 与同一 item 内的 URL 字段互斥；任务终态后输入对象会被删除。
 	UploadId *string `json:"upload_id,omitempty"`
 
-	// Url 简化格式（type=image/video/audio 时）
+	// Url 简化格式（type=image/video/audio 时）。同样只接受公网 `http(s)` 地址；
+	// `data:` base64 内联已下线（2026-08-06）。
 	Url      *string `json:"url,omitempty"`
 	VideoUrl *struct {
+		// Url 公网可访问的 `http(s)` 地址。**`data:` base64 内联已下线**（2026-08-06），
+		// 本地文件请先走 `POST /uploads/presign` 直传后用 `upload_id` 引用。
 		Url *string `json:"url,omitempty"`
 	} `json:"video_url,omitempty"`
 }
