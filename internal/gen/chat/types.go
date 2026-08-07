@@ -3814,10 +3814,23 @@ type CallPortraitActionParamsVersion string
 
 // ListVideoGenerationsParams defines parameters for ListVideoGenerations.
 type ListVideoGenerationsParams struct {
+	// PageNum 页码，默认 1。
+	PageNum *int `form:"page_num,omitempty" json:"page_num,omitempty"`
+
+	// PageSize 每页数量，默认 20，最大 500；与 `limit` 同时传入时优先使用本参数。
+	PageSize *int `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Limit `page_size` 的兼容别名；仅在未传 `page_size` 时生效。
 	Limit *int `form:"limit,omitempty" json:"limit,omitempty"`
 
 	// Status queued / processing / completed / failed / expired / cancelled
 	Status *string `form:"status,omitempty" json:"status,omitempty"`
+}
+
+// CreateVideoGenerationParams defines parameters for CreateVideoGeneration.
+type CreateVideoGenerationParams struct {
+	// IdempotencyKey 当前 API Key 下永久唯一的请求标识；建议使用 UUID。
+	IdempotencyKey *string `json:"Idempotency-Key,omitempty"`
 }
 
 // Create3DGenerationJSONRequestBody defines body for Create3DGeneration for application/json ContentType.
