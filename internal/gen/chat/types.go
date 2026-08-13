@@ -577,22 +577,22 @@ func (e ImageTaskStatusResponseStatus) Valid() bool {
 
 // Defines values for ImageVariationUploadIDRequestSize.
 const (
-	Auto       ImageVariationUploadIDRequestSize = "auto"
-	N1024x1024 ImageVariationUploadIDRequestSize = "1024x1024"
-	N1024x1536 ImageVariationUploadIDRequestSize = "1024x1536"
-	N1536x1024 ImageVariationUploadIDRequestSize = "1536x1024"
+	ImageVariationUploadIDRequestSizeAuto       ImageVariationUploadIDRequestSize = "auto"
+	ImageVariationUploadIDRequestSizeN1024x1024 ImageVariationUploadIDRequestSize = "1024x1024"
+	ImageVariationUploadIDRequestSizeN1024x1536 ImageVariationUploadIDRequestSize = "1024x1536"
+	ImageVariationUploadIDRequestSizeN1536x1024 ImageVariationUploadIDRequestSize = "1536x1024"
 )
 
 // Valid indicates whether the value is a known member of the ImageVariationUploadIDRequestSize enum.
 func (e ImageVariationUploadIDRequestSize) Valid() bool {
 	switch e {
-	case Auto:
+	case ImageVariationUploadIDRequestSizeAuto:
 		return true
-	case N1024x1024:
+	case ImageVariationUploadIDRequestSizeN1024x1024:
 		return true
-	case N1024x1536:
+	case ImageVariationUploadIDRequestSizeN1024x1536:
 		return true
-	case N1536x1024:
+	case ImageVariationUploadIDRequestSizeN1536x1024:
 		return true
 	default:
 		return false
@@ -1253,6 +1253,48 @@ func (e VideoContentItemType) Valid() bool {
 	case VideoContentItemTypeVideo:
 		return true
 	case VideoContentItemTypeVideoUrl:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for VideoGenerationRequestOmniReferenceTaskType.
+const (
+	VideoGenerationRequestOmniReferenceTaskTypeAuto   VideoGenerationRequestOmniReferenceTaskType = "auto"
+	VideoGenerationRequestOmniReferenceTaskTypeEdit   VideoGenerationRequestOmniReferenceTaskType = "edit"
+	VideoGenerationRequestOmniReferenceTaskTypeEmpty  VideoGenerationRequestOmniReferenceTaskType = ""
+	VideoGenerationRequestOmniReferenceTaskTypeExtend VideoGenerationRequestOmniReferenceTaskType = "extend"
+)
+
+// Valid indicates whether the value is a known member of the VideoGenerationRequestOmniReferenceTaskType enum.
+func (e VideoGenerationRequestOmniReferenceTaskType) Valid() bool {
+	switch e {
+	case VideoGenerationRequestOmniReferenceTaskTypeAuto:
+		return true
+	case VideoGenerationRequestOmniReferenceTaskTypeEdit:
+		return true
+	case VideoGenerationRequestOmniReferenceTaskTypeEmpty:
+		return true
+	case VideoGenerationRequestOmniReferenceTaskTypeExtend:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for VideoGenerationRequestOutputFormat.
+const (
+	Mov VideoGenerationRequestOutputFormat = "mov"
+	Mp4 VideoGenerationRequestOutputFormat = "mp4"
+)
+
+// Valid indicates whether the value is a known member of the VideoGenerationRequestOutputFormat enum.
+func (e VideoGenerationRequestOutputFormat) Valid() bool {
+	switch e {
+	case Mov:
+		return true
+	case Mp4:
 		return true
 	default:
 		return false
@@ -3430,8 +3472,9 @@ type VideoGenerationRequest struct {
 	// - `seedance-1.0-pro` / `seedance-1.0-pro-fast`：`[2, 12]` 任意整数
 	// - `seedance-1.5-pro`：`[4, 12]` 任意整数 或 `-1`
 	// - `seedance-2.0` / `seedance-2.0-fast`：`[4, 15]` 任意整数 或 `-1`
+	// - `seedance-2.5`：`[4, 30]` 任意整数 或 `-1`
 	//
-	// **`-1`（智能时长）**：由模型在有效范围内自主选择，**仅 1.5-pro / 2.0 系列支持**。
+	// **`-1`（智能时长）**：由模型在有效范围内自主选择，**仅 1.5-pro / 2.0 / 2.5 系列支持**。
 	//
 	// **`0` 或不传**：使用上游默认值（5）。
 	//
@@ -3455,10 +3498,29 @@ type VideoGenerationRequest struct {
 	GenerateAudio *bool `json:"generate_audio,omitempty"`
 
 	// InputHasVideo 输入是否包含视频（图生视频）
-	InputHasVideo    *bool                              `json:"input_has_video,omitempty"`
-	Model            string                             `json:"model"`
-	Prompt           string                             `json:"prompt"`
-	Ratio            *VideoGenerationRequestRatio       `json:"ratio,omitempty"`
+	InputHasVideo *bool  `json:"input_has_video,omitempty"`
+	Model         string `json:"model"`
+
+	// OmniReferenceTaskType 全模态参考生视频任务类型声明，**仅 `seedance-2.5` 支持**。
+	//
+	// - 不传 / `auto`：模型自行判断任务类型；参数不合规时任务**异步失败**（提交已成功、预扣已发生）。
+	// - `edit`（视频编辑）：要求 `ratio=adaptive` 且 `duration=-1`，否则网关本地拦截为
+	//   `400 invalid_request`（预扣之前，不会产生异步失败）。
+	// - `extend`（视频延长）：要求 `ratio=adaptive`，否则网关本地拦截为 `400 invalid_request`。
+	OmniReferenceTaskType *VideoGenerationRequestOmniReferenceTaskType `json:"omni_reference_task_type,omitempty"`
+
+	// OutputFormat 输出容器格式，**仅 `seedance-2.5` 支持**。不传或其他模型使用时按上游默认 `mp4` 处理。
+	//
+	// `mov` 面向专业后期（yuv444p 色度采样 + PCM 音频编码），浏览器不保证能播放，
+	// 建议仅在 API 集成场景使用。
+	OutputFormat *VideoGenerationRequestOutputFormat `json:"output_format,omitempty"`
+	Prompt       string                              `json:"prompt"`
+	Ratio        *VideoGenerationRequestRatio        `json:"ratio,omitempty"`
+
+	// Resolution 输出分辨率。**取值范围按模型差异化**：`seedance-2.5` 仅支持 `480p` / `720p`
+	// （不支持 `1080p`），其余 Seedance 系列支持全部三档。
+	//
+	// 传入模型不支持的档位会被网关 fail-fast 拦截为 `400 invalid_request`。
 	Resolution       *VideoGenerationRequestResolution  `json:"resolution,omitempty"`
 	ReturnLastFrame  *bool                              `json:"return_last_frame,omitempty"`
 	SafetyIdentifier *string                            `json:"safety_identifier,omitempty"`
@@ -3472,10 +3534,27 @@ type VideoGenerationRequest struct {
 	Watermark *bool `json:"watermark,omitempty"`
 }
 
+// VideoGenerationRequestOmniReferenceTaskType 全模态参考生视频任务类型声明，**仅 `seedance-2.5` 支持**。
+//
+//   - 不传 / `auto`：模型自行判断任务类型；参数不合规时任务**异步失败**（提交已成功、预扣已发生）。
+//   - `edit`（视频编辑）：要求 `ratio=adaptive` 且 `duration=-1`，否则网关本地拦截为
+//     `400 invalid_request`（预扣之前，不会产生异步失败）。
+//   - `extend`（视频延长）：要求 `ratio=adaptive`，否则网关本地拦截为 `400 invalid_request`。
+type VideoGenerationRequestOmniReferenceTaskType string
+
+// VideoGenerationRequestOutputFormat 输出容器格式，**仅 `seedance-2.5` 支持**。不传或其他模型使用时按上游默认 `mp4` 处理。
+//
+// `mov` 面向专业后期（yuv444p 色度采样 + PCM 音频编码），浏览器不保证能播放，
+// 建议仅在 API 集成场景使用。
+type VideoGenerationRequestOutputFormat string
+
 // VideoGenerationRequestRatio defines model for VideoGenerationRequest.Ratio.
 type VideoGenerationRequestRatio string
 
-// VideoGenerationRequestResolution defines model for VideoGenerationRequest.Resolution.
+// VideoGenerationRequestResolution 输出分辨率。**取值范围按模型差异化**：`seedance-2.5` 仅支持 `480p` / `720p`
+// （不支持 `1080p`），其余 Seedance 系列支持全部三档。
+//
+// 传入模型不支持的档位会被网关 fail-fast 拦截为 `400 invalid_request`。
 type VideoGenerationRequestResolution string
 
 // VideoGenerationRequestServiceTier defines model for VideoGenerationRequest.ServiceTier.
