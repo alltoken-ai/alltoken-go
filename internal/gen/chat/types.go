@@ -71,6 +71,7 @@ func (e AudioVoiceObjectSource) Valid() bool {
 // Defines values for ChatCompletionRequestResponseFormatType.
 const (
 	ChatCompletionRequestResponseFormatTypeJsonObject ChatCompletionRequestResponseFormatType = "json_object"
+	ChatCompletionRequestResponseFormatTypeJsonSchema ChatCompletionRequestResponseFormatType = "json_schema"
 	ChatCompletionRequestResponseFormatTypeText       ChatCompletionRequestResponseFormatType = "text"
 )
 
@@ -79,7 +80,27 @@ func (e ChatCompletionRequestResponseFormatType) Valid() bool {
 	switch e {
 	case ChatCompletionRequestResponseFormatTypeJsonObject:
 		return true
+	case ChatCompletionRequestResponseFormatTypeJsonSchema:
+		return true
 	case ChatCompletionRequestResponseFormatTypeText:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ChatCompletionRequestThinking1Type.
+const (
+	Disabled ChatCompletionRequestThinking1Type = "disabled"
+	Enabled  ChatCompletionRequestThinking1Type = "enabled"
+)
+
+// Valid indicates whether the value is a known member of the ChatCompletionRequestThinking1Type enum.
+func (e ChatCompletionRequestThinking1Type) Valid() bool {
+	switch e {
+	case Disabled:
+		return true
+	case Enabled:
 		return true
 	default:
 		return false
@@ -104,6 +125,7 @@ func (e ChatCompletionResponseObject) Valid() bool {
 // Defines values for ChatMessageRole.
 const (
 	ChatMessageRoleAssistant ChatMessageRole = "assistant"
+	ChatMessageRoleDeveloper ChatMessageRole = "developer"
 	ChatMessageRoleSystem    ChatMessageRole = "system"
 	ChatMessageRoleTool      ChatMessageRole = "tool"
 	ChatMessageRoleUser      ChatMessageRole = "user"
@@ -113,6 +135,8 @@ const (
 func (e ChatMessageRole) Valid() bool {
 	switch e {
 	case ChatMessageRoleAssistant:
+		return true
+	case ChatMessageRoleDeveloper:
 		return true
 	case ChatMessageRoleSystem:
 		return true
@@ -2024,17 +2048,21 @@ type ChatCompletionRequest struct {
 	N                *int          `json:"n,omitempty"`
 	PresencePenalty  *float32      `json:"presence_penalty,omitempty"`
 	ResponseFormat   *struct {
-		Type *ChatCompletionRequestResponseFormatType `json:"type,omitempty"`
+		// JsonSchema Structured Outputs：type=json_schema 时的 {name, schema, strict} 整块，原样透传上游。
+		JsonSchema *map[string]interface{}                  `json:"json_schema,omitempty"`
+		Type       *ChatCompletionRequestResponseFormatType `json:"type,omitempty"`
 	} `json:"response_format,omitempty"`
-	Stop          *[]string `json:"stop,omitempty"`
-	Stream        *bool     `json:"stream,omitempty"`
+
+	// Stop 停止序列：单个字符串或字符串数组。
+	Stop          *ChatCompletionRequest_Stop `json:"stop,omitempty"`
+	Stream        *bool                       `json:"stream,omitempty"`
 	StreamOptions *struct {
 		IncludeUsage *bool `json:"include_usage,omitempty"`
 	} `json:"stream_options,omitempty"`
 	Temperature *float32 `json:"temperature,omitempty"`
 
-	// Thinking 网关扩展 —— 启用思考链
-	Thinking *bool `json:"thinking,omitempty"`
+	// Thinking 网关扩展 —— 启用思考链。接受 boolean，或 DeepSeek 风格对象 {"type":"enabled"|"disabled"}。
+	Thinking *ChatCompletionRequest_Thinking `json:"thinking,omitempty"`
 
 	// ThinkingBudget 网关扩展 —— 思考链 token 预算
 	ThinkingBudget *int `json:"thinking_budget,omitempty"`
@@ -2049,6 +2077,33 @@ type ChatCompletionRequest struct {
 
 // ChatCompletionRequestResponseFormatType defines model for ChatCompletionRequest.ResponseFormat.Type.
 type ChatCompletionRequestResponseFormatType string
+
+// ChatCompletionRequestStop0 defines model for .
+type ChatCompletionRequestStop0 = string
+
+// ChatCompletionRequestStop1 defines model for .
+type ChatCompletionRequestStop1 = []string
+
+// ChatCompletionRequest_Stop 停止序列：单个字符串或字符串数组。
+type ChatCompletionRequest_Stop struct {
+	union json.RawMessage
+}
+
+// ChatCompletionRequestThinking0 defines model for .
+type ChatCompletionRequestThinking0 = bool
+
+// ChatCompletionRequestThinking1 defines model for .
+type ChatCompletionRequestThinking1 struct {
+	Type *ChatCompletionRequestThinking1Type `json:"type,omitempty"`
+}
+
+// ChatCompletionRequestThinking1Type defines model for ChatCompletionRequest.Thinking.1.Type.
+type ChatCompletionRequestThinking1Type string
+
+// ChatCompletionRequest_Thinking 网关扩展 —— 启用思考链。接受 boolean，或 DeepSeek 风格对象 {"type":"enabled"|"disabled"}。
+type ChatCompletionRequest_Thinking struct {
+	union json.RawMessage
+}
 
 // ChatCompletionResponse defines model for ChatCompletionResponse.
 type ChatCompletionResponse struct {
@@ -2076,7 +2131,9 @@ type ChatMessage struct {
 	// JSON 层允许 null；SDK 用 Union/any 类型接收。
 	Content *ChatMessage_Content `json:"content,omitempty"`
 	Name    *string              `json:"name,omitempty"`
-	Role    ChatMessageRole      `json:"role"`
+
+	// Role developer 是 system 的别名（OpenAI o 系列惯例），网关入站归一为 system。
+	Role ChatMessageRole `json:"role"`
 
 	// ToolCallId role=tool 时必填
 	ToolCallId *string     `json:"tool_call_id,omitempty"`
@@ -2095,7 +2152,7 @@ type ChatMessage_Content struct {
 	union json.RawMessage
 }
 
-// ChatMessageRole defines model for ChatMessage.Role.
+// ChatMessageRole developer 是 system 的别名（OpenAI o 系列惯例），网关入站归一为 system。
 type ChatMessageRole string
 
 // Choice defines model for Choice.
@@ -4058,6 +4115,130 @@ func (a ResponsesRequest) MarshalJSON() ([]byte, error) {
 		}
 	}
 	return json.Marshal(object)
+}
+
+// AsChatCompletionRequestStop0 returns the union data inside the ChatCompletionRequest_Stop as a ChatCompletionRequestStop0
+func (t ChatCompletionRequest_Stop) AsChatCompletionRequestStop0() (ChatCompletionRequestStop0, error) {
+	var body ChatCompletionRequestStop0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromChatCompletionRequestStop0 overwrites any union data inside the ChatCompletionRequest_Stop as the provided ChatCompletionRequestStop0
+func (t *ChatCompletionRequest_Stop) FromChatCompletionRequestStop0(v ChatCompletionRequestStop0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeChatCompletionRequestStop0 performs a merge with any union data inside the ChatCompletionRequest_Stop, using the provided ChatCompletionRequestStop0
+func (t *ChatCompletionRequest_Stop) MergeChatCompletionRequestStop0(v ChatCompletionRequestStop0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsChatCompletionRequestStop1 returns the union data inside the ChatCompletionRequest_Stop as a ChatCompletionRequestStop1
+func (t ChatCompletionRequest_Stop) AsChatCompletionRequestStop1() (ChatCompletionRequestStop1, error) {
+	var body ChatCompletionRequestStop1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromChatCompletionRequestStop1 overwrites any union data inside the ChatCompletionRequest_Stop as the provided ChatCompletionRequestStop1
+func (t *ChatCompletionRequest_Stop) FromChatCompletionRequestStop1(v ChatCompletionRequestStop1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeChatCompletionRequestStop1 performs a merge with any union data inside the ChatCompletionRequest_Stop, using the provided ChatCompletionRequestStop1
+func (t *ChatCompletionRequest_Stop) MergeChatCompletionRequestStop1(v ChatCompletionRequestStop1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t ChatCompletionRequest_Stop) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *ChatCompletionRequest_Stop) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsChatCompletionRequestThinking0 returns the union data inside the ChatCompletionRequest_Thinking as a ChatCompletionRequestThinking0
+func (t ChatCompletionRequest_Thinking) AsChatCompletionRequestThinking0() (ChatCompletionRequestThinking0, error) {
+	var body ChatCompletionRequestThinking0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromChatCompletionRequestThinking0 overwrites any union data inside the ChatCompletionRequest_Thinking as the provided ChatCompletionRequestThinking0
+func (t *ChatCompletionRequest_Thinking) FromChatCompletionRequestThinking0(v ChatCompletionRequestThinking0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeChatCompletionRequestThinking0 performs a merge with any union data inside the ChatCompletionRequest_Thinking, using the provided ChatCompletionRequestThinking0
+func (t *ChatCompletionRequest_Thinking) MergeChatCompletionRequestThinking0(v ChatCompletionRequestThinking0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsChatCompletionRequestThinking1 returns the union data inside the ChatCompletionRequest_Thinking as a ChatCompletionRequestThinking1
+func (t ChatCompletionRequest_Thinking) AsChatCompletionRequestThinking1() (ChatCompletionRequestThinking1, error) {
+	var body ChatCompletionRequestThinking1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromChatCompletionRequestThinking1 overwrites any union data inside the ChatCompletionRequest_Thinking as the provided ChatCompletionRequestThinking1
+func (t *ChatCompletionRequest_Thinking) FromChatCompletionRequestThinking1(v ChatCompletionRequestThinking1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeChatCompletionRequestThinking1 performs a merge with any union data inside the ChatCompletionRequest_Thinking, using the provided ChatCompletionRequestThinking1
+func (t *ChatCompletionRequest_Thinking) MergeChatCompletionRequestThinking1(v ChatCompletionRequestThinking1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t ChatCompletionRequest_Thinking) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *ChatCompletionRequest_Thinking) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
 }
 
 // AsChatMessageContent0 returns the union data inside the ChatMessage_Content as a ChatMessageContent0
