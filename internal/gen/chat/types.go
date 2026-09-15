@@ -2492,21 +2492,25 @@ type ImageDataItem struct {
 	// B64Json **【已弃用 / Deprecated，未来版本将移除】**
 	//
 	// Base64 编码图片数据，仅在 `completed` 首次 GET 返回（一次性 delivery，二次 GET 不返回）。
-	// 推荐使用 `r2_url` 替代 —— R2 公开 URL 至少保留 30 天，跨刷新可访问且省 ~33% 流量（无 base64 膨胀）。
-	// R2 上传失败时 `r2_url` 不存在，旧客户端仍可 fallback 到本字段。
+	// 推荐使用 `r2_url` 替代 —— OSS 公开 URL 至少保留 30 天，跨刷新可访问且省 ~33% 流量（无 base64 膨胀）。
+	// OSS 上传失败时 `r2_url` 不存在，旧客户端仍可 fallback 到本字段。
 	// Deprecated: this property has been marked as deprecated upstream, but no `x-deprecated-reason` was set
 	B64Json *string `json:"b64_json,omitempty"`
 
 	// MimeType 图片 MIME 类型（`image/png` / `image/jpeg` / `image/webp`），便于客户端下载命名与浏览器解码。
 	MimeType *string `json:"mime_type,omitempty"`
 
-	// R2Url R2 公开 URL，至少保留 30 天，跨刷新可访问。首次 GET 同时返回 `b64_json` + `r2_url`；
+	// R2Url OSS 公开 URL，至少保留 30 天，跨刷新可访问。首次 GET 同时返回 `b64_json` + `r2_url`；
 	// 二次 GET 不再返回 `b64_json`（一次性 delivery），但 `r2_url` 仍随 200 响应返回直到
-	// `r2_url_expires_at` 过期（之后返 `410 image_expired`）。R2 上传失败时该字段不存在，
-	// 客户端应保留首次 GET 拿到的 `b64_json` 用于显示（旧任务/无 R2 兜底 → `410 image_already_retrieved`）。
+	// `r2_url_expires_at` 过期（之后返 `410 image_expired`）。OSS 上传失败时该字段不存在，
+	// 客户端应保留首次 GET 拿到的 `b64_json` 用于显示（旧任务/无 OSS 兜底 → `410 image_already_retrieved`）。
+	//
+	// 注：2026-09-15 对象存储由 Cloudflare R2 迁至阿里云 OSS，**字段名 `r2_url` /
+	// `r2_url_expires_at` 保持不变**（改名会破坏既有客户端与 SDK）。读作「结果图片的公开 URL」，
+	// 不要依赖 URL 的域名形态。
 	R2Url *string `json:"r2_url,omitempty"`
 
-	// R2UrlExpiresAt R2 URL 过期时间（RFC3339 UTC）。过期后由 R2 lifecycle 自动清理对象。
+	// R2UrlExpiresAt OSS URL 过期时间（RFC3339 UTC）。过期后由 OSS lifecycle 自动清理对象。
 	R2UrlExpiresAt *time.Time `json:"r2_url_expires_at,omitempty"`
 	RevisedPrompt  *string    `json:"revised_prompt,omitempty"`
 
@@ -2714,7 +2718,7 @@ type MediaUploadPresignRequest struct {
 	// ContentLength 上传字节数；不同 purpose 有独立上限。
 	ContentLength int `json:"content_length"`
 
-	// ContentMd5 Base64 MD5；R2 PUT 必须携带同值 Content-MD5。
+	// ContentMd5 Base64 MD5；OSS PUT 必须携带同值 Content-MD5。
 	ContentMd5 string `json:"content_md5"`
 
 	// ContentType 必须落在 purpose 对应白名单内；服务端 bind 时还会 HeadObject 复核真实类型。
@@ -2752,7 +2756,7 @@ type MediaUploadPresignResponse struct {
 	// UploadId 提交生成任务时使用的 claim ID；仅当前用户和当前 API Key 可绑定一次。
 	UploadId string `json:"upload_id"`
 
-	// UploadUrl 预签名 R2 PUT URL，仅在 `expires_in` 秒内有效；不要持久化或回显到日志。
+	// UploadUrl 预签名 OSS PUT URL，仅在 `expires_in` 秒内有效；不要持久化或回显到日志。
 	UploadUrl string `json:"upload_url"`
 }
 
@@ -2935,13 +2939,13 @@ type PortraitUploadResult struct {
 	Id   string `json:"Id"`
 	Name string `json:"Name"`
 
-	// R2Key R2 object key，用于排障 / 后续 lifecycle 操作。
+	// R2Key OSS object key，用于排障 / 后续 lifecycle 操作。
 	R2Key string `json:"R2Key"`
 
 	// Status 落库时初始状态；后续状态可通过 `/portrait/?Action=GetAsset` 查询。
 	Status string `json:"Status"`
 
-	// UploadedURL R2 公开 URL，同时是传给火山 `CreateAsset(URL=...)` 的 URL。
+	// UploadedURL OSS 公开 URL，同时是传给火山 `CreateAsset(URL=...)` 的 URL。
 	UploadedURL string `json:"UploadedURL"`
 }
 
@@ -2983,7 +2987,7 @@ type TTSUploadPresignRequest struct {
 	// ContentLength Byte length of the file to upload. Hard cap 10 MiB (10485760).
 	ContentLength int `json:"content_length"`
 
-	// ContentMd5 Base64 MD5 (16-byte digest -> 24 chars). Enforced by R2 PUT.
+	// ContentMd5 Base64 MD5 (16-byte digest -> 24 chars). Enforced by OSS PUT.
 	ContentMd5 string `json:"content_md5"`
 
 	// ContentType Strict allowlist; audio/wav only (MP3/M4A in a follow-up release).
@@ -3018,7 +3022,7 @@ type TTSUploadPresignResponse struct {
 	// UploadId Claim ID to pass back as `upload_id` when calling `POST /audio/voices`.
 	UploadId string `json:"upload_id"`
 
-	// UploadUrl Pre-signed R2 PUT URL valid for `expires_in` seconds.
+	// UploadUrl Pre-signed OSS PUT URL valid for `expires_in` seconds.
 	UploadUrl string `json:"upload_url"`
 }
 
@@ -3708,7 +3712,7 @@ type VoiceTaskCreateRequest struct {
 	SampleAudioUrl *string `json:"sample_audio_url,omitempty"`
 	SampleText     *string `json:"sample_text,omitempty"`
 
-	// UploadId PR-TTS-6 R2 direct-upload claim ID (recommended path, up to 10 MiB sample).
+	// UploadId PR-TTS-6 OSS direct-upload claim ID (recommended path, up to 10 MiB sample).
 	// Mutually exclusive with multipart `sample_audio` and `sample_audio_base64`;
 	// exclusivity check is only triggered when `upload_id` is present — legacy single-source
 	// clients see zero behavior change.
